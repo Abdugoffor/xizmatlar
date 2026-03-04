@@ -14,3 +14,4 @@ Route::prefix('{lang}')->middleware(LangMiddleware::class)->group(function () {
     Route::resource('hotels', App\Http\Controllers\Hotel\HotelController::class);
 });
 
+Route::get('/lang/{lang}', [App\Http\Controllers\Language\LanguageController::class, 'changeLanguage'])->name('change.language');

@@ -49,7 +49,7 @@ class HotelController extends Controller
             $query->where('is_active', 'like', '%' . $request->input('is_active') . '%');
         }
 
-        $models = $query->paginate(10)->withQueryString();
+        $models = $query->paginate(3)->withQueryString();
         return view('hotels.index', ['models' => $models]);
     }
 

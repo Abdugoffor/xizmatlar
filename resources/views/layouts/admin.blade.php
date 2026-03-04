@@ -23,10 +23,32 @@
             <a href="/" class="d-inline-block d-flex align-items-center">
                 <img src="/backend/admin_logo.webp" class="d-none d-sm-block" alt=""
                     style="height:35px;margin-right:10px;">
-                    {{ getTranslation('Admin Panel') }}
+
+                <span style="color: white; font-size: 14px;">{{ getTranslation('Admin Panel') }}</span>
             </a>
         </div>
+        <div class="collapse navbar-collapse order-2 order-lg-1" id="navbar-mobile">
+
+        </div>
         <ul class="navbar-nav flex-row order-1 order-lg-2 flex-1 flex-lg-0 justify-content-end align-items-center">
+            <li class="nav-item nav-item-dropdown-lg dropdown dropdown-user h-100">
+                <a href="#"
+                    class="navbar-nav-link navbar-nav-link-toggler dropdown-toggle d-inline-flex align-items-center h-100"
+                    data-toggle="dropdown">
+                    <span class="d-none d-lg-inline-block"
+                        style="text-transform: capitalize; !important">{{ app()->getLocale() }}</span>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right">
+                    @foreach (getLanguage()->pluck('name')->toArray() as $language)
+                       
+                        <a href="{{ route('change.language', ['lang' => $language], false) }}"
+                            class="dropdown-item {{ app()->getLocale() == $language ? 'active' : '' }}">
+                            {{ $language }}
+                        </a>
+                    @endforeach
+                </div>
+            </li>
             <li class="nav-item nav-item-dropdown-lg dropdown dropdown-user h-100">
                 <a href="#"
                     class="navbar-nav-link navbar-nav-link-toggler dropdown-toggle d-inline-flex align-items-center h-100"
@@ -64,7 +86,7 @@
                         <li class="nav-item">
                             <a href="{{ route('hotels.index', [], false) }}" class="nav-link">
                                 <i class="icon-home4"></i><span>{{ getTranslation('Hotel') }}</span>
-                                </a>
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('languages.index', [], false) }}" class="nav-link">
