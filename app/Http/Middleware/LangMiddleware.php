@@ -11,31 +11,53 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LangMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
-        // siz xohlagancha:
-        $langs = getLanguage()->pluck('name')->toArray(); // masalan: ['uz','ru','en']
+        // DIQQAT: Siz pluck('name') ishlatyapsiz - demak name = 'uz', 'ru'
+        $langs = getLanguage()->pluck('name')->toArray(); // ['uz','ru','en']
 
-        // 1) avval session
-        $lang = Session::get('lang');
-
-        // 2) session bo'lmasa app.php dagi locale
-        if (!$lang) {
-            $lang = config('app.locale'); // .env APP_LOCALE
+        if (empty($langs)) {
+            $langs = [config('app.locale')];
         }
 
-        // 3) agar app locale DB dagi tillarda bo'lmasa, birinchi aktiv til
-        if (!$lang || !in_array($lang, $langs, true)) {
-            $lang = $langs[0] ?? 'en';
+        // 1) URLdagi lang (/{lang}/...)
+        $routeLang = $request->route('lang');
+
+        // 2) Sessiondagi lang
+        $sessionLang = Session::get('lang');
+
+        // 3) Default (app.php / .env)
+        $defaultLang = config('app.locale');
+
+        // 4) Qaysi tilni tanlaymiz?
+        // URL to'g'ri bo'lsa - URL ustun
+        if ($routeLang && in_array($routeLang, $langs, true)) {
+            $lang = $routeLang;
+        } else {
+            // URL yo'q yoki noto'g'ri bo'lsa session -> default -> DB first
+            $lang = ($sessionLang && in_array($sessionLang, $langs, true))
+                ? $sessionLang
+                : (in_array($defaultLang, $langs, true) ? $defaultLang : ($langs[0] ?? $defaultLang));
+
+            // Agar route'da lang bor-u noto'g'ri bo'lsa yoki umuman bo'lmasa -> to'g'ri URLga redirect
+            // (Misol: /en/languages lekin en aktiv emas)
+            if ($request->route() && $request->route()->getName()) {
+                $params = $request->route()->parameters();
+                $params['lang'] = $lang;
+
+                return redirect()->route($request->route()->getName(), $params);
+            }
+
+            // Agar route nomi yo'q bo'lsa fallback
+            return redirect()->to("/{$lang}");
         }
 
+        // 5) Set
         Session::put('lang', $lang);
         App::setLocale($lang);
+
+        // 6) ENG MUHIM: route() langni avtomatik qo'shadi
+        URL::defaults(['lang' => $lang]);
 
         return $next($request);
     }

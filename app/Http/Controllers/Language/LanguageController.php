@@ -36,7 +36,7 @@ class LanguageController extends Controller
         $data = $request->validated();
 
         Language::create($data);
-        
+
         Cache::forget('getLanguage');
 
         return redirect()->route('languages.index')
@@ -61,7 +61,7 @@ class LanguageController extends Controller
         $data  = $request->validated();
 
         $model->update($data);
-        
+
         Cache::forget('getLanguage');
 
         return redirect()->route('languages.index')
@@ -71,17 +71,18 @@ class LanguageController extends Controller
     public function destroy($id)
     {
         $model = Language::findOrFail($id);
-        
+
         $model->delete();
 
         Cache::forget('getLanguage');
         return redirect()->route('languages.index')
             ->with('notification', getTranslation('Language удалён успешно'));
     }
-    public function changeLanguage($lang)
+    public function changeLanguage(Request $request)
     {
-        $langs = getLanguage()->pluck('name')->toArray();
+        $lang = $request->query('lang'); // /{lang}/lang/change?lang=ru
 
+        $langs = getLanguage()->pluck('name')->toArray();
         if (!in_array($lang, $langs, true)) {
             $lang = config('app.locale');
         }
@@ -89,6 +90,30 @@ class LanguageController extends Controller
         session()->put('lang', $lang);
         app()->setLocale($lang);
 
-        return redirect()->back();
+        // Hozirgi route nomi va parametrlari
+        $route = $request->route(); // bu /{lang}/lang/change route
+        // Biz esa user turgan sahifaga qaytarmoqchimiz.
+        // Eng yaxshi usul: referer URLni olib, 1-segmentni almashtirish.
+
+        $referer = url()->previous(); // oldingi sahifa
+        // Masalan: http://site.com/uz/languages?page=2
+        // 1-segmentni yangi langga almashtiramiz:
+
+        $path = parse_url($referer, PHP_URL_PATH) ?? '/';
+        $query = parse_url($referer, PHP_URL_QUERY);
+
+        $segments = array_values(array_filter(explode('/', $path)));
+
+        if (count($segments) > 0) {
+            // birinchi segment lang bo'ladi
+            $segments[0] = $lang;
+        } else {
+            $segments = [$lang];
+        }
+
+        $newPath = '/' . implode('/', $segments);
+        $newUrl = $newPath . ($query ? ('?' . $query) : '');
+
+        return redirect($newUrl);
     }
 }

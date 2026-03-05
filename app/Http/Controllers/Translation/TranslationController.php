@@ -18,12 +18,17 @@ class TranslationController extends Controller
         if ($request->filled('type')) {
             $query->where('type', 'like', '%' . $request->input('type') . '%');
         }
+
         if ($request->filled('slug')) {
             $query->where('slug', 'like', '%' . $request->input('slug') . '%');
         }
+
         if ($request->filled('name')) {
+
             $locale = app()->getLocale();
+
             $search = '%' . $request->input('name') . '%';
+        
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(name->>'{$locale}') LIKE lower(?)", [$search])
                     ->orWhereRaw("lower(name->>'default') LIKE lower(?)", [$search]);
