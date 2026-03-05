@@ -1,0 +1,220 @@
+/* Zamonaviy font va umumiy sozlamalar */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Header dizayni */
+header {
+    background: #252b36;
+    color: #fff;
+    padding: 0;
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #fff;
+    margin-left: 20px;
+    font-size: 0.95em;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #a8b2d1;
+}
+
+/* Dropdown dizayni */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 0.95em;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.dropdown-toggle:hover {
+    background: #2e3644;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: #2e3644;
+    min-width: 180px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 6px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.dropdown-menu a, .dropdown-menu button {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.dropdown-menu a:hover, .dropdown-menu button:hover {
+    background: #252b36;
+}
+
+.dropdown-item {
+    font-weight: 400;
+}
+
+/* Main content */
+main {
+    flex: 1;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    font-weight: 600;
+    color: #252b36;
+}
+
+/* Form elementlari */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+    font-weight: 500;
+    color: #252b36;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.95em;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4f5b93;
+    box-shadow: 0 0 5px rgba(79, 91, 147, 0.2);
+}
+
+.form-group .error {
+    color: #dc3545;
+    font-size: 0.85em;
+    margin-top: 6px;
+}
+
+/* Tugmalar */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #4f5b93;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #3b4477;
+}
+
+/* Havolalar */
+a {
+    color: #4f5b93;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #3b4477;
+}
+
+/* Alert xabarlari */
+.alert {
+    color: #28a745;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    font-weight: 500;
+}
+
+/* Footer dizayni */
+footer {
+    background: #252b36;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+    font-weight: 400;
+}

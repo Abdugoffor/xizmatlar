@@ -41,7 +41,7 @@
 
                 <div class="dropdown-menu dropdown-menu-right">
                     @foreach (getLanguage()->pluck('name')->toArray() as $language)
-                       
+
                         <a href="{{ route('change.language', ['lang' => $language]) }}"
                             class="dropdown-item {{ app()->getLocale() == $language ? 'active' : '' }}">
                             {{ $language }}
@@ -56,9 +56,11 @@
                     <span class="d-none d-lg-inline-block">{{ auth()->user()->role ?? 'User' }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <form action="/" method="post">
+                    <form method="POST" action="{{ route("logout") }}">
                         @csrf
-                        <button class="dropdown-item"><i class="icon-switch2"></i> <span>Logout</span></button>
+                        <button class="dropdown-item">
+                            <i class="icon-switch2"></i> <span>Logout</span>
+                        </button>
                     </form>
                 </div>
             </li>
@@ -96,6 +98,11 @@
                         <li class="nav-item">
                             <a href="{{ route('translations.index') }}" class="nav-link">
                                 <i class="icon-home4"></i><span>{{ getTranslation('Translation') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('users.index') }}" class="nav-link">
+                                <i class="icon-home4"></i><span>{{ getTranslation('User') }}</span>
                             </a>
                         </li>
                     </ul>

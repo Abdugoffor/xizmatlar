@@ -20,9 +20,16 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role',
         'password',
     ];
 
+    public $enumValues = [
+        'role' => [
+            'values' => ['user', 'admin'],
+            'default' => 'user',
+        ],
+    ];
     /**
      * The attributes that should be hidden for serialization.
      *

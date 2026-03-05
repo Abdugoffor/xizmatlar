@@ -69,19 +69,19 @@ class HotelController extends Controller
             ->with('notification', getTranslation('Hotel создан успешно'));
     }
 
-    public function show($id)
+    public function show($lang, $id)
     {
         $model = Hotel::findOrFail($id);
         return view('hotels.show', ['model' => $model]);
     }
 
-    public function edit($id)
+    public function edit($lang, $id)
     {
         $model = Hotel::findOrFail($id);
         return view('hotels.edit', ['model' => $model]);
     }
 
-    public function update(UpdateHotelRequest $request, $id)
+    public function update(UpdateHotelRequest $request, $lang, $id)
     {
         $model = Hotel::findOrFail($id);
         $data  = $request->validated();
@@ -94,7 +94,7 @@ class HotelController extends Controller
             ->with('notification', getTranslation('Hotel обновлён успешно'));
     }
 
-    public function destroy($id)
+    public function destroy($lang, $id)
     {
         $model = Hotel::findOrFail($id);
         $model->delete();

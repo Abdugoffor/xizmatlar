@@ -43,19 +43,19 @@ class LanguageController extends Controller
             ->with('notification', getTranslation('Language создан успешно'));
     }
 
-    public function show($id)
+    public function show($lang, $id)
     {
         $model = Language::findOrFail($id);
         return view('languages.show', ['model' => $model]);
     }
 
-    public function edit($id)
+    public function edit($lang, $id)
     {
         $model = Language::findOrFail($id);
         return view('languages.edit', ['model' => $model]);
     }
 
-    public function update(UpdateLanguageRequest $request, $id)
+    public function update(UpdateLanguageRequest $request, $lang, $id)
     {
         $model = Language::findOrFail($id);
         $data  = $request->validated();
@@ -68,7 +68,7 @@ class LanguageController extends Controller
             ->with('notification', getTranslation('Language обновлён успешно'));
     }
 
-    public function destroy($id)
+    public function destroy($lang, $id)
     {
         $model = Language::findOrFail($id);
 

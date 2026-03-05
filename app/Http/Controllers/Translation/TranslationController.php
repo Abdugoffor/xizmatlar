@@ -18,17 +18,12 @@ class TranslationController extends Controller
         if ($request->filled('type')) {
             $query->where('type', 'like', '%' . $request->input('type') . '%');
         }
-
         if ($request->filled('slug')) {
             $query->where('slug', 'like', '%' . $request->input('slug') . '%');
         }
-
         if ($request->filled('name')) {
-
             $locale = app()->getLocale();
-
             $search = '%' . $request->input('name') . '%';
-        
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(name->>'{$locale}') LIKE lower(?)", [$search])
                     ->orWhereRaw("lower(name->>'default') LIKE lower(?)", [$search]);
@@ -57,19 +52,19 @@ class TranslationController extends Controller
             ->with('notification', getTranslation('Translation создан успешно'));
     }
 
-    public function show($id)
+    public function show($lang, $id)
     {
         $model = Translation::findOrFail($id);
         return view('translations.show', ['model' => $model]);
     }
 
-    public function edit($id)
+    public function edit($lang, $id)
     {
         $model = Translation::findOrFail($id);
         return view('translations.edit', ['model' => $model]);
     }
 
-    public function update(UpdateTranslationRequest $request, $id)
+    public function update(UpdateTranslationRequest $request, $lang, $id)
     {
         $model = Translation::findOrFail($id);
         $data  = $request->validated();
@@ -83,7 +78,7 @@ class TranslationController extends Controller
             ->with('notification', getTranslation('Translation обновлён успешно'));
     }
 
-    public function destroy($id)
+    public function destroy($lang, $id)
     {
         $model = Translation::findOrFail($id);
         $model->delete();
