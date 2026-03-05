@@ -3,15 +3,15 @@
 use App\Http\Middleware\LangMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+use App\Http\Controllers\Translation\TranslationController;
+use App\Http\Controllers\Language\LanguageController;
+use App\Http\Controllers\Hotel\HotelController;
+
+
+
+Route::middleware(LangMiddleware::class)->group(function () {
+    Route::get('/lang/{lang}', [LanguageController::class, 'changeLanguage'])->name('change.language');
+    Route::resource('translations', TranslationController::class);
+    Route::resource('languages', LanguageController::class);
+    Route::resource('hotels', HotelController::class);
 });
-
-Route::prefix('{lang}')->middleware(LangMiddleware::class)->group(function () {
-
-    Route::resource('translations', App\Http\Controllers\Translation\TranslationController::class);
-    Route::resource('languages', App\Http\Controllers\Language\LanguageController::class);
-    Route::resource('hotels', App\Http\Controllers\Hotel\HotelController::class);
-});
-
-Route::get('/lang/{lang}', [App\Http\Controllers\Language\LanguageController::class, 'changeLanguage'])->name('change.language');

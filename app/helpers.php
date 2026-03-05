@@ -311,15 +311,15 @@ if (!function_exists('historyCheck')) {
 if (!function_exists('getTranslation')) {
     function getTranslation($slug)
     {
-        // return Cache::remember("menyu.{$slug}_" . App::getLocale(), now()->addMinutes(180), function () use ($slug) {
-        $translation = Translation::where('slug', $slug)->first();
+        return Cache::remember("menyu.{$slug}_" . App::getLocale(), now()->addMinutes(180), function () use ($slug) {
+            $translation = Translation::where('slug', $slug)->first();
 
-        if ($translation) {
-            return $translation->name[App::getLocale()] ?? $translation->name['default'];
-        }
+            if ($translation) {
+                return $translation->name[App::getLocale()] ?? $translation->name['default'];
+            }
 
-        return $slug;
-        // });
+            return $slug;
+        });
     }
 }
 

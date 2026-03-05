@@ -42,7 +42,7 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     @foreach (getLanguage()->pluck('name')->toArray() as $language)
                        
-                        <a href="{{ route('change.language', ['lang' => $language], false) }}"
+                        <a href="{{ route('change.language', ['lang' => $language]) }}"
                             class="dropdown-item {{ app()->getLocale() == $language ? 'active' : '' }}">
                             {{ $language }}
                         </a>
@@ -84,17 +84,17 @@
                             <a href="/" class="nav-link"><i class="icon-home4"></i><span>Dashboard</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('hotels.index', [], false) }}" class="nav-link">
+                            <a href="{{ route('hotels.index') }}" class="nav-link">
                                 <i class="icon-home4"></i><span>{{ getTranslation('Hotel') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('languages.index', [], false) }}" class="nav-link">
+                            <a href="{{ route('languages.index') }}" class="nav-link">
                                 <i class="icon-home4"></i><span>{{ getTranslation('Language') }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('translations.index', [], false) }}" class="nav-link">
+                            <a href="{{ route('translations.index') }}" class="nav-link">
                                 <i class="icon-home4"></i><span>{{ getTranslation('Translation') }}</span>
                             </a>
                         </li>

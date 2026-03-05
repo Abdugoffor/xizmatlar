@@ -7,15 +7,13 @@ use App\Models\Language;
 use App\Http\Requests\Language\StoreLanguageRequest;
 use App\Http\Requests\Language\UpdateLanguageRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Cache;
 
 class LanguageController extends Controller
 {
     public function index(Request $request)
     {
         $query = Language::query();
-    
+
         if ($request->filled('name')) {
             $query->where('name', 'like', '%' . $request->input('name') . '%');
         }
@@ -37,7 +35,6 @@ class LanguageController extends Controller
         $data = $request->validated();
 
         Language::create($data);
-        Cache::forget('getLanguage');
         return redirect()->route('languages.index')
             ->with('notification', getTranslation('Language создан успешно'));
     }
@@ -60,9 +57,6 @@ class LanguageController extends Controller
         $data  = $request->validated();
 
         $model->update($data);
-
-        Cache::forget('getLanguage');
-
         return redirect()->route('languages.index')
             ->with('notification', getTranslation('Language обновлён успешно'));
     }
@@ -71,48 +65,20 @@ class LanguageController extends Controller
     {
         $model = Language::findOrFail($id);
         $model->delete();
-
-        Cache::forget('getLanguage');
-
         return redirect()->route('languages.index')
             ->with('notification', getTranslation('Language удалён успешно'));
     }
-
     public function changeLanguage($lang)
     {
         $langs = getLanguage()->pluck('name')->toArray();
 
-        if (in_array($lang, $langs)) {
-
-            session()->put('lang', $lang);
-
-            App::setLocale($lang);
-
-            $referer = request()->header('referer');
-
-            $refererPath = parse_url($referer, PHP_URL_PATH);
-
-
-            if ($refererPath) {
-
-                $segments = explode('/', trim($refererPath, '/'));
-
-
-                if (!empty($segments) && in_array($segments[0], $langs)) {
-                    $segments[0] = $lang;
-                }
-
-
-                $newUrl = '/' . implode('/', $segments);
-
-                return redirect($newUrl);
-            }
-
-
-            return redirect("/$lang");
+        if (!in_array($lang, $langs, true)) {
+            $lang = config('app.locale');
         }
 
-        return redirect()->back();
+        session()->put('lang', $lang);
+        app()->setLocale($lang);
 
+        return redirect()->back();
     }
 }

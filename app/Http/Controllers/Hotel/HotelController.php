@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Hotel;
 use App\Http\Requests\Hotel\StoreHotelRequest;
 use App\Http\Requests\Hotel\UpdateHotelRequest;
-use App\Http\Resources\Hotel\HotelResource;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
@@ -49,7 +48,7 @@ class HotelController extends Controller
             $query->where('is_active', 'like', '%' . $request->input('is_active') . '%');
         }
 
-        $models = $query->paginate(3)->withQueryString();
+        $models = $query->paginate(10)->withQueryString();
         return view('hotels.index', ['models' => $models]);
     }
 

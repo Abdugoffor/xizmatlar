@@ -572,7 +572,7 @@ EOT;
                     <div class="card-body d-lg-flex align-items-lg-center justify-content-lg-between flex-lg-wrap">
                         <div class="d-flex align-items-center mb-3 mb-lg-0"></div>
                         <div>
-                            <a href="{{ route('{$pluralName}.create', [], false) }}" class="btn btn-teal">
+                            <a href="{{ route('{$pluralName}.create') }}" class="btn btn-teal">
                                 <i class="icon-plus3 icon-1x mr-1"></i> {{ getTranslation('Добавить') }}
                             </a>
                         </div>
@@ -585,7 +585,7 @@ EOT;
 {$tableHeaders}
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>
                                 </tr>
-                                <form action="{{ route('{$pluralName}.index', [], false) }}" method="get">
+                                <form action="{{ route('{$pluralName}.index') }}" method="get">
                                     <tr>
 {$searchInputs}
                                         <th class="text-center">
@@ -601,11 +601,11 @@ EOT;
 {$tableRow}
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('{$pluralName}.show', \$model->id, false) }}"
+                                                <a href="{{ route('{$pluralName}.show', \$model->id) }}"
                                                    class="btn btn-outline-info">
                                                     <i class="icon-eye8"></i>
                                                 </a>
-                                                <a href="{{ route('{$pluralName}.edit', \$model->id, false) }}"
+                                                <a href="{{ route('{$pluralName}.edit', \$model->id) }}"
                                                    class="btn btn-outline-success ml-2">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
@@ -623,7 +623,7 @@ EOT;
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         </div>
-                                                        <form action="{{ route('{$pluralName}.destroy', \$model->id, false) }}"
+                                                        <form action="{{ route('{$pluralName}.destroy', \$model->id) }}"
                                                               method="post">
                                                             @csrf
                                                             @method('DELETE')
@@ -667,14 +667,14 @@ EOT;
         if ($isEdit) {
             $title           = strtolower($name);
             $sectionTitle    = "getTranslation('Редактировать {$title}')";
-            $formAction      = "{{ route('{$pluralName}.update', \$model->id, false) }}";
+            $formAction      = "{{ route('{$pluralName}.update', \$model->id) }}";
             $methodSpoofing  = "\n                    @method('PUT')";
             $submitLabel     = "{{ getTranslation('Обновить') }}";
             $fileName        = 'edit';
         } else {
             $title           = strtolower($name);
             $sectionTitle    = "getTranslation('Создать {$title}')";
-            $formAction      = "{{ route('{$pluralName}.store', [], false) }}";
+            $formAction      = "{{ route('{$pluralName}.store') }}";
             $methodSpoofing  = '';
             $submitLabel     = "{{ getTranslation('Добавить') }}";
             $fileName        = 'create';
@@ -687,7 +687,7 @@ EOT;
 @section('content')
     <div class="content">
         <div class="d-inline-flex gap-2">
-            <a href="{{ route('{$pluralName}.index', [], false) }}" class="btn btn-outline-secondary">
+            <a href="{{ route('{$pluralName}.index') }}" class="btn btn-outline-secondary">
                 {{ getTranslation('Назад') }}
             </a>
         </div>
@@ -782,10 +782,10 @@ EOT;
 @section('content')
     <div class="content">
         <div class="d-inline-flex gap-2">
-            <a href="{{ route('{$pluralName}.index', [], false) }}" class="btn btn-outline-secondary">
+            <a href="{{ route('{$pluralName}.index') }}" class="btn btn-outline-secondary">
                 {{ getTranslation('Назад') }}
             </a>
-            <a href="{{ route('{$pluralName}.edit', \$model->id, false) }}" class="btn btn-outline-success ml-2">
+            <a href="{{ route('{$pluralName}.edit', \$model->id) }}" class="btn btn-outline-success ml-2">
                 {{ getTranslation('Редактировать') }}
             </a>
         </div>

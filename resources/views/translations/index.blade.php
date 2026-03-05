@@ -16,7 +16,7 @@
                     <div class="card-body d-lg-flex align-items-lg-center justify-content-lg-between flex-lg-wrap">
                         <div class="d-flex align-items-center mb-3 mb-lg-0"></div>
                         <div>
-                            <a href="{{ route('translations.create', [], false) }}" class="btn btn-teal">
+                            <a href="{{ route('translations.create') }}" class="btn btn-teal">
                                 <i class="icon-plus3 icon-1x mr-1"></i> {{ getTranslation('Добавить') }}
                             </a>
                         </div>
@@ -33,7 +33,7 @@
 
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>
                                 </tr>
-                                <form action="{{ route('translations.index', [], false) }}" method="get">
+                                <form action="{{ route('translations.index') }}" method="get">
                                     <tr>
                                 <th class="text-center"></th>
                                 <th class="text-center">
@@ -68,11 +68,11 @@
 
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('translations.show', $model->id, false) }}"
+                                                <a href="{{ route('translations.show', $model->id) }}"
                                                    class="btn btn-outline-info">
                                                     <i class="icon-eye8"></i>
                                                 </a>
-                                                <a href="{{ route('translations.edit', $model->id, false) }}"
+                                                <a href="{{ route('translations.edit', $model->id) }}"
                                                    class="btn btn-outline-success ml-2">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
@@ -90,7 +90,7 @@
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         </div>
-                                                        <form action="{{ route('translations.destroy', $model->id, false) }}"
+                                                        <form action="{{ route('translations.destroy', $model->id) }}"
                                                               method="post">
                                                             @csrf
                                                             @method('DELETE')

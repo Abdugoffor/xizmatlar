@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Translation;
 use App\Http\Requests\Translation\StoreTranslationRequest;
 use App\Http\Requests\Translation\UpdateTranslationRequest;
-use App\Http\Resources\Translation\TranslationResource;
 use Illuminate\Http\Request;
 
 class TranslationController extends Controller

@@ -3,14 +3,14 @@
 @section('content')
     <div class="content">
         <div class="d-inline-flex gap-2">
-            <a href="{{ route('languages.index', [], false) }}" class="btn btn-outline-secondary">
+            <a href="{{ route('languages.index') }}" class="btn btn-outline-secondary">
                 {{ getTranslation('Назад') }}
             </a>
         </div>
 
         <div class="card mt-2">
             <div class="card-body">
-                <form action="{{ route('languages.update', $model->id, false) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('languages.update', $model->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 

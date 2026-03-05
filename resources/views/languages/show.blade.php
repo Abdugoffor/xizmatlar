@@ -3,10 +3,10 @@
 @section('content')
     <div class="content">
         <div class="d-inline-flex gap-2">
-            <a href="{{ route('languages.index', [], false) }}" class="btn btn-outline-secondary">
+            <a href="{{ route('languages.index') }}" class="btn btn-outline-secondary">
                 {{ getTranslation('Назад') }}
             </a>
-            <a href="{{ route('languages.edit', $model->id, false) }}" class="btn btn-outline-success ml-2">
+            <a href="{{ route('languages.edit', $model->id) }}" class="btn btn-outline-success ml-2">
                 {{ getTranslation('Редактировать') }}
             </a>
         </div>

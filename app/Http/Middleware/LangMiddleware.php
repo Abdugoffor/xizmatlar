@@ -18,23 +18,24 @@ class LangMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $lang = $request->segment(1);
-        $langs = getLanguage()->pluck('name')->toArray();
+        // siz xohlagancha:
+        $langs = getLanguage()->pluck('name')->toArray(); // masalan: ['uz','ru','en']
 
-        if (!$lang || !in_array($lang, $langs)) {
+        // 1) avval session
+        $lang = Session::get('lang');
 
-            $lang = Session::get('lang', $langs[0] ?? 'en');
+        // 2) session bo'lmasa app.php dagi locale
+        if (!$lang) {
+            $lang = config('app.locale'); // .env APP_LOCALE
+        }
 
-            return redirect("/{$lang}" . $request->getPathInfo());
+        // 3) agar app locale DB dagi tillarda bo'lmasa, birinchi aktiv til
+        if (!$lang || !in_array($lang, $langs, true)) {
+            $lang = $langs[0] ?? 'en';
         }
 
         Session::put('lang', $lang);
-
         App::setLocale($lang);
-
-        URL::defaults(['lang' => $lang]);
-
-        $request->route()->forgetParameter('lang');
 
         return $next($request);
     }
