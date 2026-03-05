@@ -7,6 +7,7 @@ use App\Models\Translation;
 use App\Http\Requests\Translation\StoreTranslationRequest;
 use App\Http\Requests\Translation\UpdateTranslationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class TranslationController extends Controller
 {
@@ -25,7 +26,7 @@ class TranslationController extends Controller
             $search = '%' . $request->input('name') . '%';
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(name->>'{$locale}') LIKE lower(?)", [$search])
-                  ->orWhereRaw("lower(name->>'default') LIKE lower(?)", [$search]);
+                    ->orWhereRaw("lower(name->>'default') LIKE lower(?)", [$search]);
             });
         }
 
@@ -43,7 +44,10 @@ class TranslationController extends Controller
         $data = $request->validated();
         $data['name']['default'] = reset($data['name']);
 
-        Translation::create($data);
+        $translation = Translation::create($data);
+
+        $this->forgetTranslationCache($translation->slug);
+
         return redirect()->route('translations.index')
             ->with('notification', getTranslation('Translation создан успешно'));
     }
@@ -67,6 +71,9 @@ class TranslationController extends Controller
         $data['name']['default'] = reset($data['name']);
 
         $model->update($data);
+
+        $this->forgetTranslationCache($model->slug);
+
         return redirect()->route('translations.index')
             ->with('notification', getTranslation('Translation обновлён успешно'));
     }
@@ -77,5 +84,12 @@ class TranslationController extends Controller
         $model->delete();
         return redirect()->route('translations.index')
             ->with('notification', getTranslation('Translation удалён успешно'));
+    }
+
+    private function forgetTranslationCache(string $slug): void
+    {
+        foreach (getLanguage()->pluck('name') as $lang) {
+            Cache::forget("menyu.{$slug}_{$lang}");
+        }
     }
 }

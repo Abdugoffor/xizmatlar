@@ -7,6 +7,7 @@ use App\Models\Language;
 use App\Http\Requests\Language\StoreLanguageRequest;
 use App\Http\Requests\Language\UpdateLanguageRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class LanguageController extends Controller
 {
@@ -35,6 +36,9 @@ class LanguageController extends Controller
         $data = $request->validated();
 
         Language::create($data);
+        
+        Cache::forget('getLanguage');
+
         return redirect()->route('languages.index')
             ->with('notification', getTranslation('Language создан успешно'));
     }
@@ -57,6 +61,9 @@ class LanguageController extends Controller
         $data  = $request->validated();
 
         $model->update($data);
+        
+        Cache::forget('getLanguage');
+
         return redirect()->route('languages.index')
             ->with('notification', getTranslation('Language обновлён успешно'));
     }
@@ -64,7 +71,10 @@ class LanguageController extends Controller
     public function destroy($id)
     {
         $model = Language::findOrFail($id);
+        
         $model->delete();
+
+        Cache::forget('getLanguage');
         return redirect()->route('languages.index')
             ->with('notification', getTranslation('Language удалён успешно'));
     }
