@@ -7,19 +7,9 @@ use App\Http\Controllers\Translation\TranslationController;
 use App\Http\Controllers\Language\LanguageController;
 use App\Http\Controllers\Hotel\HotelController;
 
-Route::get('/', function () {
 
-    $lang = session('lang') ?: config('app.locale');
 
-    $langs = getLanguage()->pluck('name')->toArray();
-
-    if (!in_array($lang, $langs, true)) {
-        $lang = $langs[0] ?? config('app.locale');
-    }
-
-    return redirect()->to("/{$lang}");
-})->name('root');
-
+include 'lang.php';
 
 Route::prefix('{lang}')->middleware([LangMiddleware::class])->group(function () {
     Route::view('/', 'welcome');
