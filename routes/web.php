@@ -20,6 +20,7 @@ Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddl
     Route::view('/', 'welcome');
     Route::get('/lang/change', [LanguageController::class, 'changeLanguage'])->name('change.language');
 
+    Route::resource('news', App\Http\Controllers\News\NewsController::class);
     Route::resource('translations', TranslationController::class);
     Route::resource('languages', LanguageController::class);
     Route::resource('hotels', HotelController::class);
@@ -37,4 +38,5 @@ Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddl
         Route::patch("/profile", [ProfileController::class, "update"])->name("profile.update");
         Route::get("/dashboard", [HomeController::class, "index"])->name("home");
     });
+    Route::resource('services', App\Http\Controllers\Service\ServiceController::class);
 });

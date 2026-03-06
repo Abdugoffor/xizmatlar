@@ -86,6 +86,16 @@
                             <a href="/" class="nav-link"><i class="icon-home4"></i><span>Dashboard</span></a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('services.index') }}" class="nav-link">
+                                <i class="icon-home4"></i><span>{{ getTranslation('News') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('news.index') }}" class="nav-link">
+                                <i class="icon-home4"></i><span>{{ getTranslation('News') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('hotels.index') }}" class="nav-link">
                                 <i class="icon-home4"></i><span>{{ getTranslation('Hotel') }}</span>
                             </a>

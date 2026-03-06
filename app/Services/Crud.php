@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace AdminCrud\CrudGenerator;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
@@ -9,18 +9,19 @@ use Illuminate\Support\Str;
 
 class Crud extends Command
 {
-    protected $signature   = 'make:crud {name}';
+    protected $signature = 'make:crud {name}';
     protected $description = 'Generate CRUD based on an existing model with controller, requests, resource, and views extending layouts.admin';
 
-    protected $enumFields         = [];
+    protected $enumFields = [];
     protected $translatableFields = [];
+    protected $booleanFields = [];
 
     public function handle()
     {
         $name = $this->argument('name');
 
         $modelPath = app_path("Models/{$name}.php");
-        if (! File::exists($modelPath)) {
+        if (!File::exists($modelPath)) {
             $this->error("Model {$name} does not exist!");
             return;
         }
@@ -32,6 +33,7 @@ class Crud extends Command
         }
 
         $this->translatableFields = $this->getTranslatableFields($name);
+        $this->booleanFields = $this->getBooleanFields($name);
 
         $this->createLayout();
         $this->createResource($name, $fields);
@@ -50,9 +52,10 @@ class Crud extends Command
     protected function getFillableFields($name)
     {
         $modelClass = "App\\Models\\{$name}";
-        if (! class_exists($modelClass)) {
+        if (!class_exists($modelClass)) {
             return [];
         }
+
         $model = new $modelClass();
         return $model->getFillable();
     }
@@ -60,17 +63,40 @@ class Crud extends Command
     protected function getTranslatableFields($name)
     {
         $modelClass = "App\\Models\\{$name}";
-        if (! class_exists($modelClass)) {
+        if (!class_exists($modelClass)) {
             return [];
         }
-        $model  = new $modelClass();
-        $casts  = $model->getCasts();
+
+        $model = new $modelClass();
+        $casts = $model->getCasts();
         $result = [];
+
         foreach ($casts as $field => $type) {
             if ($type === 'array') {
                 $result[] = $field;
             }
         }
+
+        return $result;
+    }
+
+    protected function getBooleanFields($name)
+    {
+        $modelClass = "App\\Models\\{$name}";
+        if (!class_exists($modelClass)) {
+            return [];
+        }
+
+        $model = new $modelClass();
+        $casts = $model->getCasts();
+        $result = [];
+
+        foreach ($casts as $field => $type) {
+            if ($type === 'boolean' || $type === 'bool') {
+                $result[] = $field;
+            }
+        }
+
         return $result;
     }
 
@@ -81,7 +107,7 @@ class Crud extends Command
     protected function createLayout()
     {
         $layoutPath = resource_path('views/layouts');
-        if (! File::exists($layoutPath)) {
+        if (!File::exists($layoutPath)) {
             File::makeDirectory($layoutPath, 0755, true);
         }
 
@@ -177,6 +203,7 @@ class Crud extends Command
 </body>
 </html>
 BLADE;
+
         File::put($adminLayoutPath, $adminLayoutTemplate);
     }
 
@@ -187,7 +214,7 @@ BLADE;
     protected function createResource($name, $fields)
     {
         $resourcePath = app_path("Http/Resources/{$name}");
-        if (! File::exists($resourcePath)) {
+        if (!File::exists($resourcePath)) {
             File::makeDirectory($resourcePath, 0755, true);
         }
 
@@ -219,6 +246,7 @@ class {$name}Resource extends JsonResource
     }
 }
 EOT;
+
         File::put(app_path("Http/Resources/{$name}/{$name}Resource.php"), $template);
     }
 
@@ -229,36 +257,38 @@ EOT;
     protected function createRequestFiles($name, $fields)
     {
         $requestPath = app_path("Http/Requests/{$name}");
-        if (! File::exists($requestPath)) {
+        if (!File::exists($requestPath)) {
             File::makeDirectory($requestPath, 0755, true);
         }
 
-        $modelClass    = "App\\Models\\{$name}";
+        $modelClass = "App\\Models\\{$name}";
         $modelInstance = new $modelClass();
-        $tableName     = $modelInstance->getTable();
-        $enumFields    = property_exists($modelInstance, 'enumValues') ? $modelInstance->enumValues : [];
+        $tableName = $modelInstance->getTable();
+        $enumFields = property_exists($modelInstance, 'enumValues') ? $modelInstance->enumValues : [];
 
-        $validationRules    = '';
+        $validationRules = '';
         $translatableMerges = [];
 
         foreach ($fields as $field) {
             if (in_array($field, $this->translatableFields)) {
-                $validationRules      .= "            '{$field}' => 'required|array',\n";
+                $validationRules .= "            '{$field}' => 'required|array',\n";
                 $translatableMerges[] = "validateTranslation('{$field}')";
                 continue;
             }
 
             $columnType = Schema::getColumnType($tableName, $field);
-            $rule       = 'required';
+            $rule = 'required';
 
             if (isset($enumFields[$field])) {
                 $this->enumFields[$field] = [
-                    'values'  => $enumFields[$field]['values'],
+                    'values' => $enumFields[$field]['values'],
                     'default' => $enumFields[$field]['default'] ?? null,
                 ];
                 $rule .= '|in:' . implode(',', $enumFields[$field]['values']);
             } elseif (Str::endsWith($field, '_id')) {
                 $rule .= '|integer';
+            } elseif (in_array($field, $this->booleanFields)) {
+                $rule .= '|boolean';
             } else {
                 switch ($columnType) {
                     case 'integer':
@@ -303,8 +333,8 @@ EOT;
         }
 
         $mergeBlock = '';
-        if (! empty($translatableMerges)) {
-            $mergeStr   = implode(",\n                ", $translatableMerges);
+        if (!empty($translatableMerges)) {
+            $mergeStr = implode(",\n                ", $translatableMerges);
             $mergeBlock = <<<EOT
 
         \$rules = array_merge(
@@ -328,7 +358,9 @@ EOT;
 
                 $messageLines .= "            '{$field}.required'   => getTranslation('{$fieldKey} is required'),\n";
 
-                if (Str::endsWith($field, '_id') || in_array($columnType, ['integer', 'bigint', 'smallint', 'tinyint', 'unsignedBigInteger'])) {
+                if (in_array($field, $this->booleanFields) || $columnType === 'boolean') {
+                    $messageLines .= "            '{$field}.boolean'   => getTranslation('{$fieldKey} must be true or false'),\n";
+                } elseif (Str::endsWith($field, '_id') || in_array($columnType, ['integer', 'bigint', 'smallint', 'tinyint', 'unsignedBigInteger'])) {
                     $messageLines .= "            '{$field}.integer'   => getTranslation('{$fieldKey} must be an integer'),\n";
                     if ($columnType === 'unsignedBigInteger') {
                         $messageLines .= "            '{$field}.min'       => getTranslation('{$fieldKey} must be at least 0'),\n";
@@ -343,8 +375,6 @@ EOT;
                     $messageLines .= "            '{$field}.string'    => getTranslation('{$fieldKey} must be a string'),\n";
                 } elseif (in_array($columnType, ['decimal', 'float', 'double'])) {
                     $messageLines .= "            '{$field}.numeric'   => getTranslation('{$fieldKey} must be a number'),\n";
-                } elseif ($columnType === 'boolean') {
-                    $messageLines .= "            '{$field}.boolean'   => getTranslation('{$fieldKey} must be true or false'),\n";
                 } elseif (in_array($columnType, ['date', 'datetime', 'timestamp'])) {
                     $messageLines .= "            '{$field}.date'      => getTranslation('{$fieldKey} must be a valid date'),\n";
                 }
@@ -388,6 +418,7 @@ class {$type}{$name}Request extends FormRequest
     }
 }
 EOT;
+
             File::put(app_path("Http/Requests/{$name}/{$type}{$name}Request.php"), $template);
         }
     }
@@ -399,7 +430,7 @@ EOT;
     protected function createController($name, $fields)
     {
         $controllerPath = app_path("Http/Controllers/{$name}");
-        if (! File::exists($controllerPath)) {
+        if (!File::exists($controllerPath)) {
             File::makeDirectory($controllerPath, 0755, true);
         }
 
@@ -467,6 +498,7 @@ class {$name}Controller extends Controller
         \$data = \$request->validated();
 {$storeDefaults}
         {$name}::create(\$data);
+
         return redirect()->route('{$pluralName}.index')
             ->with('notification', getTranslation('{$name} создан успешно'));
     }
@@ -489,6 +521,7 @@ class {$name}Controller extends Controller
         \$data  = \$request->validated();
 {$storeDefaults}
         \$model->update(\$data);
+
         return redirect()->route('{$pluralName}.index')
             ->with('notification', getTranslation('{$name} обновлён успешно'));
     }
@@ -497,11 +530,13 @@ class {$name}Controller extends Controller
     {
         \$model = {$name}::findOrFail(\$id);
         \$model->delete();
+
         return redirect()->route('{$pluralName}.index')
             ->with('notification', getTranslation('{$name} удалён успешно'));
     }
 }
 EOT;
+
         File::put(app_path("Http/Controllers/{$name}/{$name}Controller.php"), $template);
     }
 
@@ -514,10 +549,10 @@ EOT;
         $pluralName = Str::plural(strtolower($name));
         File::makeDirectory(resource_path("views/{$pluralName}"), 0755, true, true);
 
-        $enumFields    = $this->enumFields ?? [];
-        $modelClass    = "App\\Models\\{$name}";
+        $enumFields = $this->enumFields ?? [];
+        $modelClass = "App\\Models\\{$name}";
         $modelInstance = new $modelClass();
-        $tableName     = $modelInstance->getTable();
+        $tableName = $modelInstance->getTable();
 
         $this->createIndexView($name, $pluralName, $fields);
         $this->createFormView($name, $pluralName, $fields, $enumFields, $tableName, false);
@@ -533,7 +568,7 @@ EOT;
     {
         $tableHeaders = "                                <th class=\"text-center\" width=\"3%\">№</th>\n";
         $searchInputs = "                                <th class=\"text-center\"></th>\n";
-        $tableRow     = '';
+        $tableRow = '';
 
         foreach ($fields as $field) {
             $fieldKey = strtolower(str_replace('_', ' ', $field));
@@ -549,7 +584,11 @@ EOT;
             if (in_array($field, $this->translatableFields)) {
                 $tableRow .= "                            <td>{{ getLocale(\$model->{$field}) }}</td>\n";
             } else {
-                $tableRow .= "                            <td>{{ \$model->{$field} }}</td>\n";
+                if (in_array($field, $this->booleanFields)) {
+                    $tableRow .= "                            <td>{{ \$model->{$field} ? '1' : '0' }}</td>\n";
+                } else {
+                    $tableRow .= "                            <td>{{ \$model->{$field} }}</td>\n";
+                }
             }
         }
 
@@ -616,7 +655,6 @@ EOT;
                                                 </button>
                                             </div>
 
-                                            {{-- Delete Modal --}}
                                             <div id="delete_modal_{{ \$model->id }}" class="modal fade" tabindex="-1">
                                                 <div class="modal-dialog modal-dialog-centered modal-sm">
                                                     <div class="modal-content">
@@ -653,6 +691,7 @@ EOT;
     </div>
 @endsection
 EOT;
+
         File::put(resource_path("views/{$pluralName}/index.blade.php"), $template);
     }
 
@@ -665,22 +704,23 @@ EOT;
         $formFields = $this->buildFormFields($fields, $enumFields, $tableName, $isEdit);
 
         if ($isEdit) {
-            $title           = strtolower($name);
-            $sectionTitle    = "getTranslation('Редактировать {$title}')";
-            $formAction      = "{{ route('{$pluralName}.update', \$model->id) }}";
-            $methodSpoofing  = "\n                    @method('PUT')";
-            $submitLabel     = "{{ getTranslation('Обновить') }}";
-            $fileName        = 'edit';
+            $title = strtolower($name);
+            $sectionTitle = "getTranslation('Редактировать {$title}')";
+            $formAction = "{{ route('{$pluralName}.update', \$model->id) }}";
+            $methodSpoofing = "\n                    @method('PUT')";
+            $submitLabel = "{{ getTranslation('Обновить') }}";
+            $fileName = 'edit';
         } else {
-            $title           = strtolower($name);
-            $sectionTitle    = "getTranslation('Создать {$title}')";
-            $formAction      = "{{ route('{$pluralName}.store') }}";
-            $methodSpoofing  = '';
-            $submitLabel     = "{{ getTranslation('Добавить') }}";
-            $fileName        = 'create';
+            $title = strtolower($name);
+            $sectionTitle = "getTranslation('Создать {$title}')";
+            $formAction = "{{ route('{$pluralName}.store') }}";
+            $methodSpoofing = '';
+            $submitLabel = "{{ getTranslation('Добавить') }}";
+            $fileName = 'create';
         }
 
-        $nameKey  = strtolower($name);
+        $nameKey = strtolower($name);
+
         $template = <<<EOT
 @extends('layouts.admin')
 @section('title', {$sectionTitle})
@@ -718,6 +758,7 @@ EOT;
     </div>
 @endsection
 EOT;
+
         File::put(resource_path("views/{$pluralName}/{$fileName}.blade.php"), $template);
     }
 
@@ -765,17 +806,28 @@ EOT;
 
 EOT;
             } else {
-                $showFields .= <<<EOT
+                if (in_array($field, $this->booleanFields)) {
+                    $showFields .= <<<EOT
+                        <tr>
+                            <th style="width:20%">{{ getTranslation('{$fieldKey}') }}</th>
+                            <td>{{ \$model->{$field} ? getTranslation('Активный') : getTranslation('Неактивный') }}</td>
+                        </tr>
+
+EOT;
+                } else {
+                    $showFields .= <<<EOT
                         <tr>
                             <th style="width:20%">{{ getTranslation('{$fieldKey}') }}</th>
                             <td>{{ \$model->{$field} }}</td>
                         </tr>
 
 EOT;
+                }
             }
         }
 
-        $nameKey  = strtolower($name);
+        $nameKey = strtolower($name);
+
         $template = <<<EOT
 @extends('layouts.admin')
 @section('title', getTranslation('{$nameKey} детали'))
@@ -812,6 +864,7 @@ EOT;
     </div>
 @endsection
 EOT;
+
         File::put(resource_path("views/{$pluralName}/show.blade.php"), $template);
     }
 
@@ -835,12 +888,15 @@ EOT;
 
             if (isset($enumFields[$field])) {
                 $options = "                                        <option value=\"\">{{ getTranslation('Выберите {$fieldKey}') }}</option>\n";
+
                 foreach ($enumFields[$field]['values'] as $value) {
                     $selectedAttr = $isEdit
                         ? "{{ old('{$field}', \$model->{$field}) == '{$value}' ? 'selected' : '' }}"
                         : (($value === ($enumFields[$field]['default'] ?? '')) ? 'selected' : '');
+
                     $options .= "                                        <option value=\"{$value}\" {$selectedAttr}>{$value}</option>\n";
                 }
+
                 $out .= <<<EOT
                                 <div class="form-group">
                                     <label class="form-label">{{ getTranslation('{$fieldKey}') }}</label>
@@ -856,26 +912,8 @@ EOT;
                 continue;
             }
 
-            if ($columnType === 'boolean') {
-                $checkedAttr = $isEdit
-                    ? "{{ old('{$field}', \$model->{$field}) == '1' ? 'checked' : '' }}"
-                    : "{{ old('{$field}') == '1' ? 'checked' : '' }}";
-                $out .= <<<EOT
-                                <div class="form-group">
-                                    <div class="header-elements mt-2">
-                                        <label class="custom-control custom-switch custom-control-right">
-                                            <input type="hidden" name="{$field}" value="0">
-                                            <input type="checkbox" name="{$field}" class="custom-control-input"
-                                                   value="1" {$checkedAttr}>
-                                            <span class="custom-control-label">{{ getTranslation('{$fieldKey}') }}</span>
-                                        </label>
-                                    </div>
-                                    @error('{$field}')
-                                        <p style="color:red">{{ \$message }}</p>
-                                    @enderror
-                                </div>
-
-EOT;
+            if (in_array($field, $this->booleanFields) || $columnType === 'boolean') {
+                $out .= $this->buildBooleanField($field, $fieldKey, $isEdit);
                 continue;
             }
 
@@ -908,6 +946,62 @@ EOT;
         }
 
         return $out;
+    }
+
+    // ============================================================
+    // BOOLEAN FIELD
+    // ============================================================
+
+    protected function buildBooleanField(string $field, string $fieldKey, bool $isEdit): string
+    {
+        $fieldId = Str::slug($field, '_');
+
+        if ($isEdit) {
+            return <<<EOT
+                                <div class="form-group">
+
+                                    <label class="custom-control custom-switch custom-control-right">
+                                        <input type="hidden" name="{$field}" value="0">
+
+                                        <input type="checkbox"
+                                               name="{$field}"
+                                               class="custom-control-input"
+                                               value="1"
+                                               {{ old('{$field}', \$model->{$field} ?? 1) ? 'checked' : '' }}>
+
+                                        <span class="custom-control-label">{{ getTranslation('{$fieldKey}') }}</span>
+                                    </label>
+
+                                    @error('{$field}')
+                                        <p style="color:red">{{ \$message }}</p>
+                                    @enderror
+                                </div>
+
+EOT;
+        }
+
+        return <<<EOT
+                                <div class="form-group">
+
+                                    <div class="custom-control custom-switch">
+                                        <input type="hidden" name="{$field}" value="0">
+                                        <input type="checkbox"
+                                               name="{$field}"
+                                               class="custom-control-input"
+                                               id="{$fieldId}"
+                                               value="1"
+                                               {{ old('{$field}', 1) ? 'checked' : '' }}>
+                                        <label class="custom-control-label" for="{$fieldId}">
+                                            {{ getTranslation('{$fieldKey}') }}
+                                        </label>
+                                    </div>
+
+                                    @error('{$field}')
+                                        <p class="text-danger mt-1">{{ \$message }}</p>
+                                    @enderror
+                                </div>
+
+EOT;
     }
 
     // ============================================================
@@ -964,6 +1058,7 @@ EOT;
     {
         $pluralName = Str::plural(strtolower($name));
         $routeEntry = "Route::resource('{$pluralName}', App\\Http\\Controllers\\{$name}\\{$name}Controller::class);\n";
+
         File::append(base_path('routes/web.php'), $routeEntry);
     }
 }

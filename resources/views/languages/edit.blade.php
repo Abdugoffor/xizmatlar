@@ -23,20 +23,25 @@
 
                                 <div class="form-group">
                                     <label class="col-form-label">{{ getTranslation('name') }}</label>
-                                    <input type="text" class="form-control"
-                                           name="name"
-                                           value="{{ old('name', $model->name ?? '') }}"
-                                           placeholder="{{ getTranslation('name') }}">
+                                    <input type="text" class="form-control" name="name"
+                                        value="{{ old('name', $model->name ?? '') }}"
+                                        placeholder="{{ getTranslation('name') }}">
                                     @error('name')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('is active') }}</label>
-                                    <input type="number" class="form-control"
-                                           name="is_active"
-                                           value="{{ old('is_active', $model->is_active ?? '') }}"
-                                           placeholder="{{ getTranslation('is active') }}">
+                                    <label class="col-form-label d-block">{{ getTranslation('is active') }}</label>
+
+                                    <label class="custom-control custom-switch custom-control-right">
+                                        <input type="hidden" name="is_active" value="0">
+
+                                        <input type="checkbox" name="is_active" class="custom-control-input" value="1"
+                                            {{ old('is_active', $model->is_active ?? 1) ? 'checked' : '' }}>
+
+                                        <span class="custom-control-label">{{ getTranslation('is active') }}</span>
+                                    </label>
+
                                     @error('is_active')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
