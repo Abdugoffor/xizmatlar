@@ -115,6 +115,11 @@
                                 <i class="icon-home4"></i><span>{{ getTranslation('User') }}</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('carousels.index') }}" class="nav-link">
+                                <i class="icon-home4"></i><span>{{ getTranslation('carousels') }}</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

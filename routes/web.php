@@ -3,7 +3,10 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Carousel\CarouselController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\News\NewsController;
+use App\Http\Controllers\Service\ServiceController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,11 +23,14 @@ Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddl
     Route::view('/', 'welcome');
     Route::get('/lang/change', [LanguageController::class, 'changeLanguage'])->name('change.language');
 
-    Route::resource('news', App\Http\Controllers\News\NewsController::class);
     Route::resource('translations', TranslationController::class);
     Route::resource('languages', LanguageController::class);
     Route::resource('hotels', HotelController::class);
     Route::resource('users', UserController::class);
+    Route::resource('news', NewsController::class);
+    Route::resource('services', ServiceController::class);
+    Route::resource('carousels', CarouselController::class);
+
 
     Route::get("/login", [LoginController::class, "showLoginForm"])->name("login");
     Route::post("/login", [LoginController::class, "login"]);
@@ -38,5 +44,4 @@ Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddl
         Route::patch("/profile", [ProfileController::class, "update"])->name("profile.update");
         Route::get("/dashboard", [HomeController::class, "index"])->name("home");
     });
-    Route::resource('services', App\Http\Controllers\Service\ServiceController::class);
 });
