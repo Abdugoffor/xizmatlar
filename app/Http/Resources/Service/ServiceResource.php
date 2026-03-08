@@ -11,12 +11,11 @@ class ServiceResource extends JsonResource
         return [
             'title' => getLocale($this->title),
             'description' => getLocale($this->description),
-            'text' => getLocale($this->text),
+            'cart_photo' => $this->cart_photo,
+            'header_photo' => $this->header_photo,
+            'content' => getLocale($this->content),
+            'video_link' => $this->video_link,
             'footer_text' => getLocale($this->footer_text),
-            'photo' => $this->photo,
-            'video' => $this->video,
-            'date' => $this->date,
-            'order' => $this->order,
             'is_main' => $this->is_main,
             'is_active' => $this->is_active,
 

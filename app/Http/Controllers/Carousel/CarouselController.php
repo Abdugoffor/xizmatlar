@@ -7,6 +7,7 @@ use App\Models\Carousel;
 use App\Http\Requests\Carousel\StoreCarouselRequest;
 use App\Http\Requests\Carousel\UpdateCarouselRequest;
 use App\Http\Resources\Carousel\CarouselResource;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
 
 class CarouselController extends Controller
@@ -31,9 +32,6 @@ class CarouselController extends Controller
                     ->orWhereRaw("lower(description->>'default') LIKE lower(?)", [$search]);
             });
         }
-        if ($request->filled('photo')) {
-            $query->where('photo', 'like', '%' . $request->input('photo') . '%');
-        }
         if ($request->filled('is_active')) {
             $query->where('is_active', 'like', '%' . $request->input('is_active') . '%');
         }
@@ -50,8 +48,16 @@ class CarouselController extends Controller
     public function store(StoreCarouselRequest $request)
     {
         $data = $request->validated();
-        $data['title']['default'] = reset($data['title']);
-        $data['description']['default'] = reset($data['description']);
+        if (isset($data['title']) && is_array($data['title'])) {
+            $data['title']['default'] = reset($data['title']);
+        }
+        if (isset($data['description']) && is_array($data['description'])) {
+            $data['description']['default'] = reset($data['description']);
+        }
+
+        if ($request->hasFile('photo')) {
+            $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
+        }
 
         Carousel::create($data);
 
@@ -74,9 +80,19 @@ class CarouselController extends Controller
     public function update(UpdateCarouselRequest $request, $lang, $id)
     {
         $model = Carousel::findOrFail($id);
-        $data  = $request->validated();
-        $data['title']['default'] = reset($data['title']);
-        $data['description']['default'] = reset($data['description']);
+        $data = $request->validated();
+        if (isset($data['title']) && is_array($data['title'])) {
+            $data['title']['default'] = reset($data['title']);
+        }
+        if (isset($data['description']) && is_array($data['description'])) {
+            $data['description']['default'] = reset($data['description']);
+        }
+
+        if ($request->hasFile('photo')) {
+            $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
+        } else {
+            unset($data['photo']);
+        }
 
         $model->update($data);
 

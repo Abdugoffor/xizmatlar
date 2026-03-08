@@ -81,25 +81,36 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-form-label">{{ getTranslation('photo') }}</label>
-                                    <input type="text" class="form-control"
-                                           name="photo"
-                                           value="{{ old('photo', $model->photo ?? '') }}"
-                                           placeholder="{{ getTranslation('photo') }}">
+                                    @if(!empty($model->photo))
+                                        <div class="mb-2">
+                                            <a href="{{ asset($model->photo) }}" target="_blank">
+                                                {{ getTranslation('Current file') }}
+                                            </a>
+                                        </div>
+
+                                        @php
+                                            $extension = strtolower(pathinfo($model->photo, PATHINFO_EXTENSION));
+                                        @endphp
+
+                                        @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                            <div class="mb-2">
+                                                <img src="{{ asset($model->photo) }}" alt="photo" style="max-height:120px; border-radius:8px;">
+                                            </div>
+                                        @endif
+                                    @endif
+                                    <input type="file" class="form-control" name="photo">
                                     @error('photo')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-
                                     <label class="custom-control custom-switch custom-control-right">
                                         <input type="hidden" name="is_active" value="0">
-
                                         <input type="checkbox"
                                                name="is_active"
                                                class="custom-control-input"
                                                value="1"
                                                {{ old('is_active', $model->is_active ?? 1) ? 'checked' : '' }}>
-
                                         <span class="custom-control-label">{{ getTranslation('is active') }}</span>
                                     </label>
 

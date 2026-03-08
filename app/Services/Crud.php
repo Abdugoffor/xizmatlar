@@ -15,6 +15,7 @@ class Crud extends Command
     protected $enumFields = [];
     protected $translatableFields = [];
     protected $booleanFields = [];
+    protected $fileFields = [];
 
     public function handle()
     {
@@ -34,6 +35,7 @@ class Crud extends Command
 
         $this->translatableFields = $this->getTranslatableFields($name);
         $this->booleanFields = $this->getBooleanFields($name);
+        $this->fileFields = $this->getFileFields($name);
 
         $this->createLayout();
         $this->createResource($name, $fields);
@@ -98,6 +100,26 @@ class Crud extends Command
         }
 
         return $result;
+    }
+
+    protected function getFileFields($name)
+    {
+        $modelClass = "App\\Models\\{$name}";
+        if (!class_exists($modelClass)) {
+            return [];
+        }
+
+        $model = new $modelClass();
+
+        if (method_exists($model, 'getFileFields')) {
+            $fileFields = $model->getFileFields();
+
+            if (is_array($fileFields)) {
+                return $fileFields;
+            }
+        }
+
+        return [];
     }
 
     // ============================================================
@@ -276,6 +298,11 @@ EOT;
                 continue;
             }
 
+            if (in_array($field, $this->fileFields)) {
+                $validationRules .= "            '{$field}' => 'nullable|file|max:10240',\n";
+                continue;
+            }
+
             $columnType = Schema::getColumnType($tableName, $field);
             $rule = 'required';
 
@@ -353,35 +380,42 @@ EOT;
                 $messageLines .= "            '{$field}.array'          => getTranslation('{$fieldKey} must be an array'),\n";
                 $messageLines .= "            '{$field}.*.required'     => getTranslation('{$fieldKey} translation is required'),\n";
                 $messageLines .= "            '{$field}.*.string'       => getTranslation('{$fieldKey} translation must be a string'),\n";
-            } else {
-                $columnType = Schema::getColumnType($tableName, $field);
+                continue;
+            }
 
-                $messageLines .= "            '{$field}.required'   => getTranslation('{$fieldKey} is required'),\n";
+            if (in_array($field, $this->fileFields)) {
+                $messageLines .= "            '{$field}.file'        => getTranslation('{$fieldKey} must be a file'),\n";
+                $messageLines .= "            '{$field}.max'         => getTranslation('{$fieldKey} must not exceed 10 MB'),\n";
+                continue;
+            }
 
-                if (in_array($field, $this->booleanFields) || $columnType === 'boolean') {
-                    $messageLines .= "            '{$field}.boolean'   => getTranslation('{$fieldKey} must be true or false'),\n";
-                } elseif (Str::endsWith($field, '_id') || in_array($columnType, ['integer', 'bigint', 'smallint', 'tinyint', 'unsignedBigInteger'])) {
-                    $messageLines .= "            '{$field}.integer'   => getTranslation('{$fieldKey} must be an integer'),\n";
-                    if ($columnType === 'unsignedBigInteger') {
-                        $messageLines .= "            '{$field}.min'       => getTranslation('{$fieldKey} must be at least 0'),\n";
-                    }
-                } elseif (in_array($columnType, ['string', 'varchar'])) {
-                    $messageLines .= "            '{$field}.string'    => getTranslation('{$fieldKey} must be a string'),\n";
-                    $messageLines .= "            '{$field}.max'       => getTranslation('{$fieldKey} must not exceed 255 characters'),\n";
-                    if (Str::endsWith($field, 'email')) {
-                        $messageLines .= "            '{$field}.email'     => getTranslation('{$fieldKey} must be a valid email'),\n";
-                    }
-                } elseif ($columnType === 'text') {
-                    $messageLines .= "            '{$field}.string'    => getTranslation('{$fieldKey} must be a string'),\n";
-                } elseif (in_array($columnType, ['decimal', 'float', 'double'])) {
-                    $messageLines .= "            '{$field}.numeric'   => getTranslation('{$fieldKey} must be a number'),\n";
-                } elseif (in_array($columnType, ['date', 'datetime', 'timestamp'])) {
-                    $messageLines .= "            '{$field}.date'      => getTranslation('{$fieldKey} must be a valid date'),\n";
+            $columnType = Schema::getColumnType($tableName, $field);
+
+            $messageLines .= "            '{$field}.required'   => getTranslation('{$fieldKey} is required'),\n";
+
+            if (in_array($field, $this->booleanFields) || $columnType === 'boolean') {
+                $messageLines .= "            '{$field}.boolean'   => getTranslation('{$fieldKey} must be true or false'),\n";
+            } elseif (Str::endsWith($field, '_id') || in_array($columnType, ['integer', 'bigint', 'smallint', 'tinyint', 'unsignedBigInteger'])) {
+                $messageLines .= "            '{$field}.integer'   => getTranslation('{$fieldKey} must be an integer'),\n";
+                if ($columnType === 'unsignedBigInteger') {
+                    $messageLines .= "            '{$field}.min'       => getTranslation('{$fieldKey} must be at least 0'),\n";
                 }
-
-                if (isset($enumFields[$field])) {
-                    $messageLines .= "            '{$field}.in'        => getTranslation('{$fieldKey} has an invalid value'),\n";
+            } elseif (in_array($columnType, ['string', 'varchar'])) {
+                $messageLines .= "            '{$field}.string'    => getTranslation('{$fieldKey} must be a string'),\n";
+                $messageLines .= "            '{$field}.max'       => getTranslation('{$fieldKey} must not exceed 255 characters'),\n";
+                if (Str::endsWith($field, 'email')) {
+                    $messageLines .= "            '{$field}.email'     => getTranslation('{$fieldKey} must be a valid email'),\n";
                 }
+            } elseif ($columnType === 'text') {
+                $messageLines .= "            '{$field}.string'    => getTranslation('{$fieldKey} must be a string'),\n";
+            } elseif (in_array($columnType, ['decimal', 'float', 'double'])) {
+                $messageLines .= "            '{$field}.numeric'   => getTranslation('{$fieldKey} must be a number'),\n";
+            } elseif (in_array($columnType, ['date', 'datetime', 'timestamp'])) {
+                $messageLines .= "            '{$field}.date'      => getTranslation('{$fieldKey} must be a valid date'),\n";
+            }
+
+            if (isset($enumFields[$field])) {
+                $messageLines .= "            '{$field}.in'        => getTranslation('{$fieldKey} has an invalid value'),\n";
             }
         }
 
@@ -438,6 +472,10 @@ EOT;
 
         $searchLogic = '';
         foreach ($fields as $field) {
+            if (in_array($field, $this->fileFields)) {
+                continue;
+            }
+
             if (in_array($field, $this->translatableFields)) {
                 $searchLogic .= <<<EOT
 
@@ -462,7 +500,30 @@ EOT;
 
         $storeDefaults = '';
         foreach ($this->translatableFields as $tf) {
-            $storeDefaults .= "        \$data['{$tf}']['default'] = reset(\$data['{$tf}']);\n";
+            $storeDefaults .= "        if (isset(\$data['{$tf}']) && is_array(\$data['{$tf}'])) {\n";
+            $storeDefaults .= "            \$data['{$tf}']['default'] = reset(\$data['{$tf}']);\n";
+            $storeDefaults .= "        }\n";
+        }
+
+        $storeFileUploadLogic = '';
+        $updateFileUploadLogic = '';
+
+        foreach ($this->fileFields as $fileField) {
+            $storeFileUploadLogic .= <<<EOT
+        if (\$request->hasFile('{$fileField}')) {
+            \$data['{$fileField}'] = FileUploadService::uploadFile(\$request->file('{$fileField}'));
+        }
+
+EOT;
+
+            $updateFileUploadLogic .= <<<EOT
+        if (\$request->hasFile('{$fileField}')) {
+            \$data['{$fileField}'] = FileUploadService::uploadFile(\$request->file('{$fileField}'));
+        } else {
+            unset(\$data['{$fileField}']);
+        }
+
+EOT;
         }
 
         $template = <<<EOT
@@ -475,6 +536,7 @@ use App\Models\\{$name};
 use App\Http\Requests\\{$name}\Store{$name}Request;
 use App\Http\Requests\\{$name}\Update{$name}Request;
 use App\Http\Resources\\{$name}\\{$name}Resource;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
 
 class {$name}Controller extends Controller
@@ -497,6 +559,7 @@ class {$name}Controller extends Controller
     {
         \$data = \$request->validated();
 {$storeDefaults}
+{$storeFileUploadLogic}
         {$name}::create(\$data);
 
         return redirect()->route('{$pluralName}.index')
@@ -520,6 +583,7 @@ class {$name}Controller extends Controller
         \$model = {$name}::findOrFail(\$id);
         \$data  = \$request->validated();
 {$storeDefaults}
+{$updateFileUploadLogic}
         \$model->update(\$data);
 
         return redirect()->route('{$pluralName}.index')
@@ -541,7 +605,7 @@ EOT;
     }
 
     // ============================================================
-    // VIEWS — entry point
+    // VIEWS
     // ============================================================
 
     protected function createViews($name, $fields)
@@ -560,10 +624,6 @@ EOT;
         $this->createShowView($name, $pluralName, $fields);
     }
 
-    // ============================================================
-    // INDEX VIEW
-    // ============================================================
-
     protected function createIndexView($name, $pluralName, $fields)
     {
         $tableHeaders = "                                <th class=\"text-center\" width=\"3%\">№</th>\n";
@@ -575,20 +635,24 @@ EOT;
 
             $tableHeaders .= "                                <th class=\"text-center\">{{ getTranslation('{$fieldKey}') }}</th>\n";
 
-            $searchInputs .= "                                <th class=\"text-center\">\n";
-            $searchInputs .= "                                    <input type=\"text\" class=\"form-control\" name=\"{$field}\"\n";
-            $searchInputs .= "                                           placeholder=\"{{ getTranslation('{$fieldKey}') }}\"\n";
-            $searchInputs .= "                                           value=\"{{ old('{$field}', request('{$field}')) }}\">\n";
-            $searchInputs .= "                                </th>\n";
+            if (in_array($field, $this->fileFields)) {
+                $searchInputs .= "                                <th class=\"text-center\"></th>\n";
+            } else {
+                $searchInputs .= "                                <th class=\"text-center\">\n";
+                $searchInputs .= "                                    <input type=\"text\" class=\"form-control\" name=\"{$field}\"\n";
+                $searchInputs .= "                                           placeholder=\"{{ getTranslation('{$fieldKey}') }}\"\n";
+                $searchInputs .= "                                           value=\"{{ old('{$field}', request('{$field}')) }}\">\n";
+                $searchInputs .= "                                </th>\n";
+            }
 
             if (in_array($field, $this->translatableFields)) {
                 $tableRow .= "                            <td>{{ getLocale(\$model->{$field}) }}</td>\n";
+            } elseif (in_array($field, $this->fileFields)) {
+                $tableRow .= "                            <td>@if(\$model->{$field}) <a href=\"{{ asset(\$model->{$field}) }}\" target=\"_blank\">{{ getTranslation('Open file') }}</a> @else - @endif</td>\n";
+            } elseif (in_array($field, $this->booleanFields)) {
+                $tableRow .= "                            <td>{{ \$model->{$field} ? '1' : '0' }}</td>\n";
             } else {
-                if (in_array($field, $this->booleanFields)) {
-                    $tableRow .= "                            <td>{{ \$model->{$field} ? '1' : '0' }}</td>\n";
-                } else {
-                    $tableRow .= "                            <td>{{ \$model->{$field} }}</td>\n";
-                }
+                $tableRow .= "                            <td>{{ \$model->{$field} }}</td>\n";
             }
         }
 
@@ -640,17 +704,13 @@ EOT;
 {$tableRow}
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('{$pluralName}.show', \$model->id) }}"
-                                                   class="btn btn-outline-info">
+                                                <a href="{{ route('{$pluralName}.show', \$model->id) }}" class="btn btn-outline-info">
                                                     <i class="icon-eye8"></i>
                                                 </a>
-                                                <a href="{{ route('{$pluralName}.edit', \$model->id) }}"
-                                                   class="btn btn-outline-success ml-2">
+                                                <a href="{{ route('{$pluralName}.edit', \$model->id) }}" class="btn btn-outline-success ml-2">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
-                                                <button type="button" class="btn btn-outline-danger ml-2"
-                                                        data-toggle="modal"
-                                                        data-target="#delete_modal_{{ \$model->id }}">
+                                                <button type="button" class="btn btn-outline-danger ml-2" data-toggle="modal" data-target="#delete_modal_{{ \$model->id }}">
                                                     <i class="icon-trash"></i>
                                                 </button>
                                             </div>
@@ -661,16 +721,14 @@ EOT;
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         </div>
-                                                        <form action="{{ route('{$pluralName}.destroy', \$model->id) }}"
-                                                              method="post">
+                                                        <form action="{{ route('{$pluralName}.destroy', \$model->id) }}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <div class="modal-body">
                                                                 <h3 class="text-center">{{ getTranslation('Вы уверены, что хотите удалить?') }}</h3>
                                                             </div>
                                                             <div class="modal-footer d-flex justify-content-center pb-4">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">{{ getTranslation('Закрыть') }}</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ getTranslation('Закрыть') }}</button>
                                                                 <button type="submit" class="btn btn-danger">{{ getTranslation('Подтвердить') }}</button>
                                                             </div>
                                                         </form>
@@ -694,10 +752,6 @@ EOT;
 
         File::put(resource_path("views/{$pluralName}/index.blade.php"), $template);
     }
-
-    // ============================================================
-    // CREATE / EDIT VIEW
-    // ============================================================
 
     protected function createFormView($name, $pluralName, $fields, $enumFields, $tableName, bool $isEdit)
     {
@@ -762,10 +816,6 @@ EOT;
         File::put(resource_path("views/{$pluralName}/{$fileName}.blade.php"), $template);
     }
 
-    // ============================================================
-    // SHOW VIEW
-    // ============================================================
-
     protected function createShowView($name, $pluralName, $fields)
     {
         $showFields = '';
@@ -805,24 +855,48 @@ EOT;
                         </tr>
 
 EOT;
-            } else {
-                if (in_array($field, $this->booleanFields)) {
-                    $showFields .= <<<EOT
+            } elseif (in_array($field, $this->fileFields)) {
+                $showFields .= <<<EOT
+                        <tr>
+                            <th style="width:20%">{{ getTranslation('{$fieldKey}') }}</th>
+                            <td>
+                                @if(\$model->{$field})
+                                    <a href="{{ asset(\$model->{$field}) }}" target="_blank">
+                                        {{ getTranslation('Open file') }}
+                                    </a>
+
+                                    @php
+                                        \$extension = strtolower(pathinfo(\$model->{$field}, PATHINFO_EXTENSION));
+                                    @endphp
+
+                                    @if(in_array(\$extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                        <div class="mt-2">
+                                            <img src="{{ asset(\$model->{$field}) }}" alt="{$field}" style="max-height:150px; border-radius:8px;">
+                                        </div>
+                                    @endif
+                                @else
+                                    -
+                                @endif
+                            </td>
+                        </tr>
+
+EOT;
+            } elseif (in_array($field, $this->booleanFields)) {
+                $showFields .= <<<EOT
                         <tr>
                             <th style="width:20%">{{ getTranslation('{$fieldKey}') }}</th>
                             <td>{{ \$model->{$field} ? getTranslation('Активный') : getTranslation('Неактивный') }}</td>
                         </tr>
 
 EOT;
-                } else {
-                    $showFields .= <<<EOT
+            } else {
+                $showFields .= <<<EOT
                         <tr>
                             <th style="width:20%">{{ getTranslation('{$fieldKey}') }}</th>
                             <td>{{ \$model->{$field} }}</td>
                         </tr>
 
 EOT;
-                }
             }
         }
 
@@ -881,6 +955,11 @@ EOT;
 
             if (in_array($field, $this->translatableFields)) {
                 $out .= $this->buildTranslatableField($field, $fieldKey, $isEdit);
+                continue;
+            }
+
+            if (in_array($field, $this->fileFields)) {
+                $out .= $this->buildFileField($field, $fieldKey, $isEdit);
                 continue;
             }
 
@@ -948,10 +1027,6 @@ EOT;
         return $out;
     }
 
-    // ============================================================
-    // BOOLEAN FIELD
-    // ============================================================
-
     protected function buildBooleanField(string $field, string $fieldKey, bool $isEdit): string
     {
         $fieldId = Str::slug($field, '_');
@@ -959,16 +1034,13 @@ EOT;
         if ($isEdit) {
             return <<<EOT
                                 <div class="form-group">
-
                                     <label class="custom-control custom-switch custom-control-right">
                                         <input type="hidden" name="{$field}" value="0">
-
                                         <input type="checkbox"
                                                name="{$field}"
                                                class="custom-control-input"
                                                value="1"
                                                {{ old('{$field}', \$model->{$field} ?? 1) ? 'checked' : '' }}>
-
                                         <span class="custom-control-label">{{ getTranslation('{$fieldKey}') }}</span>
                                     </label>
 
@@ -982,7 +1054,6 @@ EOT;
 
         return <<<EOT
                                 <div class="form-group">
-
                                     <div class="custom-control custom-switch">
                                         <input type="hidden" name="{$field}" value="0">
                                         <input type="checkbox"
@@ -1004,9 +1075,44 @@ EOT;
 EOT;
     }
 
-    // ============================================================
-    // TRANSLATABLE FIELD
-    // ============================================================
+    protected function buildFileField(string $field, string $fieldKey, bool $isEdit): string
+    {
+        $preview = '';
+
+        if ($isEdit) {
+            $preview = <<<EOT
+                                    @if(!empty(\$model->{$field}))
+                                        <div class="mb-2">
+                                            <a href="{{ asset(\$model->{$field}) }}" target="_blank">
+                                                {{ getTranslation('Current file') }}
+                                            </a>
+                                        </div>
+
+                                        @php
+                                            \$extension = strtolower(pathinfo(\$model->{$field}, PATHINFO_EXTENSION));
+                                        @endphp
+
+                                        @if(in_array(\$extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                            <div class="mb-2">
+                                                <img src="{{ asset(\$model->{$field}) }}" alt="{$field}" style="max-height:120px; border-radius:8px;">
+                                            </div>
+                                        @endif
+                                    @endif
+EOT;
+        }
+
+        return <<<EOT
+                                <div class="form-group">
+                                    <label class="col-form-label">{{ getTranslation('{$fieldKey}') }}</label>
+{$preview}
+                                    <input type="file" class="form-control" name="{$field}">
+                                    @error('{$field}')
+                                        <p style="color:red">{{ \$message }}</p>
+                                    @enderror
+                                </div>
+
+EOT;
+    }
 
     protected function buildTranslatableField(string $field, string $fieldKey, bool $isEdit): string
     {

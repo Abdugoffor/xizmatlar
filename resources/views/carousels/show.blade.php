@@ -74,7 +74,25 @@
                         </tr>
                         <tr>
                             <th style="width:20%">{{ getTranslation('photo') }}</th>
-                            <td>{{ $model->photo }}</td>
+                            <td>
+                                @if($model->photo)
+                                    <a href="{{ asset($model->photo) }}" target="_blank">
+                                        {{ getTranslation('Open file') }}
+                                    </a>
+
+                                    @php
+                                        $extension = strtolower(pathinfo($model->photo, PATHINFO_EXTENSION));
+                                    @endphp
+
+                                    @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                        <div class="mt-2">
+                                            <img src="{{ asset($model->photo) }}" alt="photo" style="max-height:150px; border-radius:8px;">
+                                        </div>
+                                    @endif
+                                @else
+                                    -
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <th style="width:20%">{{ getTranslation('is active') }}</th>

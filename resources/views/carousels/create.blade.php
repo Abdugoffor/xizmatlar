@@ -80,16 +80,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-form-label">{{ getTranslation('photo') }}</label>
-                                    <input type="text" class="form-control"
-                                           name="photo"
-                                           value="{{ old('photo') }}"
-                                           placeholder="{{ getTranslation('photo') }}">
+
+                                    <input type="file" class="form-control" name="photo">
                                     @error('photo')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-
                                     <div class="custom-control custom-switch">
                                         <input type="hidden" name="is_active" value="0">
                                         <input type="checkbox"

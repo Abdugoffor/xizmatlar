@@ -79,11 +79,27 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('text') }}</label>
-                                    <ul class="nav nav-tabs mt-1" id="tabs-text">
+                                    <label class="col-form-label">{{ getTranslation('cart photo') }}</label>
+
+                                    <input type="file" class="form-control" name="cart_photo">
+                                    @error('cart_photo')
+                                        <p style="color:red">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label">{{ getTranslation('header photo') }}</label>
+
+                                    <input type="file" class="form-control" name="header_photo">
+                                    @error('header_photo')
+                                        <p style="color:red">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">{{ getTranslation('content') }}</label>
+                                    <ul class="nav nav-tabs mt-1" id="tabs-content">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
-                                                <a href="#tab-text-{{ $lang->id }}"
+                                                <a href="#tab-content-{{ $lang->id }}"
                                                    class="nav-link {{ $loop->first ? 'active' : '' }}"
                                                    data-toggle="tab">
                                                     {{ $lang->name }}
@@ -94,18 +110,28 @@
                                     <div class="tab-content border border-top-0 p-2 mb-1">
                                         @foreach (getLanguage() as $lang)
                                             <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                                 id="tab-text-{{ $lang->id }}">
+                                                 id="tab-content-{{ $lang->id }}">
                                                 <input type="text"
                                                        class="form-control mt-1"
-                                                       name="text[{{ $lang->name }}]"
-                                                       value="{{ old('text.' . $lang->name) }}"
+                                                       name="content[{{ $lang->name }}]"
+                                                       value="{{ old('content.' . $lang->name) }}"
                                                        placeholder="{{ $lang->name }}">
-                                                @error('text.' . $lang->name)
+                                                @error('content.' . $lang->name)
                                                     <p style="color:red">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                         @endforeach
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label">{{ getTranslation('video link') }}</label>
+                                    <input type="text" class="form-control"
+                                           name="video_link"
+                                           value="{{ old('video_link') }}"
+                                           placeholder="{{ getTranslation('video link') }}">
+                                    @error('video_link')
+                                        <p style="color:red">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">{{ getTranslation('footer text') }}</label>
@@ -137,48 +163,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('photo') }}</label>
-                                    <input type="text" class="form-control"
-                                           name="photo"
-                                           value="{{ old('photo') }}"
-                                           placeholder="{{ getTranslation('photo') }}">
-                                    @error('photo')
-                                        <p style="color:red">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('video') }}</label>
-                                    <input type="text" class="form-control"
-                                           name="video"
-                                           value="{{ old('video') }}"
-                                           placeholder="{{ getTranslation('video') }}">
-                                    @error('video')
-                                        <p style="color:red">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('date') }}</label>
-                                    <input type="date" class="form-control"
-                                           name="date"
-                                           value="{{ old('date') }}"
-                                           placeholder="{{ getTranslation('date') }}">
-                                    @error('date')
-                                        <p style="color:red">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('order') }}</label>
-                                    <input type="number" class="form-control"
-                                           name="order"
-                                           value="{{ old('order') }}"
-                                           placeholder="{{ getTranslation('order') }}">
-                                    @error('order')
-                                        <p style="color:red">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    {{-- <label class="col-form-label">{{ getTranslation('is main') }}</label> --}}
-
                                     <div class="custom-control custom-switch">
                                         <input type="hidden" name="is_main" value="0">
                                         <input type="checkbox"
@@ -197,8 +181,6 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    {{-- <label class="col-form-label">{{ getTranslation('is active') }}</label> --}}
-
                                     <div class="custom-control custom-switch">
                                         <input type="hidden" name="is_active" value="0">
                                         <input type="checkbox"

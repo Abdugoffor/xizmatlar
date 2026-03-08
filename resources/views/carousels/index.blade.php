@@ -47,11 +47,7 @@
                                            placeholder="{{ getTranslation('description') }}"
                                            value="{{ old('description', request('description')) }}">
                                 </th>
-                                <th class="text-center">
-                                    <input type="text" class="form-control" name="photo"
-                                           placeholder="{{ getTranslation('photo') }}"
-                                           value="{{ old('photo', request('photo')) }}">
-                                </th>
+                                <th class="text-center"></th>
                                 <th class="text-center">
                                     <input type="text" class="form-control" name="is_active"
                                            placeholder="{{ getTranslation('is active') }}"
@@ -70,22 +66,18 @@
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                             <td>{{ getLocale($model->title) }}</td>
                             <td>{{ getLocale($model->description) }}</td>
-                            <td>{{ $model->photo }}</td>
+                            <td>@if($model->photo) <a href="{{ asset($model->photo) }}" target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
                             <td>{{ $model->is_active ? '1' : '0' }}</td>
 
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('carousels.show', $model->id) }}"
-                                                   class="btn btn-outline-info">
+                                                <a href="{{ route('carousels.show', $model->id) }}" class="btn btn-outline-info">
                                                     <i class="icon-eye8"></i>
                                                 </a>
-                                                <a href="{{ route('carousels.edit', $model->id) }}"
-                                                   class="btn btn-outline-success ml-2">
+                                                <a href="{{ route('carousels.edit', $model->id) }}" class="btn btn-outline-success ml-2">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
-                                                <button type="button" class="btn btn-outline-danger ml-2"
-                                                        data-toggle="modal"
-                                                        data-target="#delete_modal_{{ $model->id }}">
+                                                <button type="button" class="btn btn-outline-danger ml-2" data-toggle="modal" data-target="#delete_modal_{{ $model->id }}">
                                                     <i class="icon-trash"></i>
                                                 </button>
                                             </div>
@@ -96,16 +88,14 @@
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         </div>
-                                                        <form action="{{ route('carousels.destroy', $model->id) }}"
-                                                              method="post">
+                                                        <form action="{{ route('carousels.destroy', $model->id) }}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <div class="modal-body">
                                                                 <h3 class="text-center">{{ getTranslation('Вы уверены, что хотите удалить?') }}</h3>
                                                             </div>
                                                             <div class="modal-footer d-flex justify-content-center pb-4">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">{{ getTranslation('Закрыть') }}</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ getTranslation('Закрыть') }}</button>
                                                                 <button type="submit" class="btn btn-danger">{{ getTranslation('Подтвердить') }}</button>
                                                             </div>
                                                         </form>

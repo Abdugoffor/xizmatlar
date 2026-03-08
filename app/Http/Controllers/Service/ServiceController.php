@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Http\Requests\Service\StoreServiceRequest;
 use App\Http\Requests\Service\UpdateServiceRequest;
 use App\Http\Resources\Service\ServiceResource;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -20,7 +21,7 @@ class ServiceController extends Controller
             $search = '%' . $request->input('title') . '%';
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(title->>'{$locale}') LIKE lower(?)", [$search])
-                    ->orWhereRaw("lower(title->>'default') LIKE lower(?)", [$search]);
+                  ->orWhereRaw("lower(title->>'default') LIKE lower(?)", [$search]);
             });
         }
         if ($request->filled('description')) {
@@ -28,36 +29,27 @@ class ServiceController extends Controller
             $search = '%' . $request->input('description') . '%';
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(description->>'{$locale}') LIKE lower(?)", [$search])
-                    ->orWhereRaw("lower(description->>'default') LIKE lower(?)", [$search]);
+                  ->orWhereRaw("lower(description->>'default') LIKE lower(?)", [$search]);
             });
         }
-        if ($request->filled('text')) {
+        if ($request->filled('content')) {
             $locale = app()->getLocale();
-            $search = '%' . $request->input('text') . '%';
+            $search = '%' . $request->input('content') . '%';
             $query->where(function ($q) use ($search, $locale) {
-                $q->whereRaw("lower(text->>'{$locale}') LIKE lower(?)", [$search])
-                    ->orWhereRaw("lower(text->>'default') LIKE lower(?)", [$search]);
+                $q->whereRaw("lower(content->>'{$locale}') LIKE lower(?)", [$search])
+                  ->orWhereRaw("lower(content->>'default') LIKE lower(?)", [$search]);
             });
+        }
+        if ($request->filled('video_link')) {
+            $query->where('video_link', 'like', '%' . $request->input('video_link') . '%');
         }
         if ($request->filled('footer_text')) {
             $locale = app()->getLocale();
             $search = '%' . $request->input('footer_text') . '%';
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(footer_text->>'{$locale}') LIKE lower(?)", [$search])
-                    ->orWhereRaw("lower(footer_text->>'default') LIKE lower(?)", [$search]);
+                  ->orWhereRaw("lower(footer_text->>'default') LIKE lower(?)", [$search]);
             });
-        }
-        if ($request->filled('photo')) {
-            $query->where('photo', 'like', '%' . $request->input('photo') . '%');
-        }
-        if ($request->filled('video')) {
-            $query->where('video', 'like', '%' . $request->input('video') . '%');
-        }
-        if ($request->filled('date')) {
-            $query->where('date', 'like', '%' . $request->input('date') . '%');
-        }
-        if ($request->filled('order')) {
-            $query->where('order', 'like', '%' . $request->input('order') . '%');
         }
         if ($request->filled('is_main')) {
             $query->where('is_main', 'like', '%' . $request->input('is_main') . '%');
@@ -78,10 +70,25 @@ class ServiceController extends Controller
     public function store(StoreServiceRequest $request)
     {
         $data = $request->validated();
-        $data['title']['default'] = reset($data['title']);
-        $data['description']['default'] = reset($data['description']);
-        $data['text']['default'] = reset($data['text']);
-        $data['footer_text']['default'] = reset($data['footer_text']);
+        if (isset($data['title']) && is_array($data['title'])) {
+            $data['title']['default'] = reset($data['title']);
+        }
+        if (isset($data['description']) && is_array($data['description'])) {
+            $data['description']['default'] = reset($data['description']);
+        }
+        if (isset($data['content']) && is_array($data['content'])) {
+            $data['content']['default'] = reset($data['content']);
+        }
+        if (isset($data['footer_text']) && is_array($data['footer_text'])) {
+            $data['footer_text']['default'] = reset($data['footer_text']);
+        }
+
+        if ($request->hasFile('cart_photo')) {
+            $data['cart_photo'] = FileUploadService::uploadFile($request->file('cart_photo'));
+        }
+        if ($request->hasFile('header_photo')) {
+            $data['header_photo'] = FileUploadService::uploadFile($request->file('header_photo'));
+        }
 
         Service::create($data);
 
@@ -104,11 +111,30 @@ class ServiceController extends Controller
     public function update(UpdateServiceRequest $request, $lang, $id)
     {
         $model = Service::findOrFail($id);
-        $data = $request->validated();
-        $data['title']['default'] = reset($data['title']);
-        $data['description']['default'] = reset($data['description']);
-        $data['text']['default'] = reset($data['text']);
-        $data['footer_text']['default'] = reset($data['footer_text']);
+        $data  = $request->validated();
+        if (isset($data['title']) && is_array($data['title'])) {
+            $data['title']['default'] = reset($data['title']);
+        }
+        if (isset($data['description']) && is_array($data['description'])) {
+            $data['description']['default'] = reset($data['description']);
+        }
+        if (isset($data['content']) && is_array($data['content'])) {
+            $data['content']['default'] = reset($data['content']);
+        }
+        if (isset($data['footer_text']) && is_array($data['footer_text'])) {
+            $data['footer_text']['default'] = reset($data['footer_text']);
+        }
+
+        if ($request->hasFile('cart_photo')) {
+            $data['cart_photo'] = FileUploadService::uploadFile($request->file('cart_photo'));
+        } else {
+            unset($data['cart_photo']);
+        }
+        if ($request->hasFile('header_photo')) {
+            $data['header_photo'] = FileUploadService::uploadFile($request->file('header_photo'));
+        } else {
+            unset($data['header_photo']);
+        }
 
         $model->update($data);
 

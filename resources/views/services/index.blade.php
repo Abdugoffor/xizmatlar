@@ -29,12 +29,11 @@
                                 <th class="text-center" width="3%">№</th>
                                 <th class="text-center">{{ getTranslation('title') }}</th>
                                 <th class="text-center">{{ getTranslation('description') }}</th>
-                                <th class="text-center">{{ getTranslation('text') }}</th>
+                                <th class="text-center">{{ getTranslation('cart photo') }}</th>
+                                <th class="text-center">{{ getTranslation('header photo') }}</th>
+                                <th class="text-center">{{ getTranslation('content') }}</th>
+                                <th class="text-center">{{ getTranslation('video link') }}</th>
                                 <th class="text-center">{{ getTranslation('footer text') }}</th>
-                                <th class="text-center">{{ getTranslation('photo') }}</th>
-                                <th class="text-center">{{ getTranslation('video') }}</th>
-                                <th class="text-center">{{ getTranslation('date') }}</th>
-                                <th class="text-center">{{ getTranslation('order') }}</th>
                                 <th class="text-center">{{ getTranslation('is main') }}</th>
                                 <th class="text-center">{{ getTranslation('is active') }}</th>
 
@@ -53,35 +52,22 @@
                                            placeholder="{{ getTranslation('description') }}"
                                            value="{{ old('description', request('description')) }}">
                                 </th>
+                                <th class="text-center"></th>
+                                <th class="text-center"></th>
                                 <th class="text-center">
-                                    <input type="text" class="form-control" name="text"
-                                           placeholder="{{ getTranslation('text') }}"
-                                           value="{{ old('text', request('text')) }}">
+                                    <input type="text" class="form-control" name="content"
+                                           placeholder="{{ getTranslation('content') }}"
+                                           value="{{ old('content', request('content')) }}">
+                                </th>
+                                <th class="text-center">
+                                    <input type="text" class="form-control" name="video_link"
+                                           placeholder="{{ getTranslation('video link') }}"
+                                           value="{{ old('video_link', request('video_link')) }}">
                                 </th>
                                 <th class="text-center">
                                     <input type="text" class="form-control" name="footer_text"
                                            placeholder="{{ getTranslation('footer text') }}"
                                            value="{{ old('footer_text', request('footer_text')) }}">
-                                </th>
-                                <th class="text-center">
-                                    <input type="text" class="form-control" name="photo"
-                                           placeholder="{{ getTranslation('photo') }}"
-                                           value="{{ old('photo', request('photo')) }}">
-                                </th>
-                                <th class="text-center">
-                                    <input type="text" class="form-control" name="video"
-                                           placeholder="{{ getTranslation('video') }}"
-                                           value="{{ old('video', request('video')) }}">
-                                </th>
-                                <th class="text-center">
-                                    <input type="text" class="form-control" name="date"
-                                           placeholder="{{ getTranslation('date') }}"
-                                           value="{{ old('date', request('date')) }}">
-                                </th>
-                                <th class="text-center">
-                                    <input type="text" class="form-control" name="order"
-                                           placeholder="{{ getTranslation('order') }}"
-                                           value="{{ old('order', request('order')) }}">
                                 </th>
                                 <th class="text-center">
                                     <input type="text" class="form-control" name="is_main"
@@ -106,28 +92,23 @@
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                             <td>{{ getLocale($model->title) }}</td>
                             <td>{{ getLocale($model->description) }}</td>
-                            <td>{{ getLocale($model->text) }}</td>
+                            <td>@if($model->cart_photo) <a href="{{ asset($model->cart_photo) }}" target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
+                            <td>@if($model->header_photo) <a href="{{ asset($model->header_photo) }}" target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
+                            <td>{{ getLocale($model->content) }}</td>
+                            <td>{{ $model->video_link }}</td>
                             <td>{{ getLocale($model->footer_text) }}</td>
-                            <td>{{ $model->photo }}</td>
-                            <td>{{ $model->video }}</td>
-                            <td>{{ $model->date }}</td>
-                            <td>{{ $model->order }}</td>
                             <td>{{ $model->is_main ? '1' : '0' }}</td>
                             <td>{{ $model->is_active ? '1' : '0' }}</td>
 
                                         <td>
                                             <div class="d-inline-flex gap-2">
-                                                <a href="{{ route('services.show', $model->id) }}"
-                                                   class="btn btn-outline-info">
+                                                <a href="{{ route('services.show', $model->id) }}" class="btn btn-outline-info">
                                                     <i class="icon-eye8"></i>
                                                 </a>
-                                                <a href="{{ route('services.edit', $model->id) }}"
-                                                   class="btn btn-outline-success ml-2">
+                                                <a href="{{ route('services.edit', $model->id) }}" class="btn btn-outline-success ml-2">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
-                                                <button type="button" class="btn btn-outline-danger ml-2"
-                                                        data-toggle="modal"
-                                                        data-target="#delete_modal_{{ $model->id }}">
+                                                <button type="button" class="btn btn-outline-danger ml-2" data-toggle="modal" data-target="#delete_modal_{{ $model->id }}">
                                                     <i class="icon-trash"></i>
                                                 </button>
                                             </div>
@@ -138,16 +119,14 @@
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         </div>
-                                                        <form action="{{ route('services.destroy', $model->id) }}"
-                                                              method="post">
+                                                        <form action="{{ route('services.destroy', $model->id) }}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <div class="modal-body">
                                                                 <h3 class="text-center">{{ getTranslation('Вы уверены, что хотите удалить?') }}</h3>
                                                             </div>
                                                             <div class="modal-footer d-flex justify-content-center pb-4">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">{{ getTranslation('Закрыть') }}</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ getTranslation('Закрыть') }}</button>
                                                                 <button type="submit" class="btn btn-danger">{{ getTranslation('Подтвердить') }}</button>
                                                             </div>
                                                         </form>

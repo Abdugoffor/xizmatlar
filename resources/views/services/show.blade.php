@@ -73,13 +73,57 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('text') }}</th>
+                            <th style="width:20%">{{ getTranslation('cart photo') }}</th>
                             <td>
-                                @if(is_array($model->text))
-                                    <ul class="nav nav-tabs" id="show-tabs-text">
+                                @if($model->cart_photo)
+                                    <a href="{{ asset($model->cart_photo) }}" target="_blank">
+                                        {{ getTranslation('Open file') }}
+                                    </a>
+
+                                    @php
+                                        $extension = strtolower(pathinfo($model->cart_photo, PATHINFO_EXTENSION));
+                                    @endphp
+
+                                    @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                        <div class="mt-2">
+                                            <img src="{{ asset($model->cart_photo) }}" alt="cart_photo" style="max-height:150px; border-radius:8px;">
+                                        </div>
+                                    @endif
+                                @else
+                                    -
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width:20%">{{ getTranslation('header photo') }}</th>
+                            <td>
+                                @if($model->header_photo)
+                                    <a href="{{ asset($model->header_photo) }}" target="_blank">
+                                        {{ getTranslation('Open file') }}
+                                    </a>
+
+                                    @php
+                                        $extension = strtolower(pathinfo($model->header_photo, PATHINFO_EXTENSION));
+                                    @endphp
+
+                                    @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                        <div class="mt-2">
+                                            <img src="{{ asset($model->header_photo) }}" alt="header_photo" style="max-height:150px; border-radius:8px;">
+                                        </div>
+                                    @endif
+                                @else
+                                    -
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('content') }}</th>
+                            <td>
+                                @if(is_array($model->content))
+                                    <ul class="nav nav-tabs" id="show-tabs-content">
                                         @foreach(getLanguage() as $lang)
                                             <li class="nav-item">
-                                                <a href="#show-text-{{ $lang->id }}"
+                                                <a href="#show-content-{{ $lang->id }}"
                                                    class="nav-link {{ $loop->first ? 'active' : '' }}"
                                                    data-toggle="tab">
                                                     {{ $lang->name }}
@@ -90,15 +134,19 @@
                                     <div class="tab-content border border-top-0 p-2">
                                         @foreach(getLanguage() as $lang)
                                             <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                                 id="show-text-{{ $lang->id }}">
-                                                {!! nl2br(e($model->text[$lang->name] ?? $model->text['default'] ?? '')) !!}
+                                                 id="show-content-{{ $lang->id }}">
+                                                {!! nl2br(e($model->content[$lang->name] ?? $model->content['default'] ?? '')) !!}
                                             </div>
                                         @endforeach
                                     </div>
                                 @else
-                                    {{ $model->text }}
+                                    {{ $model->content }}
                                 @endif
                             </td>
+                        </tr>
+                        <tr>
+                            <th style="width:20%">{{ getTranslation('video link') }}</th>
+                            <td>{{ $model->video_link }}</td>
                         </tr>
                         <tr>
                             <th style="width:20%;vertical-align:top">{{ getTranslation('footer text') }}</th>
@@ -127,22 +175,6 @@
                                     {{ $model->footer_text }}
                                 @endif
                             </td>
-                        </tr>
-                        <tr>
-                            <th style="width:20%">{{ getTranslation('photo') }}</th>
-                            <td>{{ $model->photo }}</td>
-                        </tr>
-                        <tr>
-                            <th style="width:20%">{{ getTranslation('video') }}</th>
-                            <td>{{ $model->video }}</td>
-                        </tr>
-                        <tr>
-                            <th style="width:20%">{{ getTranslation('date') }}</th>
-                            <td>{{ $model->date }}</td>
-                        </tr>
-                        <tr>
-                            <th style="width:20%">{{ getTranslation('order') }}</th>
-                            <td>{{ $model->order }}</td>
                         </tr>
                         <tr>
                             <th style="width:20%">{{ getTranslation('is main') }}</th>

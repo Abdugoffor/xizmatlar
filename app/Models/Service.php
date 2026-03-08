@@ -9,12 +9,11 @@ class Service extends Model
     protected $fillable = [
         'title',
         'description',
-        'text',
+        'cart_photo',
+        'header_photo',
+        'content',
+        'video_link',
         'footer_text',
-        'photo',
-        'video',
-        'date',
-        'order',
         'is_main',
         'is_active',
     ];
@@ -22,9 +21,19 @@ class Service extends Model
     protected $casts = [
         'title' => 'array',
         'description' => 'array',
-        'text' => 'array',
+        'content' => 'array',
         'footer_text' => 'array',
         'is_main' => 'boolean',
         'is_active' => 'boolean',
     ];
+
+    protected $fileFields = [
+        'cart_photo',
+        'header_photo',
+    ];
+
+    public function getFileFields(): array
+    {
+        return $this->fileFields;
+    }
 }

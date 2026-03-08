@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Resources\User\UserResource;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -41,37 +42,42 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
+
         User::create($data);
+
         return redirect()->route('users.index')
             ->with('notification', getTranslation('User создан успешно'));
     }
 
-    public function show($lang, $id)
+    public function show($id)
     {
         $model = User::findOrFail($id);
         return view('users.show', ['model' => $model]);
     }
 
-    public function edit($lang, $id)
+    public function edit($id)
     {
         $model = User::findOrFail($id);
         return view('users.edit', ['model' => $model]);
     }
 
-    public function update(UpdateUserRequest $request,$lang, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         $model = User::findOrFail($id);
         $data  = $request->validated();
 
+
         $model->update($data);
+
         return redirect()->route('users.index')
             ->with('notification', getTranslation('User обновлён успешно'));
     }
 
-    public function destroy($lang, $id)
+    public function destroy($id)
     {
         $model = User::findOrFail($id);
         $model->delete();
+
         return redirect()->route('users.index')
             ->with('notification', getTranslation('User удалён успешно'));
     }

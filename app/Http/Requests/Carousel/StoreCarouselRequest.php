@@ -16,7 +16,7 @@ class StoreCarouselRequest extends FormRequest
         $rules = [
             'title' => 'required|array',
             'description' => 'required|array',
-            'photo' => 'required|string|max:255',
+            'photo' => 'nullable|file|max:10240',
             'is_active' => 'required|boolean',
 
         ];
@@ -41,9 +41,8 @@ class StoreCarouselRequest extends FormRequest
             'description.array'          => getTranslation('description must be an array'),
             'description.*.required'     => getTranslation('description translation is required'),
             'description.*.string'       => getTranslation('description translation must be a string'),
-            'photo.required'   => getTranslation('photo is required'),
-            'photo.string'    => getTranslation('photo must be a string'),
-            'photo.max'       => getTranslation('photo must not exceed 255 characters'),
+            'photo.file'        => getTranslation('photo must be a file'),
+            'photo.max'         => getTranslation('photo must not exceed 10 MB'),
             'is_active.required'   => getTranslation('is active is required'),
             'is_active.boolean'   => getTranslation('is active must be true or false'),
 
