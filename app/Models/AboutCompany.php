@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\HasHistory;
 use Illuminate\Database\Eloquent\Model;
 
 class AboutCompany extends Model
 {
+    use HasHistory;
     protected $fillable = [
         'section_label',
         'title',

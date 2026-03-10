@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\HasHistory;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    use HasHistory;
     protected $fillable = ['title', 'description', 'photo', 'is_active'];
 
     protected $casts = [

@@ -26,31 +26,31 @@
                         <table class="table text-nowrap table-bordered">
                             <thead>
                                 <tr>
-                                <th class="text-center" width="3%">№</th>
-                                <th class="text-center">{{ getTranslation('type') }}</th>
-                                <th class="text-center">{{ getTranslation('slug') }}</th>
-                                <th class="text-center">{{ getTranslation('name') }}</th>
+                                    <th class="text-center" width="3%">№</th>
+                                    <th class="text-center">{{ getTranslation('type') }}</th>
+                                    <th class="text-center">{{ getTranslation('slug') }}</th>
+                                    <th class="text-center">{{ getTranslation('name') }}</th>
 
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>
                                 </tr>
                                 <form action="{{ route('translations.index') }}" method="get">
                                     <tr>
-                                <th class="text-center"></th>
-                                <th class="text-center">
-                                    <input type="text" class="form-control" name="type"
-                                           placeholder="{{ getTranslation('type') }}"
-                                           value="{{ old('type', request('type')) }}">
-                                </th>
-                                <th class="text-center">
-                                    <input type="text" class="form-control" name="slug"
-                                           placeholder="{{ getTranslation('slug') }}"
-                                           value="{{ old('slug', request('slug')) }}">
-                                </th>
-                                <th class="text-center">
-                                    <input type="text" class="form-control" name="name"
-                                           placeholder="{{ getTranslation('name') }}"
-                                           value="{{ old('name', request('name')) }}">
-                                </th>
+                                        <th class="text-center"></th>
+                                        <th class="text-center">
+                                            <input type="text" class="form-control" name="type"
+                                                placeholder="{{ getTranslation('type') }}"
+                                                value="{{ old('type', request('type')) }}">
+                                        </th>
+                                        <th class="text-center">
+                                            <input type="text" class="form-control" name="slug"
+                                                placeholder="{{ getTranslation('slug') }}"
+                                                value="{{ old('slug', request('slug')) }}">
+                                        </th>
+                                        <th class="text-center">
+                                            <input type="text" class="form-control" name="name"
+                                                placeholder="{{ getTranslation('name') }}"
+                                                value="{{ old('name', request('name')) }}">
+                                        </th>
 
                                         <th class="text-center">
                                             <button class="btn btn-teal">{{ getTranslation('Поиск') }}</button>
@@ -62,25 +62,28 @@
                                 @foreach ($models as $model)
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
-                            <td>{{ $model->type }}</td>
-                            <td>{{ $model->slug }}</td>
-                            <td>{{ getLocale($model->name) }}</td>
+                                        <td>{{ $model->type }}</td>
+                                        <td>{{ $model->slug }}</td>
+                                        <td>{{ getLocale($model->name) }}</td>
 
                                         <td>
                                             <div class="d-inline-flex gap-2">
                                                 <a href="{{ route('translations.show', $model->id) }}"
-                                                   class="btn btn-outline-info">
+                                                    class="btn btn-outline-info">
                                                     <i class="icon-eye8"></i>
                                                 </a>
                                                 <a href="{{ route('translations.edit', $model->id) }}"
-                                                   class="btn btn-outline-success ml-2">
+                                                    class="btn btn-outline-success ml-2">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
-                                                <button type="button" class="btn btn-outline-danger ml-2"
-                                                        data-toggle="modal"
-                                                        data-target="#delete_modal_{{ $model->id }}">
+                                                <button type="button" class="btn btn-outline-danger ml-2" data-toggle="modal"
+                                                    data-target="#delete_modal_{{ $model->id }}">
                                                     <i class="icon-trash"></i>
                                                 </button>
+                                                <a target="_blank" href="{{ route('history.show', ['model' => 'Translation', 'id' => $model->id]) }}"
+                                                    class="btn btn-outline-warning ml-2">
+                                                    <i class="icon-history"></i>
+                                                </a>
                                             </div>
 
                                             {{-- Delete Modal --}}
@@ -88,19 +91,23 @@
                                                 <div class="modal-dialog modal-dialog-centered modal-sm">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
                                                         </div>
                                                         <form action="{{ route('translations.destroy', $model->id) }}"
-                                                              method="post">
+                                                            method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <div class="modal-body">
-                                                                <h3 class="text-center">{{ getTranslation('Вы уверены, что хотите удалить?') }}</h3>
+                                                                <h3 class="text-center">
+                                                                    {{ getTranslation('Вы уверены, что хотите удалить?') }}
+                                                                </h3>
                                                             </div>
                                                             <div class="modal-footer d-flex justify-content-center pb-4">
                                                                 <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">{{ getTranslation('Закрыть') }}</button>
-                                                                <button type="submit" class="btn btn-danger">{{ getTranslation('Подтвердить') }}</button>
+                                                                    data-dismiss="modal">{{ getTranslation('Закрыть') }}</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-danger">{{ getTranslation('Подтвердить') }}</button>
                                                             </div>
                                                         </form>
                                                     </div>

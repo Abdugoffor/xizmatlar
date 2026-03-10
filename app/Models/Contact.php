@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\HasHistory;
 use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
+    use HasHistory;
     protected $fillable = [
         'phone_1', 
         'phone_2', 

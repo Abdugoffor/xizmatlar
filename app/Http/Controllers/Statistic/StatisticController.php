@@ -16,26 +16,6 @@ class StatisticController extends Controller
     {
         $query = Statistic::query();
 
-        if ($request->filled('title')) {
-            $locale = app()->getLocale();
-            $search = '%' . $request->input('title') . '%';
-            $query->where(function ($q) use ($search, $locale) {
-                $q->whereRaw("lower(title->>'{$locale}') LIKE lower(?)", [$search])
-                  ->orWhereRaw("lower(title->>'default') LIKE lower(?)", [$search]);
-            });
-        }
-        if ($request->filled('description')) {
-            $locale = app()->getLocale();
-            $search = '%' . $request->input('description') . '%';
-            $query->where(function ($q) use ($search, $locale) {
-                $q->whereRaw("lower(description->>'{$locale}') LIKE lower(?)", [$search])
-                  ->orWhereRaw("lower(description->>'default') LIKE lower(?)", [$search]);
-            });
-        }
-        if ($request->filled('is_active')) {
-            $query->where('is_active', 'like', '%' . $request->input('is_active') . '%');
-        }
-
         $models = $query->paginate(10)->withQueryString();
         return view('statistics.index', ['models' => $models]);
     }

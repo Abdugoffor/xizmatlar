@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\HasHistory;
 use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
 {
+    use HasHistory;
     protected $fillable = ['title', 'description', 'photo', 'content', 'video_link', 'footer_text', 'date', 'is_active'];
     protected $casts = [
         'title' => 'array',

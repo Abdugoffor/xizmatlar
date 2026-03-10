@@ -73,6 +73,9 @@
                                                 <button type="button" class="btn btn-outline-danger ml-2" data-toggle="modal" data-target="#delete_modal_{{ $model->id }}">
                                                     <i class="icon-trash"></i>
                                                 </button>
+                                                <a target="_blank" href="{{ route('history.show', ['model' => 'Client', 'id' => $model->id]) }}" class="btn btn-outline-warning ml-2">
+                                                    <i class="icon-history"></i>
+                                                </a>
                                             </div>
 
                                             <div id="delete_modal_{{ $model->id }}" class="modal fade" tabindex="-1">

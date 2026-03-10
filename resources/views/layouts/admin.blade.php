@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('title')</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
+        type="text/css">
     <link href="/backend/global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
     <link href="/backend/assets/css/all.min.css" rel="stylesheet" type="text/css">
     <script src="/backend/global_assets/js/main/jquery.min.js"></script>
@@ -80,98 +81,127 @@
                 </div>
                 <div class="sidebar-section">
                     <ul class="nav nav-sidebar" data-nav-type="accordion">
+
                         <li class="nav-item">
-                            <a href="{{ route('carousels.index') }}" class="nav-link">
+                            <a href="{{ route('carousels.index') }}"
+                                class="nav-link {{ request()->routeIs('carousels.*') ? 'active' : '' }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('Carousel') }}</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ route('aboutcompanies.index') }}" class="nav-link">
+                            <a href="{{ route('aboutcompanies.index') }}"
+                                class="nav-link {{ request()->routeIs('aboutcompanies.*') ? 'active' : '' }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('AboutCompany') }}</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ route('services.index') }}" class="nav-link">
+                            <a href="{{ route('services.index') }}"
+                                class="nav-link {{ request()->routeIs('services.*') ? 'active' : '' }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('Service') }}</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ route('servicesections.index') }}" class="nav-link">
+                            <a href="{{ route('servicesections.index') }}"
+                                class="nav-link {{ request()->routeIs('servicesections.*') ? 'active' : '' }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('ServiceSection') }}</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ route('processsections.index') }}" class="nav-link">
+                            <a href="{{ route('processsections.index') }}"
+                                class="nav-link {{ request()->routeIs('processsections.*') ? 'active' : '' }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('ProcessSection') }}</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ route('portfolios.index') }}" class="nav-link">
+                            <a href="{{ route('portfolios.index') }}"
+                                class="nav-link {{ request()->routeIs('portfolios.*') ? 'active' : '' }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('Portfolio') }}</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ route('comments.index') }}" class="nav-link">
+                            <a href="{{ route('comments.index') }}"
+                                class="nav-link {{ request()->routeIs('comments.*') ? 'active' : '' }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('Comment') }}</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ route('statistics.index') }}" class="nav-link">
+                            <a href="{{ route('statistics.index') }}"
+                                class="nav-link {{ request()->routeIs('statistics.*') ? 'active' : '' }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('Statistic') }}</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ route('blogs.index') }}" class="nav-link">
+                            <a href="{{ route('blogs.index') }}"
+                                class="nav-link {{ request()->routeIs('blogs.*') ? 'active' : '' }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('Blog') }}</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ route('clients.index') }}" class="nav-link">
+                            <a href="{{ route('clients.index') }}"
+                                class="nav-link {{ request()->routeIs('clients.*') ? 'active' : '' }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('Client') }}</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ route('teams.index') }}" class="nav-link">
+                            <a href="{{ route('teams.index') }}"
+                                class="nav-link {{ request()->routeIs('teams.*') ? 'active' : '' }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('Team') }}</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ route('contacts.index') }}" class="nav-link">
+                            <a href="{{ route('contacts.index') }}"
+                                class="nav-link {{ request()->routeIs('contacts.*') ? 'active' : '' }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('Contact') }}</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ route('languages.index') }}" class="nav-link">
+                            <a href="{{ route('languages.index') }}"
+                                class="nav-link {{ request()->routeIs('languages.*') ? 'active' : '' }}">
                                 <i class="icon-list-unordered"></i>
                                 <span>{{ getTranslation('Language') }}</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ route('translations.index') }}" class="nav-link">
+                            <a href="{{ route('translations.index') }}"
+                                class="nav-link {{ request()->routeIs('translations.*') ? 'active' : '' }}">
                                 <i class="icon-list-unordered"></i>
-                                {{ getTranslation('Translation') }}
-                                </span>
+                                <span>{{ getTranslation('Translation') }}</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ route('users.index') }}" class="nav-link">
+                            <a href="{{ route('users.index') }}"
+                                class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
                                 <i class="icon-list-unordered"></i>
-                                {{ getTranslation('Users') }}
-                                </span>
+                                <span>{{ getTranslation('Users') }}</span>
                             </a>
                         </li>
+
                     </ul>
                 </div>
             </div>

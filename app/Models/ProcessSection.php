@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\HasHistory;
 use Illuminate\Database\Eloquent\Model;
 
 class ProcessSection extends Model
 {
+    use HasHistory;
     protected $fillable = ['title', 'description', 'photo', 'order'];
 
     protected $casts = [

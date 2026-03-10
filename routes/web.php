@@ -9,6 +9,7 @@ use App\Http\Controllers\Carousel\CarouselController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Comment\CommentController;
 use App\Http\Controllers\Contact\ContactController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Portfolio\PortfolioController;
 use App\Http\Controllers\ProcessSection\ProcessSectionController;
@@ -39,12 +40,13 @@ Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddl
     Route::get("/register", [RegisterController::class, "showRegistrationForm"])->name("register");
     Route::post("/register", [RegisterController::class, "register"]);
 
+    Route::get('/history/{model}/{id}', [HistoryController::class, 'show'])->name('history.show');
+
     Route::middleware("role:user")->group(function () {
 
         Route::get("/profile", [ProfileController::class, "showProfileForm"])->name("profile");
         Route::patch("/profile", [ProfileController::class, "update"])->name("profile.update");
         Route::get("/dashboard", [HomeController::class, "index"])->name("home");
-
     });
 
     Route::resource('translations', TranslationController::class);

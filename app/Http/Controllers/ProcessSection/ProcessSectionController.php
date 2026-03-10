@@ -15,27 +15,6 @@ class ProcessSectionController extends Controller
     public function index(Request $request)
     {
         $query = ProcessSection::query();
-
-        if ($request->filled('title')) {
-            $locale = app()->getLocale();
-            $search = '%' . $request->input('title') . '%';
-            $query->where(function ($q) use ($search, $locale) {
-                $q->whereRaw("lower(title->>'{$locale}') LIKE lower(?)", [$search])
-                  ->orWhereRaw("lower(title->>'default') LIKE lower(?)", [$search]);
-            });
-        }
-        if ($request->filled('description')) {
-            $locale = app()->getLocale();
-            $search = '%' . $request->input('description') . '%';
-            $query->where(function ($q) use ($search, $locale) {
-                $q->whereRaw("lower(description->>'{$locale}') LIKE lower(?)", [$search])
-                  ->orWhereRaw("lower(description->>'default') LIKE lower(?)", [$search]);
-            });
-        }
-        if ($request->filled('order')) {
-            $query->where('order', 'like', '%' . $request->input('order') . '%');
-        }
-
         $models = $query->paginate(10)->withQueryString();
         return view('processsections.index', ['models' => $models]);
     }
