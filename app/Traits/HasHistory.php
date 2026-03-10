@@ -13,13 +13,12 @@ trait HasHistory
     {
 
         static::created(function (Model $model) {
-
+       
             $model->storeHistory(
                 'created',
                 null,
                 $model->sanitizeData($model->getAttributes())
             );
-
         });
 
 
@@ -52,7 +51,6 @@ trait HasHistory
 
                     $oldData[$field] = $oldDiff;
                     $newData[$field] = $newDiff;
-
                 }
             }
 
@@ -63,9 +61,7 @@ trait HasHistory
                     $oldData,
                     $newData
                 );
-
             }
-
         });
 
 
@@ -77,7 +73,6 @@ trait HasHistory
                 $model->sanitizeData($model->getOriginal()),
                 null
             );
-
         });
 
 
@@ -91,11 +86,8 @@ trait HasHistory
                     null,
                     $model->sanitizeData($model->getAttributes())
                 );
-
             });
-
         }
-
     }
 
 
@@ -126,13 +118,9 @@ trait HasHistory
                     $modelType = $parentClass;
                     $modelId = $parentId;
                     $languageCode = $this->language_code ?? null;
-
                 }
-
             } catch (\Throwable $e) {
-
             }
-
         }
 
 
@@ -142,13 +130,12 @@ trait HasHistory
             'model_type' => $modelType,
             'model_id' => $modelId,
             'language_code' => $languageCode,
-            'user_id' => Auth::id(),
+            'user_id' => Auth::id() ?? 0,
             'action' => $action,
             'old_data' => $oldData ? $this->sanitizeData($oldData) : null,
             'new_data' => $newData ? $this->sanitizeData($newData) : null,
 
         ]);
-
     }
 
 
@@ -169,13 +156,10 @@ trait HasHistory
                 if (json_last_error() === JSON_ERROR_NONE) {
                     $data[$key] = $decoded;
                 }
-
             }
-
         }
 
         return $data;
-
     }
 
 
@@ -200,7 +184,6 @@ trait HasHistory
             }
 
             return [null, null];
-
         }
 
 
@@ -218,9 +201,7 @@ trait HasHistory
 
                 $oldDiff[$key] = $oldVal;
                 $newDiff[$key] = $value;
-
             }
-
         }
 
 
@@ -232,7 +213,6 @@ trait HasHistory
 
 
         return [$oldDiff, $newDiff];
-
     }
 
 
@@ -243,7 +223,6 @@ trait HasHistory
         return History::where('model_type', get_class($this))
             ->where('model_id', $this->getKey())
             ->orderByDesc('id');
-
     }
 
 
@@ -257,7 +236,6 @@ trait HasHistory
             ->first();
 
         return $history ? $history->user : null;
-
     }
 
 
@@ -271,7 +249,5 @@ trait HasHistory
             ->first();
 
         return $history ? $history->user : null;
-
     }
-
 }
