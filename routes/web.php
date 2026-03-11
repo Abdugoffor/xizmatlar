@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AboutCompany\AboutCompanyController;
+use App\Http\Controllers\AboutPageHeader\AboutPageHeaderController;
+use App\Http\Controllers\AboutPageSkills\AboutPageSkillsController;
+use App\Http\Controllers\AboutStatistic\AboutStatisticController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -63,4 +66,7 @@ Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddl
     Route::resource('clients', ClientController::class);
     Route::resource('teams', TeamController::class);
     Route::resource('contacts', ContactController::class);
+    Route::resource('aboutpageheaders', AboutPageHeaderController::class);
+    Route::resource('aboutstatistics', AboutStatisticController::class);
+    Route::resource('aboutpageskills', AboutPageSkillsController::class);
 });
