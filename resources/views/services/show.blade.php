@@ -135,7 +135,7 @@
                                         @foreach(getLanguage() as $lang)
                                             <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                                  id="show-content-{{ $lang->id }}">
-                                                {!! nl2br(e($model->content[$lang->name] ?? $model->content['default'] ?? '')) !!}
+                                                {!! ($model->content[$lang->name] ?? $model->content['default'] ?? '') !!}
                                             </div>
                                         @endforeach
                                     </div>

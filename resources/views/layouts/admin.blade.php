@@ -91,7 +91,7 @@
                 @php
                     $group1 = request()->routeIs('carousels.*') ||
                         request()->routeIs('aboutcompanies.*') ||
-                        request()->routeIs('services.*') ||
+
                         request()->routeIs('processsections.*') ||
                         request()->routeIs('servicesections.*') ||
                         request()->routeIs('portfolios.*') ||
@@ -106,15 +106,12 @@
                         request()->routeIs('clients.*') ||
                         request()->routeIs('aboutcompanies.*');
 
-                    $group3 = request()->routeIs('blogs.*');
-
-                    $group4 = request()->routeIs('clients.*') ||
-                        request()->routeIs('teams.*') ||
-                        request()->routeIs('contacts.*');
-
-                    $group5 = request()->routeIs('languages.*') ||
+                    $group3 = request()->routeIs('services.*') ||
+                        request()->routeIs('contacts.*') ||
+                        request()->routeIs('languages.*') ||
                         request()->routeIs('translations.*') ||
-                        request()->routeIs('users.*');
+                        request()->routeIs('blogs.*');
+
                 @endphp
 
                 <div class="sidebar-section">
@@ -122,7 +119,7 @@
                         {{-- GROUP 1 --}}
                         <li class="nav-item nav-item-submenu {{ $group1 ? 'nav-item-expanded nav-item-open' : '' }}">
                             <a href="#" class="nav-link {{ $group1 ? 'active' : '' }}">
-                                <i class="icon-stack"></i>
+                                <i class="icon-stack2"></i>
                                 <span>{{ getTranslation('Home Page') }}</span>
                             </a>
 
@@ -141,14 +138,6 @@
                                         class="nav-link {{ request()->routeIs('aboutcompanies.*') ? 'active' : '' }}">
                                         <i class="icon-list-unordered"></i>
                                         <span>{{ getTranslation('About Company') }}</span>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="{{ route('services.index') }}"
-                                        class="nav-link {{ request()->routeIs('services.*') ? 'active' : '' }}">
-                                        <i class="icon-list-unordered"></i>
-                                        <span>{{ getTranslation('Service') }}</span>
                                     </a>
                                 </li>
 
@@ -243,10 +232,19 @@
                         {{-- GROUP 3 --}}
                         <li class="nav-item nav-item-submenu {{ $group3 ? 'nav-item-expanded nav-item-open' : '' }}">
                             <a href="#" class="nav-link {{ $group3 ? 'active' : '' }}">
-                                <i class="icon-bubble-lines4"></i>
+                                <i class="icon-stack2"></i>
                                 <span>{{ getTranslation('Content') }}</span>
                             </a>
                             <ul class="nav nav-group-sub {{ $group3 ? 'd-block' : '' }}">
+
+                                <li class="nav-item">
+                                    <a href="{{ route('services.index') }}"
+                                        class="nav-link {{ request()->routeIs('services.*') ? 'active' : '' }}">
+                                        <i class="icon-list-unordered"></i>
+                                        <span>{{ getTranslation('Service') }}</span>
+                                    </a>
+                                </li>
+
                                 <li class="nav-item">
                                     <a href="{{ route('blogs.index') }}"
                                         class="nav-link {{ request()->routeIs('blogs.*') ? 'active' : '' }}">
@@ -254,17 +252,6 @@
                                         <span>{{ getTranslation('Blog') }}</span>
                                     </a>
                                 </li>
-                            </ul>
-                        </li>
-
-                        {{-- GROUP 4 --}}
-                        <li class="nav-item nav-item-submenu {{ $group4 ? 'nav-item-expanded nav-item-open' : '' }}">
-                            <a href="#" class="nav-link {{ $group4 ? 'active' : '' }}">
-                                <i class="icon-users"></i>
-                                <span>{{ getTranslation('People') }}</span>
-                            </a>
-
-                            <ul class="nav nav-group-sub {{ $group4 ? 'd-block' : '' }}">
 
                                 <li class="nav-item">
                                     <a href="{{ route('contacts.index') }}"
@@ -273,18 +260,6 @@
                                         <span>{{ getTranslation('Contact') }}</span>
                                     </a>
                                 </li>
-                            </ul>
-                        </li>
-
-                        {{-- GROUP 5 --}}
-                        <li class="nav-item nav-item-submenu {{ $group5 ? 'nav-item-expanded nav-item-open' : '' }}">
-                            <a href="#" class="nav-link {{ $group5 ? 'active' : '' }}">
-                                <i class="icon-gear"></i>
-                                <span>{{ getTranslation('System') }}</span>
-                            </a>
-
-                            <ul class="nav nav-group-sub {{ $group5 ? 'd-block' : '' }}">
-
                                 <li class="nav-item">
                                     <a href="{{ route('languages.index') }}"
                                         class="nav-link {{ request()->routeIs('languages.*') ? 'active' : '' }}">
@@ -300,19 +275,16 @@
                                         <span>{{ getTranslation('Translation') }}</span>
                                     </a>
                                 </li>
-
-                                <li class="nav-item">
-                                    <a href="{{ route('users.index') }}"
-                                        class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
-                                        <i class="icon-list-unordered"></i>
-                                        <span>{{ getTranslation('Users') }}</span>
-                                    </a>
-                                </li>
-
                             </ul>
                         </li>
 
-
+                        <li class="nav-item">
+                            <a href="{{ route('users.index') }}"
+                                class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
+                                <i class="icon-users"></i>
+                                <span>{{ getTranslation('Users') }}</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
