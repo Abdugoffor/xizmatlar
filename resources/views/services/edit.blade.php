@@ -143,15 +143,18 @@
                                     <div class="tab-content border border-top-0 p-2 mb-1">
                                         @foreach (getLanguage() as $lang)
                                             <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                                 id="tab-content-{{ $lang->id }}">
-                                                <input type="text"
-                                                       class="form-control mt-1"
-                                                       name="content[{{ $lang->name }}]"
-                                                       value="{{ old('content.' . $lang->name, is_array($model->content) ? ($model->content[$lang->name] ?? $model->content['default'] ?? '') : '') }}"
-                                                       placeholder="{{ $lang->name }}">
+                                                id="tab-content-{{ $lang->id }}">
+
+                                                <textarea
+                                                    class="form-control summernote mt-1"
+                                                    name="content[{{ $lang->name }}]"
+                                                    placeholder="{{ $lang->name }}"
+                                                >{{ old('content.' . $lang->name, is_array($model->content) ? ($model->content[$lang->name] ?? $model->content['default'] ?? '') : '') }}</textarea>
+
                                                 @error('content.' . $lang->name)
                                                     <p style="color:red">{{ $message }}</p>
                                                 @enderror
+
                                             </div>
                                         @endforeach
                                     </div>
