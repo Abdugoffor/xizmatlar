@@ -25,6 +25,7 @@ class DefaultSeed extends Seeder
         $this->aboutPageHeader();
         $this->aboutStatistic();
         $this->aboutPageSkills();
+        $this->contactSection();
     }
 
     public function pageAboutCompany()
@@ -356,6 +357,29 @@ class DefaultSeed extends Seeder
 
             'photo_1' => "https://wowtheme7.com/tf/logisk/assets/img/about/3.jpg",
             'photo_2' => "https://wowtheme7.com/tf/logisk/assets/img/about/4.jpg",
+        ]);
+    }
+
+    public function contactSection()
+    {
+        \App\Models\Contact::create([
+            'phone_1' => '+998 90 123 45 67',
+            'phone_2' => '+998 91 765 43 21',
+
+            'email_1' => 'info@company.uz',
+            'email_2' => 'support@company.uz',
+
+            'address' => [
+                'uz' => 'Toshkent shahri, Yunusobod tumani',
+                'ru' => 'Город Ташкент, Юнусабадский район',
+                'en' => 'Tashkent city, Yunusabad district',
+            ],
+
+            'tlegram' => 'https://t.me/company',
+            'facebook' => 'https://facebook.com/company',
+            'instagram' => 'https://instagram.com/company',
+            'watsapp' => 'https://wa.me/998901234567',
+            'linked' => 'https://linkedin.com/company/company',
         ]);
     }
 }

@@ -16,42 +16,6 @@ class ContactController extends Controller
     {
         $query = Contact::query();
 
-        if ($request->filled('phone_1')) {
-            $query->where('phone_1', 'like', '%' . $request->input('phone_1') . '%');
-        }
-        if ($request->filled('phone_2')) {
-            $query->where('phone_2', 'like', '%' . $request->input('phone_2') . '%');
-        }
-        if ($request->filled('email_1')) {
-            $query->where('email_1', 'like', '%' . $request->input('email_1') . '%');
-        }
-        if ($request->filled('email_2')) {
-            $query->where('email_2', 'like', '%' . $request->input('email_2') . '%');
-        }
-        if ($request->filled('address')) {
-            $locale = app()->getLocale();
-            $search = '%' . $request->input('address') . '%';
-            $query->where(function ($q) use ($search, $locale) {
-                $q->whereRaw("lower(address->>'{$locale}') LIKE lower(?)", [$search])
-                    ->orWhereRaw("lower(address->>'default') LIKE lower(?)", [$search]);
-            });
-        }
-        if ($request->filled('tlegram')) {
-            $query->where('tlegram', 'like', '%' . $request->input('tlegram') . '%');
-        }
-        if ($request->filled('facebook')) {
-            $query->where('facebook', 'like', '%' . $request->input('facebook') . '%');
-        }
-        if ($request->filled('instagram')) {
-            $query->where('instagram', 'like', '%' . $request->input('instagram') . '%');
-        }
-        if ($request->filled('watsapp')) {
-            $query->where('watsapp', 'like', '%' . $request->input('watsapp') . '%');
-        }
-        if ($request->filled('linked')) {
-            $query->where('linked', 'like', '%' . $request->input('linked') . '%');
-        }
-
         $models = $query->paginate(10)->withQueryString();
         return view('contacts.index', ['models' => $models]);
     }
