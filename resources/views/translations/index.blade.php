@@ -27,7 +27,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
-                                    <th class="text-center">{{ getTranslation('type') }}</th>
+                                    {{-- <th class="text-center">{{ getTranslation('type') }}</th> --}}
                                     <th class="text-center">{{ getTranslation('slug') }}</th>
                                     <th class="text-center">{{ getTranslation('name') }}</th>
 
@@ -36,11 +36,11 @@
                                 <form action="{{ route('translations.index') }}" method="get">
                                     <tr>
                                         <th class="text-center"></th>
-                                        <th class="text-center">
+                                        {{-- <th class="text-center">
                                             <input type="text" class="form-control" name="type"
                                                 placeholder="{{ getTranslation('type') }}"
                                                 value="{{ old('type', request('type')) }}">
-                                        </th>
+                                        </th> --}}
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="slug"
                                                 placeholder="{{ getTranslation('slug') }}"
@@ -62,7 +62,7 @@
                                 @foreach ($models as $model)
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
-                                        <td>{{ $model->type }}</td>
+                                        {{-- <td>{{ $model->type }}</td> --}}
                                         <td>{{ $model->slug }}</td>
                                         <td>{{ getLocale($model->name) }}</td>
 

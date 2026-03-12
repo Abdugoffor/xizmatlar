@@ -43,7 +43,7 @@ class TranslationController extends Controller
     {
         $data = $request->validated();
         $data['name']['default'] = reset($data['name']);
-
+        $data['type'] = 'static';
         $translation = Translation::create($data);
 
         $this->forgetTranslationCache($translation->slug);

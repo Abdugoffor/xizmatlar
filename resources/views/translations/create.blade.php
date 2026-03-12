@@ -20,7 +20,7 @@
                         <div class="form-group row">
                             <div class="card-body">
 
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label class="col-form-label">{{ getTranslation('type') }}</label>
                                     <input type="text" class="form-control"
                                            name="type"
@@ -29,7 +29,7 @@
                                     @error('type')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label class="col-form-label">{{ getTranslation('slug') }}</label>
                                     <input type="text" class="form-control"

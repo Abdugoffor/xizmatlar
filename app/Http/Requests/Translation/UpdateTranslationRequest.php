@@ -14,7 +14,7 @@ class UpdateTranslationRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'type' => 'required|string|max:255',
+            // 'type' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
             'name' => 'required|array',
 
