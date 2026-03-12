@@ -18,6 +18,7 @@ use App\Http\Controllers\Portfolio\PortfolioController;
 use App\Http\Controllers\ProcessSection\ProcessSectionController;
 use App\Http\Controllers\Service\ServiceController;
 use App\Http\Controllers\ServiceSection\ServiceSectionController;
+use App\Http\Controllers\SkillsOption\SkillsOptionController;
 use App\Http\Controllers\Statistic\StatisticController;
 use App\Http\Controllers\Team\TeamController;
 use App\Http\Controllers\User\UserController;
@@ -69,4 +70,5 @@ Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddl
     Route::resource('aboutpageheaders', AboutPageHeaderController::class);
     Route::resource('aboutstatistics', AboutStatisticController::class);
     Route::resource('aboutpageskills', AboutPageSkillsController::class);
+    Route::resource('skillsoptions', SkillsOptionController::class);
 });

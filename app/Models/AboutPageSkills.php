@@ -31,4 +31,5 @@ class AboutPageSkills extends Model
     {
         return $this->fileFields;
     }
+
 }

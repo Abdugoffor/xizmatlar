@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+            $table->string('slug');
             $table->jsonb('title');
             $table->jsonb('description');
             $table->string('cart_photo');

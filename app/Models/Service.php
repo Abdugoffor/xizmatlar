@@ -9,6 +9,7 @@ class Service extends Model
 {
     use HasHistory;
     protected $fillable = [
+        'slug',
         'title',
         'description',
         'cart_photo',

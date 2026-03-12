@@ -21,7 +21,7 @@ class ServiceController extends Controller
             $search = '%' . $request->input('title') . '%';
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(title->>'{$locale}') LIKE lower(?)", [$search])
-                  ->orWhereRaw("lower(title->>'default') LIKE lower(?)", [$search]);
+                    ->orWhereRaw("lower(title->>'default') LIKE lower(?)", [$search]);
             });
         }
         if ($request->filled('description')) {
@@ -29,7 +29,7 @@ class ServiceController extends Controller
             $search = '%' . $request->input('description') . '%';
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(description->>'{$locale}') LIKE lower(?)", [$search])
-                  ->orWhereRaw("lower(description->>'default') LIKE lower(?)", [$search]);
+                    ->orWhereRaw("lower(description->>'default') LIKE lower(?)", [$search]);
             });
         }
         if ($request->filled('content')) {
@@ -37,7 +37,7 @@ class ServiceController extends Controller
             $search = '%' . $request->input('content') . '%';
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(content->>'{$locale}') LIKE lower(?)", [$search])
-                  ->orWhereRaw("lower(content->>'default') LIKE lower(?)", [$search]);
+                    ->orWhereRaw("lower(content->>'default') LIKE lower(?)", [$search]);
             });
         }
         if ($request->filled('video_link')) {
@@ -48,7 +48,7 @@ class ServiceController extends Controller
             $search = '%' . $request->input('footer_text') . '%';
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(footer_text->>'{$locale}') LIKE lower(?)", [$search])
-                  ->orWhereRaw("lower(footer_text->>'default') LIKE lower(?)", [$search]);
+                    ->orWhereRaw("lower(footer_text->>'default') LIKE lower(?)", [$search]);
             });
         }
         if ($request->filled('is_main')) {
@@ -89,6 +89,8 @@ class ServiceController extends Controller
         if ($request->hasFile('header_photo')) {
             $data['header_photo'] = FileUploadService::uploadFile($request->file('header_photo'));
         }
+
+        $data['slug'] = slug($data['title']['default']);
 
         Service::create($data);
 

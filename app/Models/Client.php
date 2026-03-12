@@ -9,9 +9,10 @@ class Client extends Model
 {
     
     use HasHistory;
-    protected $fillable = ['title', 'photo', 'is_active'];
+    protected $fillable = ['title','description', 'photo', 'is_active'];
     protected $casts = [
         'title' => 'array',
+        'description' => 'array',
         'is_active' => 'boolean',
     ];
 

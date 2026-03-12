@@ -16,16 +16,19 @@ class BlogController extends Controller
     {
         $query = Blog::query();
 
+        $locale = app()->getLocale();
+
         if ($request->filled('title')) {
-            $locale = app()->getLocale();
+
             $search = '%' . $request->input('title') . '%';
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(title->>'{$locale}') LIKE lower(?)", [$search])
                     ->orWhereRaw("lower(title->>'default') LIKE lower(?)", [$search]);
             });
         }
+
         if ($request->filled('description')) {
-            $locale = app()->getLocale();
+
             $search = '%' . $request->input('description') . '%';
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(description->>'{$locale}') LIKE lower(?)", [$search])
@@ -33,7 +36,7 @@ class BlogController extends Controller
             });
         }
         if ($request->filled('content')) {
-            $locale = app()->getLocale();
+
             $search = '%' . $request->input('content') . '%';
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(content->>'{$locale}') LIKE lower(?)", [$search])
@@ -44,16 +47,18 @@ class BlogController extends Controller
             $query->where('video_link', 'like', '%' . $request->input('video_link') . '%');
         }
         if ($request->filled('footer_text')) {
-            $locale = app()->getLocale();
+
             $search = '%' . $request->input('footer_text') . '%';
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(footer_text->>'{$locale}') LIKE lower(?)", [$search])
                     ->orWhereRaw("lower(footer_text->>'default') LIKE lower(?)", [$search]);
             });
         }
+
         if ($request->filled('date')) {
             $query->where('date', 'like', '%' . $request->input('date') . '%');
         }
+
         if ($request->filled('is_active')) {
             $query->where('is_active', 'like', '%' . $request->input('is_active') . '%');
         }
@@ -86,6 +91,8 @@ class BlogController extends Controller
         if ($request->hasFile('photo')) {
             $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         }
+
+        $data['slug'] = slug($data['title']['default']);
 
         Blog::create($data);
 

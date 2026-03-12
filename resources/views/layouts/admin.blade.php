@@ -92,7 +92,9 @@
                     $group2 = request()->routeIs('aboutpageheaders.*') ||
                         request()->routeIs('aboutstatistics.*') ||
                         request()->routeIs('aboutpageskills.*') ||
+                        request()->routeIs('skillsoptions.*') ||
                         request()->routeIs('teams.*') ||
+                        request()->routeIs('clients.*') ||
                         request()->routeIs('aboutcompanies.*');
 
                     $group3 = request()->routeIs('blogs.*');
@@ -207,7 +209,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('aboutpageskills.index') }}"
-                                        class="nav-link {{ request()->routeIs('aboutpageskills.*') ? 'active' : '' }}">
+                                        class="nav-link {{ request()->routeIs('aboutpageskills.*') || request()->routeIs('skillsoptions.*') ? 'active' : '' }}">
                                         <i class="icon-list-unordered"></i>
                                         <span>{{ getTranslation('About Page Skill') }}</span>
                                     </a>
@@ -217,6 +219,13 @@
                                         class="nav-link {{ request()->routeIs('teams.*') ? 'active' : '' }}">
                                         <i class="icon-list-unordered"></i>
                                         <span>{{ getTranslation('Team') }}</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('clients.index') }}"
+                                        class="nav-link {{ request()->routeIs('clients.*') ? 'active' : '' }}">
+                                        <i class="icon-list-unordered"></i>
+                                        <span>{{ getTranslation('Client') }}</span>
                                     </a>
                                 </li>
                             </ul>
@@ -247,14 +256,6 @@
                             </a>
 
                             <ul class="nav nav-group-sub {{ $group4 ? 'd-block' : '' }}">
-
-                                <li class="nav-item">
-                                    <a href="{{ route('clients.index') }}"
-                                        class="nav-link {{ request()->routeIs('clients.*') ? 'active' : '' }}">
-                                        <i class="icon-list-unordered"></i>
-                                        <span>{{ getTranslation('Client') }}</span>
-                                    </a>
-                                </li>
 
                                 <li class="nav-item">
                                     <a href="{{ route('contacts.index') }}"
