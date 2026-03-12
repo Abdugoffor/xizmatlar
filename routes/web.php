@@ -28,8 +28,6 @@ use App\Http\Middleware\LangMiddleware;
 use App\Http\Controllers\Translation\TranslationController;
 use App\Http\Controllers\Language\LanguageController;
 
-
-
 include 'lang.php';
 
 Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddleware::class])->group(function () {
