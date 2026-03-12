@@ -6,15 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('title')</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
-        type="text/css">
-    <link href="/backend/global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
-    <link href="/backend/assets/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="/backend/global_assets/css/icons/icomoon/styles.min.css">
+    <link rel="stylesheet" href="/backend/assets/css/all.min.css">
+
+    <!-- SUMMERNOTE CSS -->
+    <link rel="stylesheet" href="/backend/global_assets/js/plugins/editors/summernote/summernote.min.css">
+
     <script src="/backend/global_assets/js/main/jquery.min.js"></script>
     <script src="/backend/global_assets/js/main/bootstrap.bundle.min.js"></script>
-    <script src="/backend/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+
+    <script src="/backend/global_assets/js/plugins/editors/summernote/summernote.min.js"></script>
+
     <script src="/backend/assets/js/app.js"></script>
-    <script src="/backend/global_assets/js/demo_pages/form_select2.js"></script>
+    <script src="/backend/global_assets/js/demo_pages/editor_summernote.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs4.min.css" rel="stylesheet">
+
 </head>
 
 <body>
