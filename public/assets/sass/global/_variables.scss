@@ -1,0 +1,22 @@
+
+//== Template Main Color
+$color-white : #fff;
+
+//== social media colors
+$facebook: #3b5999;
+$twitter: #55acee;
+$instagram: #e4405f;
+$youtube: #cd201f;
+$pinterest: #bd081c;
+
+/*-----------------
+    # Typography
+-----------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400;500;700&display=swap');
+
+//  transition
+$transition: all .3s ease-in;
+$transition-long: all .5s ease-in;
+$box-shadow: 0px 3px 20px rgba(0, 33, 71, 0.06);
+$box-shadow2: 0px 10px 30px rgba(0, 33, 71, 0.08);

@@ -12,10 +12,12 @@ use App\Http\Controllers\Carousel\CarouselController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Comment\CommentController;
 use App\Http\Controllers\Contact\ContactController;
+use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Portfolio\PortfolioController;
 use App\Http\Controllers\ProcessSection\ProcessSectionController;
+use App\Http\Controllers\Sertificate\SertificateController;
 use App\Http\Controllers\Service\ServiceController;
 use App\Http\Controllers\ServiceSection\ServiceSectionController;
 use App\Http\Controllers\SkillsOption\SkillsOptionController;
@@ -31,7 +33,8 @@ use App\Http\Controllers\Language\LanguageController;
 include 'lang.php';
 
 Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddleware::class])->group(function () {
-    Route::view('/', 'welcome');
+    Route::get('/', [IndexController::class, 'index'])->name('home');
+    
     Route::get('/lang/change', [LanguageController::class, 'changeLanguage'])->name('change.language');
     Route::resource('languages', LanguageController::class);
 
@@ -69,4 +72,5 @@ Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddl
     Route::resource('aboutstatistics', AboutStatisticController::class);
     Route::resource('aboutpageskills', AboutPageSkillsController::class);
     Route::resource('skillsoptions', SkillsOptionController::class);
+    Route::resource('sertificates', SertificateController::class);
 });

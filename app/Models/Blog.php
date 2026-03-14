@@ -24,6 +24,7 @@ class Blog extends Model
         'description' => 'array',
         'content' => 'array',
         'footer_text' => 'array',
+        'date' => 'date',
         'is_active' => 'boolean',
     ];
 

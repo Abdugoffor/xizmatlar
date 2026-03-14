@@ -108,6 +108,7 @@
 
                     $group3 = request()->routeIs('services.*') ||
                         request()->routeIs('contacts.*') ||
+                        request()->routeIs('sertificates.*') ||
                         request()->routeIs('languages.*') ||
                         request()->routeIs('translations.*') ||
                         request()->routeIs('blogs.*');
@@ -258,6 +259,14 @@
                                         class="nav-link {{ request()->routeIs('contacts.*') ? 'active' : '' }}">
                                         <i class="icon-list-unordered"></i>
                                         <span>{{ getTranslation('Contact') }}</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route('sertificates.index') }}"
+                                        class="nav-link {{ request()->routeIs('sertificates.*') ? 'active' : '' }}">
+                                        <i class="icon-list-unordered"></i>
+                                        <span>{{ getTranslation('Sertificate') }}</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
