@@ -34,43 +34,46 @@ include 'lang.php';
 
 Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddleware::class])->group(function () {
     Route::get('/', [IndexController::class, 'index'])->name('home');
-    
-    Route::get('/lang/change', [LanguageController::class, 'changeLanguage'])->name('change.language');
-    Route::resource('languages', LanguageController::class);
+    Route::get('/about', [IndexController::class, 'about'])->name('about');
+    Route::get('/services', [IndexController::class, 'services'])->name('services');
+    Route::get('/blog', [IndexController::class, 'blog'])->name('blog');
+    Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
 
+    Route::get('/lang/change', [LanguageController::class, 'changeLanguage'])->name('change.language');
     Route::get("/login", [LoginController::class, "showLoginForm"])->name("login");
     Route::post("/login", [LoginController::class, "login"]);
-    Route::post("/logout", [LoginController::class, "logout"])->name("logout");
-
+    
     Route::get("/register", [RegisterController::class, "showRegistrationForm"])->name("register");
     Route::post("/register", [RegisterController::class, "register"]);
-
-    Route::get('/history/{model}/{id}', [HistoryController::class, 'show'])->name('history.show');
-
+    
     Route::middleware("role:user")->group(function () {
-
+        
         Route::get("/profile", [ProfileController::class, "showProfileForm"])->name("profile");
         Route::patch("/profile", [ProfileController::class, "update"])->name("profile.update");
+        Route::post("/logout", [LoginController::class, "logout"])->name("logout");
         Route::get("/dashboard", [HomeController::class, "index"])->name("home");
+        
+        Route::get('/history/{model}/{id}', [HistoryController::class, 'show'])->name('history.show');
+        
+        Route::resource('languages', LanguageController::class);
+        Route::resource('translations', TranslationController::class);
+        Route::resource('carousels', CarouselController::class);
+        Route::resource('aboutcompanies', AboutCompanyController::class);
+        Route::resource('services', ServiceController::class);
+        Route::resource('users', UserController::class);
+        Route::resource('servicesections', ServiceSectionController::class);
+        Route::resource('processsections', ProcessSectionController::class);
+        Route::resource('portfolios', PortfolioController::class);
+        Route::resource('comments', CommentController::class);
+        Route::resource('statistics', StatisticController::class);
+        Route::resource('blogs', BlogController::class);
+        Route::resource('clients', ClientController::class);
+        Route::resource('teams', TeamController::class);
+        Route::resource('contacts', ContactController::class);
+        Route::resource('aboutpageheaders', AboutPageHeaderController::class);
+        Route::resource('aboutstatistics', AboutStatisticController::class);
+        Route::resource('aboutpageskills', AboutPageSkillsController::class);
+        Route::resource('skillsoptions', SkillsOptionController::class);
+        Route::resource('sertificates', SertificateController::class);
     });
-
-    Route::resource('translations', TranslationController::class);
-    Route::resource('carousels', CarouselController::class);
-    Route::resource('aboutcompanies', AboutCompanyController::class);
-    Route::resource('services', ServiceController::class);
-    Route::resource('users', UserController::class);
-    Route::resource('servicesections', ServiceSectionController::class);
-    Route::resource('processsections', ProcessSectionController::class);
-    Route::resource('portfolios', PortfolioController::class);
-    Route::resource('comments', CommentController::class);
-    Route::resource('statistics', StatisticController::class);
-    Route::resource('blogs', BlogController::class);
-    Route::resource('clients', ClientController::class);
-    Route::resource('teams', TeamController::class);
-    Route::resource('contacts', ContactController::class);
-    Route::resource('aboutpageheaders', AboutPageHeaderController::class);
-    Route::resource('aboutstatistics', AboutStatisticController::class);
-    Route::resource('aboutpageskills', AboutPageSkillsController::class);
-    Route::resource('skillsoptions', SkillsOptionController::class);
-    Route::resource('sertificates', SertificateController::class);
 });

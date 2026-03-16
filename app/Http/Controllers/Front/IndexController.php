@@ -46,4 +46,24 @@ class IndexController extends Controller
             'blogs' => $blogs
         ]);
     }
+
+    public function about()
+    {
+        return view('front.about.index');
+    }
+
+    public function services()
+    {
+        return view('front.services.index');
+    }
+
+    public function blog()
+    {
+        return view('front.blog.index');
+    }
+
+    public function contact()
+    {
+        return view('front.contact.index');
+    }
 }

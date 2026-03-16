@@ -32,13 +32,25 @@
                 <div class="collapse navbar-collapse" id="logisk_main_menu">
                     <ul class="navbar-nav menu-open text-lg-end">
 
-                        <li><a href="about.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="about.html">Service</a></li>
-                        <li><a href="about.html">Blog</a></li>
-                        <li><a href="about.html">Team</a></li>
+                        <li>
+                            <a href="{{ route('home') }}">{{ getTranslation('Home') }}</a>
+                        </li>
+                        <li>
+                            <a href="about.html">{{ getTranslation('About') }}</a>
+                        </li>
+                        <li>
+                            <a href="about.html">{{ getTranslation('Services') }}</a>
+                        </li>
+                        <li>
+                            <a href="about.html">{{ getTranslation('Blog') }}</a>
+                        </li>
+                        <li>
+                            <a href="about.html">{{ getTranslation('Team') }}</a>
+                        </li>
 
-                        <li><a href="contact.html">Contact Us</a></li>
+                        <li>
+                            <a href="contact.html">{{ getTranslation('Contact Us') }}</a>
+                        </li>
                     </ul>
                 </div>
             </div>
