@@ -254,6 +254,7 @@ class DefaultSeed extends Seeder
             'photo_2' => 'https://wowtheme7.com/tf/logisk/assets/img/about/1.png',
             'photo_3' => 'https://wowtheme7.com/tf/logisk/assets/img/about/1.png',
             'photo_4' => 'https://wowtheme7.com/tf/logisk/assets/img/about/1.png',
+            'banner_photo' => 'https://wowtheme7.com/tf/logisk/assets/img/about/1.png',
 
             'ceo_name' => 'Mosala',
         ]);

@@ -10,7 +10,8 @@
 
         <div class="card mt-2">
             <div class="card-body">
-                <form action="{{ route('aboutpageheaders.update', $model->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('aboutpageheaders.update', $model->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -27,8 +28,7 @@
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
                                                 <a href="#tab-title-{{ $lang->id }}"
-                                                   class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                                   data-toggle="tab">
+                                                    class="nav-link {{ $loop->first ? 'active' : '' }}" data-toggle="tab">
                                                     {{ $lang->name }}
                                                 </a>
                                             </li>
@@ -37,12 +37,10 @@
                                     <div class="tab-content border border-top-0 p-2 mb-1">
                                         @foreach (getLanguage() as $lang)
                                             <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                                 id="tab-title-{{ $lang->id }}">
-                                                <input type="text"
-                                                       class="form-control mt-1"
-                                                       name="title[{{ $lang->name }}]"
-                                                       value="{{ old('title.' . $lang->name, is_array($model->title) ? ($model->title[$lang->name] ?? $model->title['default'] ?? '') : '') }}"
-                                                       placeholder="{{ $lang->name }}">
+                                                id="tab-title-{{ $lang->id }}">
+                                                <input type="text" class="form-control mt-1" name="title[{{ $lang->name }}]"
+                                                    value="{{ old('title.' . $lang->name, is_array($model->title) ? ($model->title[$lang->name] ?? $model->title['default'] ?? '') : '') }}"
+                                                    placeholder="{{ $lang->name }}">
                                                 @error('title.' . $lang->name)
                                                     <p style="color:red">{{ $message }}</p>
                                                 @enderror
@@ -56,8 +54,7 @@
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
                                                 <a href="#tab-description-{{ $lang->id }}"
-                                                   class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                                   data-toggle="tab">
+                                                    class="nav-link {{ $loop->first ? 'active' : '' }}" data-toggle="tab">
                                                     {{ $lang->name }}
                                                 </a>
                                             </li>
@@ -66,12 +63,11 @@
                                     <div class="tab-content border border-top-0 p-2 mb-1">
                                         @foreach (getLanguage() as $lang)
                                             <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                                 id="tab-description-{{ $lang->id }}">
-                                                <input type="text"
-                                                       class="form-control mt-1"
-                                                       name="description[{{ $lang->name }}]"
-                                                       value="{{ old('description.' . $lang->name, is_array($model->description) ? ($model->description[$lang->name] ?? $model->description['default'] ?? '') : '') }}"
-                                                       placeholder="{{ $lang->name }}">
+                                                id="tab-description-{{ $lang->id }}">
+                                                <input type="text" class="form-control mt-1"
+                                                    name="description[{{ $lang->name }}]"
+                                                    value="{{ old('description.' . $lang->name, is_array($model->description) ? ($model->description[$lang->name] ?? $model->description['default'] ?? '') : '') }}"
+                                                    placeholder="{{ $lang->name }}">
                                                 @error('description.' . $lang->name)
                                                     <p style="color:red">{{ $message }}</p>
                                                 @enderror
@@ -85,8 +81,7 @@
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
                                                 <a href="#tab-text-{{ $lang->id }}"
-                                                   class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                                   data-toggle="tab">
+                                                    class="nav-link {{ $loop->first ? 'active' : '' }}" data-toggle="tab">
                                                     {{ $lang->name }}
                                                 </a>
                                             </li>
@@ -95,12 +90,10 @@
                                     <div class="tab-content border border-top-0 p-2 mb-1">
                                         @foreach (getLanguage() as $lang)
                                             <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                                 id="tab-text-{{ $lang->id }}">
-                                                <input type="text"
-                                                       class="form-control mt-1"
-                                                       name="text[{{ $lang->name }}]"
-                                                       value="{{ old('text.' . $lang->name, is_array($model->text) ? ($model->text[$lang->name] ?? $model->text['default'] ?? '') : '') }}"
-                                                       placeholder="{{ $lang->name }}">
+                                                id="tab-text-{{ $lang->id }}">
+                                                <input type="text" class="form-control mt-1" name="text[{{ $lang->name }}]"
+                                                    value="{{ old('text.' . $lang->name, is_array($model->text) ? ($model->text[$lang->name] ?? $model->text['default'] ?? '') : '') }}"
+                                                    placeholder="{{ $lang->name }}">
                                                 @error('text.' . $lang->name)
                                                     <p style="color:red">{{ $message }}</p>
                                                 @enderror
@@ -114,8 +107,7 @@
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
                                                 <a href="#tab-experience_text-{{ $lang->id }}"
-                                                   class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                                   data-toggle="tab">
+                                                    class="nav-link {{ $loop->first ? 'active' : '' }}" data-toggle="tab">
                                                     {{ $lang->name }}
                                                 </a>
                                             </li>
@@ -124,12 +116,11 @@
                                     <div class="tab-content border border-top-0 p-2 mb-1">
                                         @foreach (getLanguage() as $lang)
                                             <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                                 id="tab-experience_text-{{ $lang->id }}">
-                                                <input type="text"
-                                                       class="form-control mt-1"
-                                                       name="experience_text[{{ $lang->name }}]"
-                                                       value="{{ old('experience_text.' . $lang->name, is_array($model->experience_text) ? ($model->experience_text[$lang->name] ?? $model->experience_text['default'] ?? '') : '') }}"
-                                                       placeholder="{{ $lang->name }}">
+                                                id="tab-experience_text-{{ $lang->id }}">
+                                                <input type="text" class="form-control mt-1"
+                                                    name="experience_text[{{ $lang->name }}]"
+                                                    value="{{ old('experience_text.' . $lang->name, is_array($model->experience_text) ? ($model->experience_text[$lang->name] ?? $model->experience_text['default'] ?? '') : '') }}"
+                                                    placeholder="{{ $lang->name }}">
                                                 @error('experience_text.' . $lang->name)
                                                     <p style="color:red">{{ $message }}</p>
                                                 @enderror
@@ -139,10 +130,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-form-label">{{ getTranslation('experience year') }}</label>
-                                    <input type="date" class="form-control"
-                                           name="experience_year"
-                                           value="{{ old('experience_year', $model->experience_year ?? '') }}"
-                                           placeholder="{{ getTranslation('experience year') }}">
+                                    <input type="date" class="form-control" name="experience_year"
+                                        value="{{ old('experience_year', $model->experience_year ?? '') }}"
+                                        placeholder="{{ getTranslation('experience year') }}">
                                     @error('experience_year')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
@@ -162,7 +152,8 @@
 
                                         @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
                                             <div class="mb-2">
-                                                <img src="{{ asset($model->photo_1) }}" alt="photo_1" style="max-height:120px; border-radius:8px;">
+                                                <img src="{{ asset($model->photo_1) }}" alt="photo_1"
+                                                    style="max-height:120px; border-radius:8px;">
                                             </div>
                                         @endif
                                     @endif
@@ -186,7 +177,8 @@
 
                                         @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
                                             <div class="mb-2">
-                                                <img src="{{ asset($model->photo_2) }}" alt="photo_2" style="max-height:120px; border-radius:8px;">
+                                                <img src="{{ asset($model->photo_2) }}" alt="photo_2"
+                                                    style="max-height:120px; border-radius:8px;">
                                             </div>
                                         @endif
                                     @endif
@@ -210,7 +202,8 @@
 
                                         @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
                                             <div class="mb-2">
-                                                <img src="{{ asset($model->photo_3) }}" alt="photo_3" style="max-height:120px; border-radius:8px;">
+                                                <img src="{{ asset($model->photo_3) }}" alt="photo_3"
+                                                    style="max-height:120px; border-radius:8px;">
                                             </div>
                                         @endif
                                     @endif
@@ -234,7 +227,8 @@
 
                                         @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
                                             <div class="mb-2">
-                                                <img src="{{ asset($model->photo_4) }}" alt="photo_4" style="max-height:120px; border-radius:8px;">
+                                                <img src="{{ asset($model->photo_4) }}" alt="photo_4"
+                                                    style="max-height:120px; border-radius:8px;">
                                             </div>
                                         @endif
                                     @endif
@@ -244,11 +238,35 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-form-label">{{ getTranslation('banner_photo') }}</label>
+                                    @if(!empty($model->banner_photo))
+                                        <div class="mb-2">
+                                            <a href="{{ asset($model->banner_photo) }}" target="_blank">
+                                                {{ getTranslation('Current file') }}
+                                            </a>
+                                        </div>
+
+                                        @php
+                                            $extension = strtolower(pathinfo($model->banner_photo, PATHINFO_EXTENSION));
+                                        @endphp
+
+                                        @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                            <div class="mb-2">
+                                                <img src="{{ asset($model->banner_photo) }}" alt="banner_photo"
+                                                    style="max-height:120px; border-radius:8px;">
+                                            </div>
+                                        @endif
+                                    @endif
+                                    <input type="file" class="form-control" name="banner_photo">
+                                    @error('banner_photo')
+                                        <p style="color:red">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label class="col-form-label">{{ getTranslation('ceo name') }}</label>
-                                    <input type="text" class="form-control"
-                                           name="ceo_name"
-                                           value="{{ old('ceo_name', $model->ceo_name ?? '') }}"
-                                           placeholder="{{ getTranslation('ceo name') }}">
+                                    <input type="text" class="form-control" name="ceo_name"
+                                        value="{{ old('ceo_name', $model->ceo_name ?? '') }}"
+                                        placeholder="{{ getTranslation('ceo name') }}">
                                     @error('ceo_name')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror

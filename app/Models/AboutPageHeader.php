@@ -19,6 +19,7 @@ class AboutPageHeader extends Model
         'photo_3',
         'photo_4',
         'ceo_name',
+        'banner_photo',
     ];
 
     protected $casts = [
@@ -33,6 +34,7 @@ class AboutPageHeader extends Model
         'photo_2',
         'photo_3',
         'photo_4',
+        'banner_photo',
     ];
 
     public function getFileFields(): array

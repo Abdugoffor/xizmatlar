@@ -33,9 +33,10 @@ use App\Http\Controllers\Language\LanguageController;
 include 'lang.php';
 
 Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddleware::class])->group(function () {
+
     Route::get('/', [IndexController::class, 'index'])->name('home');
     Route::get('/about', [IndexController::class, 'about'])->name('about');
-    Route::get('/services', [IndexController::class, 'services'])->name('services');
+    Route::get('/service', [IndexController::class, 'service'])->name('service');
     Route::get('/blog', [IndexController::class, 'blog'])->name('blog');
     Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
 
@@ -70,6 +71,7 @@ Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddl
         Route::resource('clients', ClientController::class);
         Route::resource('teams', TeamController::class);
         Route::resource('contacts', ContactController::class);
+        
         Route::resource('aboutpageheaders', AboutPageHeaderController::class);
         Route::resource('aboutstatistics', AboutStatisticController::class);
         Route::resource('aboutpageskills', AboutPageSkillsController::class);

@@ -221,6 +221,28 @@
                             </td>
                         </tr>
                         <tr>
+                            <th style="width:20%">{{ getTranslation('banner_photo') }}</th>
+                            <td>
+                                @if($model->banner_photo)
+                                    <a href="{{ asset($model->banner_photo) }}" target="_blank">
+                                        {{ getTranslation('Open file') }}
+                                    </a>
+
+                                    @php
+                                        $extension = strtolower(pathinfo($model->banner_photo, PATHINFO_EXTENSION));
+                                    @endphp
+
+                                    @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                        <div class="mt-2">
+                                            <img src="{{ asset($model->banner_photo) }}" alt="banner_photo" style="max-height:150px; border-radius:8px;">
+                                        </div>
+                                    @endif
+                                @else
+                                    -
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
                             <th style="width:20%">{{ getTranslation('ceo name') }}</th>
                             <td>{{ $model->ceo_name }}</td>
                         </tr>

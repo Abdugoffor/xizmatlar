@@ -52,7 +52,7 @@ class IndexController extends Controller
         return view('front.about.index');
     }
 
-    public function services()
+    public function service()
     {
         return view('front.services.index');
     }

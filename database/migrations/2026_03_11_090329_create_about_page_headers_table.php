@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('photo_3');
             $table->string('photo_4');
             $table->string('ceo_name');
+            $table->string('banner_photo');
             $table->timestamps();
         });
     }

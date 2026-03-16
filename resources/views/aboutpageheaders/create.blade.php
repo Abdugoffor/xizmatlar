@@ -26,8 +26,7 @@
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
                                                 <a href="#tab-title-{{ $lang->id }}"
-                                                   class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                                   data-toggle="tab">
+                                                    class="nav-link {{ $loop->first ? 'active' : '' }}" data-toggle="tab">
                                                     {{ $lang->name }}
                                                 </a>
                                             </li>
@@ -36,12 +35,9 @@
                                     <div class="tab-content border border-top-0 p-2 mb-1">
                                         @foreach (getLanguage() as $lang)
                                             <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                                 id="tab-title-{{ $lang->id }}">
-                                                <input type="text"
-                                                       class="form-control mt-1"
-                                                       name="title[{{ $lang->name }}]"
-                                                       value="{{ old('title.' . $lang->name) }}"
-                                                       placeholder="{{ $lang->name }}">
+                                                id="tab-title-{{ $lang->id }}">
+                                                <input type="text" class="form-control mt-1" name="title[{{ $lang->name }}]"
+                                                    value="{{ old('title.' . $lang->name) }}" placeholder="{{ $lang->name }}">
                                                 @error('title.' . $lang->name)
                                                     <p style="color:red">{{ $message }}</p>
                                                 @enderror
@@ -55,8 +51,7 @@
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
                                                 <a href="#tab-description-{{ $lang->id }}"
-                                                   class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                                   data-toggle="tab">
+                                                    class="nav-link {{ $loop->first ? 'active' : '' }}" data-toggle="tab">
                                                     {{ $lang->name }}
                                                 </a>
                                             </li>
@@ -65,12 +60,11 @@
                                     <div class="tab-content border border-top-0 p-2 mb-1">
                                         @foreach (getLanguage() as $lang)
                                             <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                                 id="tab-description-{{ $lang->id }}">
-                                                <input type="text"
-                                                       class="form-control mt-1"
-                                                       name="description[{{ $lang->name }}]"
-                                                       value="{{ old('description.' . $lang->name) }}"
-                                                       placeholder="{{ $lang->name }}">
+                                                id="tab-description-{{ $lang->id }}">
+                                                <input type="text" class="form-control mt-1"
+                                                    name="description[{{ $lang->name }}]"
+                                                    value="{{ old('description.' . $lang->name) }}"
+                                                    placeholder="{{ $lang->name }}">
                                                 @error('description.' . $lang->name)
                                                     <p style="color:red">{{ $message }}</p>
                                                 @enderror
@@ -84,8 +78,7 @@
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
                                                 <a href="#tab-text-{{ $lang->id }}"
-                                                   class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                                   data-toggle="tab">
+                                                    class="nav-link {{ $loop->first ? 'active' : '' }}" data-toggle="tab">
                                                     {{ $lang->name }}
                                                 </a>
                                             </li>
@@ -94,12 +87,9 @@
                                     <div class="tab-content border border-top-0 p-2 mb-1">
                                         @foreach (getLanguage() as $lang)
                                             <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                                 id="tab-text-{{ $lang->id }}">
-                                                <input type="text"
-                                                       class="form-control mt-1"
-                                                       name="text[{{ $lang->name }}]"
-                                                       value="{{ old('text.' . $lang->name) }}"
-                                                       placeholder="{{ $lang->name }}">
+                                                id="tab-text-{{ $lang->id }}">
+                                                <input type="text" class="form-control mt-1" name="text[{{ $lang->name }}]"
+                                                    value="{{ old('text.' . $lang->name) }}" placeholder="{{ $lang->name }}">
                                                 @error('text.' . $lang->name)
                                                     <p style="color:red">{{ $message }}</p>
                                                 @enderror
@@ -113,8 +103,7 @@
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
                                                 <a href="#tab-experience_text-{{ $lang->id }}"
-                                                   class="nav-link {{ $loop->first ? 'active' : '' }}"
-                                                   data-toggle="tab">
+                                                    class="nav-link {{ $loop->first ? 'active' : '' }}" data-toggle="tab">
                                                     {{ $lang->name }}
                                                 </a>
                                             </li>
@@ -123,12 +112,11 @@
                                     <div class="tab-content border border-top-0 p-2 mb-1">
                                         @foreach (getLanguage() as $lang)
                                             <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                                 id="tab-experience_text-{{ $lang->id }}">
-                                                <input type="text"
-                                                       class="form-control mt-1"
-                                                       name="experience_text[{{ $lang->name }}]"
-                                                       value="{{ old('experience_text.' . $lang->name) }}"
-                                                       placeholder="{{ $lang->name }}">
+                                                id="tab-experience_text-{{ $lang->id }}">
+                                                <input type="text" class="form-control mt-1"
+                                                    name="experience_text[{{ $lang->name }}]"
+                                                    value="{{ old('experience_text.' . $lang->name) }}"
+                                                    placeholder="{{ $lang->name }}">
                                                 @error('experience_text.' . $lang->name)
                                                     <p style="color:red">{{ $message }}</p>
                                                 @enderror
@@ -138,10 +126,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-form-label">{{ getTranslation('experience year') }}</label>
-                                    <input type="date" class="form-control"
-                                           name="experience_year"
-                                           value="{{ old('experience_year') }}"
-                                           placeholder="{{ getTranslation('experience year') }}">
+                                    <input type="date" class="form-control" name="experience_year"
+                                        value="{{ old('experience_year') }}"
+                                        placeholder="{{ getTranslation('experience year') }}">
                                     @error('experience_year')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
@@ -179,11 +166,17 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-form-label">{{ getTranslation('banner_photo') }}</label>
+
+                                    <input type="file" class="form-control" name="banner_photo">
+                                    @error('banner_photo')
+                                        <p style="color:red">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label class="col-form-label">{{ getTranslation('ceo name') }}</label>
-                                    <input type="text" class="form-control"
-                                           name="ceo_name"
-                                           value="{{ old('ceo_name') }}"
-                                           placeholder="{{ getTranslation('ceo name') }}">
+                                    <input type="text" class="form-control" name="ceo_name" value="{{ old('ceo_name') }}"
+                                        placeholder="{{ getTranslation('ceo name') }}">
                                     @error('ceo_name')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror

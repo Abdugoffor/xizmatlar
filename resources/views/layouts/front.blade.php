@@ -15,8 +15,6 @@
 </head>
 
 <body>
-
-
     <!-- navbar start -->
     <header class="navbar-area navbar-area-3 d-lg-none d-block">
         <nav class="navbar navbar-expand-lg px-4">
@@ -31,25 +29,24 @@
                 </div>
                 <div class="collapse navbar-collapse" id="logisk_main_menu">
                     <ul class="navbar-nav menu-open text-lg-end">
-
                         <li>
                             <a href="{{ route('home') }}">{{ getTranslation('Home') }}</a>
                         </li>
                         <li>
-                            <a href="about.html">{{ getTranslation('About') }}</a>
+                            <a href="{{ route('about') }}">{{ getTranslation('About') }}</a>
                         </li>
                         <li>
-                            <a href="about.html">{{ getTranslation('Services') }}</a>
+                            <a href="{{ route('service') }}">{{ getTranslation('Service') }}</a>
                         </li>
                         <li>
-                            <a href="about.html">{{ getTranslation('Blog') }}</a>
+                            <a href="{{ route('blog') }}">{{ getTranslation('Blog') }}</a>
                         </li>
                         <li>
-                            <a href="about.html">{{ getTranslation('Team') }}</a>
+                            <a href="{{ route('about') }}">{{ getTranslation('Team') }}</a>
                         </li>
 
                         <li>
-                            <a href="contact.html">{{ getTranslation('Contact Us') }}</a>
+                            <a href="{{ route('contact') }}">{{ getTranslation('Contact Us') }}</a>
                         </li>
                     </ul>
                 </div>
@@ -133,13 +130,25 @@
                         </div>
                         <div class="collapse navbar-collapse" id="logisk_main_menu">
                             <ul class="navbar-nav menu-open">
+                                <li>
+                                    <a href="{{ route('home') }}">{{ getTranslation('Home') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('about') }}">{{ getTranslation('About') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('service') }}">{{ getTranslation('Service') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('blog') }}">{{ getTranslation('Blog') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('about') }}">{{ getTranslation('Team') }}</a>
+                                </li>
 
-                                <li><a href="about.html">Home</a></li>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="about.html">Service</a></li>
-                                <li><a href="about.html">Blog</a></li>
-                                <li><a href="about.html">Team</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li>
+                                    <a href="{{ route('contact') }}">{{ getTranslation('Contact Us') }}</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="nav-right-part nav-right-part-desktop">
@@ -201,11 +210,25 @@
                     <div class="widget widget_nav_menu">
                         <h4 class="widget-title">Explore</h4>
                         <ul>
-                            <li><a href="about.html">About Company</a></li>
-                            <li><a href="service.html">Latest services</a></li>
-                            <li><a href="#">Why Choose Us</a></li>
-                            <li><a href="blog.html">Blog & News</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li>
+                                <a href="{{ route('home') }}">{{ getTranslation('Home') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('about') }}">{{ getTranslation('About') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('service') }}">{{ getTranslation('Service') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('blog') }}">{{ getTranslation('Blog') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('about') }}">{{ getTranslation('Team') }}</a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('contact') }}">{{ getTranslation('Contact Us') }}</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
