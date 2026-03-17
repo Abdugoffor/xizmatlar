@@ -281,6 +281,97 @@
     <script src="{{ asset('assets/js/vendor.js') }}"></script>
     <!-- main js  -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script>
+        var leftArrow = "<img src='{{ asset('assets/img/icon/left-arrow.png') }}'>";
+        var rightArrow = "<img src='{{ asset('assets/img/icon/right-arrow.png') }}'>";
+
+        // banner-slider
+        var $bannerSlider = $('.banner-slider');
+        $bannerSlider.owlCarousel({
+            animateOut: 'fadeOut',
+            animateIn: 'fadeIn',
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 10000,
+            nav: true,
+            dots: false,
+            items: 1,
+            smartSpeed: 1800,
+            navText: [leftArrow, rightArrow],
+        });
+
+        // team-slider
+        var $teamSlider = $('.team-slider');
+        $teamSlider.owlCarousel({
+            margin: 30,
+            nav: true,
+            dots: false,
+            smartSpeed: 1500,
+            items: 3,
+            loop: true,
+            autoplay: true,
+            navText: [leftArrow, rightArrow],
+            responsive: {
+                769: { items: 3 },
+                577: { items: 2 },
+                0: { items: 1 }
+            },
+        });
+
+        // testimonial-slider
+        var $testimonialSlider = $('.testimonial-slider');
+        $testimonialSlider.owlCarousel({
+            margin: 30,
+            nav: true,
+            dots: false,
+            smartSpeed: 1500,
+            items: 3,
+            loop: true,
+            autoplay: true,
+            navText: [leftArrow, rightArrow],
+            responsive: {
+                769: { items: 3 },
+                577: { items: 2 },
+                0: { items: 1 }
+            },
+        });
+
+        // feature-slider
+        var $featureSlider = $('.feature-slider');
+        $featureSlider.owlCarousel({
+            margin: 30,
+            nav: true,
+            dots: false,
+            smartSpeed: 1500,
+            items: 3,
+            loop: true,
+            autoplay: true,
+            navText: [leftArrow, rightArrow],
+            responsive: {
+                769: { items: 3 },
+                577: { items: 2 },
+                0: { items: 1 }
+            },
+        });
+
+        // service-slider
+        var $serviceSlider = $('.service-slider');
+        $serviceSlider.owlCarousel({
+            margin: 30,
+            nav: true,
+            dots: false,
+            smartSpeed: 1500,
+            items: 3,
+            loop: true,
+            autoplay: true,
+            navText: [leftArrow, rightArrow],
+            responsive: {
+                769: { items: 3 },
+                577: { items: 2 },
+                0: { items: 1 }
+            },
+        });
+    </script>
 </body>
 
 </html>

@@ -4,14 +4,20 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutCompany;
+use App\Models\AboutPageHeader;
+use App\Models\AboutPageSkills;
+use App\Models\AboutStatistic;
 use App\Models\Blog;
 use App\Models\Carousel;
+use App\Models\Client;
 use App\Models\Comment;
 use App\Models\Portfolio;
 use App\Models\ProcessSection;
 use App\Models\Service;
 use App\Models\ServiceSection;
+use App\Models\SkillsOption;
 use App\Models\Statistic;
+use App\Models\Team;
 
 class IndexController extends Controller
 {
@@ -49,7 +55,23 @@ class IndexController extends Controller
 
     public function about()
     {
-        return view('front.about.index');
+        $aboutCompany = AboutPageHeader::first();
+        $aboutPageSkills = AboutPageSkills::first();
+        $aboutStatistic = AboutStatistic::limit(4)->get();
+        $skillsOptions = SkillsOption::all();
+        $teams = Team::where('is_active', true)->get();
+        $comments = Comment::where('is_active', true)->orderBy('id', 'desc')->get();
+        $clients = Client::where('is_active', true)->orderBy('id', 'desc')->get();
+
+        return view('front.about.index', [
+            'aboutCompany' => $aboutCompany,
+            'aboutStatistics' => $aboutStatistic,
+            'aboutPageSkills' => $aboutPageSkills,
+            'skillsOptions' => $skillsOptions,
+            'teams' => $teams,
+            'comments' => $comments,
+            'clients' => $clients
+        ]);
     }
 
     public function service()
