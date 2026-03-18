@@ -166,9 +166,9 @@
     <!--skill-area end-->
 
     <!--video-area start-->
-    <div class="video-area pd-top-120 pd-bottom-120" style="background: #080c24">
+    {{-- <div class="video-area pd-top-120 pd-bottom-120" style="background: #080c24">
         <div class="video-thumb-wrap">
-            <img src="{{ asset('assets/img/video/1.png') }}" alt="img" />
+            <img src="{{ asset($aboutCompany->banner_photo) }}" alt="img" />
             <a class="video-play-btn" href="https://www.youtube.com/embed/Wimkqo8gDZ0" data-effect="mfp-zoom-in"><i
                     class="fa fa-play"></i></a>
         </div>
@@ -184,7 +184,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!--video-area end-->
 
     <!--team-area start-->
@@ -197,7 +197,7 @@
                         <h2 class="title">{{ getTranslation("OUR PROFESSIONAL TEAM") }}</h2>
                         <p>
                             {{ getTranslation("Dramatically enhance interactive metrics for reliable services.
-                                                Proactively unleash fully researched e-commerce") }}
+                                                    Proactively unleash fully researched e-commerce") }}
                         </p>
                     </div>
                 </div>

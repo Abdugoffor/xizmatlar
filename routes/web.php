@@ -7,6 +7,7 @@ use App\Http\Controllers\AboutStatistic\AboutStatisticController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BannerPhoto\BannerPhotoController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\Carousel\CarouselController;
 use App\Http\Controllers\Client\ClientController;
@@ -45,19 +46,19 @@ Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddl
     Route::get('/lang/change', [LanguageController::class, 'changeLanguage'])->name('change.language');
     Route::get("/login", [LoginController::class, "showLoginForm"])->name("login");
     Route::post("/login", [LoginController::class, "login"]);
-    
+
     Route::get("/register", [RegisterController::class, "showRegistrationForm"])->name("register");
     Route::post("/register", [RegisterController::class, "register"]);
-    
+
     Route::middleware("role:user")->group(function () {
-        
+
         Route::get("/profile", [ProfileController::class, "showProfileForm"])->name("profile");
         Route::patch("/profile", [ProfileController::class, "update"])->name("profile.update");
         Route::post("/logout", [LoginController::class, "logout"])->name("logout");
         Route::get("/dashboard", [HomeController::class, "index"])->name("home");
-        
+
         Route::get('/history/{model}/{id}', [HistoryController::class, 'show'])->name('history.show');
-        
+
         Route::resource('languages', LanguageController::class);
         Route::resource('translations', TranslationController::class);
         Route::resource('carousels', CarouselController::class);
@@ -73,11 +74,12 @@ Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddl
         Route::resource('clients', ClientController::class);
         Route::resource('teams', TeamController::class);
         Route::resource('contacts', ContactController::class);
-        
+
         Route::resource('aboutpageheaders', AboutPageHeaderController::class);
         Route::resource('aboutstatistics', AboutStatisticController::class);
         Route::resource('aboutpageskills', AboutPageSkillsController::class);
         Route::resource('skillsoptions', SkillsOptionController::class);
         Route::resource('sertificates', SertificateController::class);
+        Route::resource('bannerphotos', BannerPhotoController::class);
     });
 });

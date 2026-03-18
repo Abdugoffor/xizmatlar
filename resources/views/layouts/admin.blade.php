@@ -108,6 +108,7 @@
                         request()->routeIs('sertificates.*') ||
                         request()->routeIs('languages.*') ||
                         request()->routeIs('translations.*') ||
+                        request()->routeIs('bannerphotos.*') ||
                         request()->routeIs('blogs.*');
 
                 @endphp
@@ -264,6 +265,14 @@
                                         class="nav-link {{ request()->routeIs('sertificates.*') ? 'active' : '' }}">
                                         <i class="icon-list-unordered"></i>
                                         <span>{{ getTranslation('Sertificate') }}</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route('bannerphotos.index') }}"
+                                        class="nav-link {{ request()->routeIs('bannerphotos.*') ? 'active' : '' }}">
+                                        <i class="icon-list-unordered"></i>
+                                        <span>{{ getTranslation('Banner Photo') }}</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
