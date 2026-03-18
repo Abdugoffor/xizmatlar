@@ -16,8 +16,8 @@ class StoreServiceRequest extends FormRequest
         $rules = [
             'title' => 'required|array',
             'description' => 'required|array',
-            'cart_photo' => 'nullable|file|max:10240',
-            'header_photo' => 'nullable|file|max:10240',
+            'cart_photo' => 'required|file|max:10240',
+            'header_photo' => 'required|file|max:10240',
             'content' => 'required|array',
             'video_link' => 'required|string|max:255',
             'footer_text' => 'required|array',

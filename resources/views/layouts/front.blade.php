@@ -12,6 +12,83 @@
     <link rel="stylesheet" href="{{ asset('assets/css/vendor.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
+    <style>
+        .video-responsive {
+            position: relative;
+            width: 100%;
+            /* 🔥 col-8 ni to‘liq egallaydi */
+            height: 0;
+            padding-bottom: 56.25%;
+            /* 16:9 ratio */
+        }
+
+        .video-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            /* 🔥 to‘liq kenglik */
+            height: 100%;
+            border: none;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 30px;
+            padding-left: 0 !important;
+            list-style: none;
+        }
+
+        /* item */
+        .page-item {
+            list-style: none;
+        }
+
+        /* link */
+        .page-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 38px;
+            height: 38px;
+            padding: 0 12px;
+            font-size: 14px;
+            font-weight: 500;
+            color: inherit;
+            /* 🔥 rangni o‘zgartirmaydi */
+            background: transparent;
+            /* 🔥 oldingi background qoladi */
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        /* hover */
+        .page-link:hover {
+            transform: translateY(-2px);
+            /* faqat animatsiya */
+        }
+
+        /* active */
+        .page-item.active .page-link {
+            font-weight: 600;
+            transform: translateY(-2px);
+        }
+
+        /* disabled */
+        .page-item.disabled .page-link {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* prev/next */
+        .page-link[aria-label] {
+            font-size: 16px;
+        }
+    </style>
 </head>
 
 <body>

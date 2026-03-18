@@ -8,10 +8,11 @@
                 <div class="col-12">
                     <div class="breadcrumb-inner">
                         <div class="section-title mb-0">
-                            <h2 class="page-title">BLOG</h2>
+                            <h2 class="page-title">{{ getTranslation("BLOG DETAILS") }}</h2>
                             <ul class="page-list">
                                 <li><a href="{{ route('home') }}">{{ getTranslation("Home") }}</a></li>
-                                <li>{{ getTranslation("Blog") }}</li>
+                                <li><a href="{{ route('about') }}">{{ getTranslation("Blog") }}</a></li>
+                                <li>{{ getTranslation("Blog Details") }}</li>
                             </ul>
                         </div>
                     </div>
@@ -21,41 +22,42 @@
     </div>
     <!-- breadcrumb end -->
 
-    <!-- blog area start -->
-    <div class="blog-area pd-top-120 pd-bottom-120">
+    <!-- blog-details area start -->
+    <div class="blog-details-area pd-top-120 pd-bottom-120">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    @foreach ($blogs as $blog)
-                        <div class="single-blog-inner style-2">
-                            <div class="thumb">
-                                <img src="{{ asset($blog->photo) }}" alt="img" />
-                            </div>
-                            <div class="details">
-                                <ul class="blog-meta">
-                                    <li><i class="fas fa-calendar-alt"></i>
-                                        {{ \Carbon\Carbon::parse($blog->date)->format('d F, Y') }}</li>
-                                </ul>
-                                <h2>
-                                    <a href="{{ route('blog.show', $blog->slug) }}">{{ getLocale($blog->title) }}</a>
-                                </h2>
-                                <p>
-                                    {{ getLocale($blog->description) }}
-                                </p>
-                                <a class="btn btn-base"
-                                    href="{{ route('blog.show', $blog->slug) }}">{{ getTranslation("READ MORE") }}</a>
-                            </div>
+                    <div class="single-blog-inner style-2">
+                        <div class="thumb">
+                            <img src="{{ asset($blog->photo) }}" alt="img" />
                         </div>
-                    @endforeach
-                    {{-- <ul class="pagination">
-                        <li><a class="page-numbers active" href="#/">1</a></li>
-                        <li><a class="page-numbers" href="#/">2</a></li>
-                        <li><a class="page-numbers" href="#/">3</a></li>
-                        <li>
-                            <a class="page-next" href="#/">NEXT <i class="fa fa-arrow-right"></i></a>
-                        </li>
-                    </ul> --}}
-                    {{ $blogs->links() }}
+                        <div class="details">
+                            <ul class="blog-meta">
+                                <li>
+                                    <i class="fas fa-calendar-alt"></i>
+                                    {{ \Carbon\Carbon::parse($blog->date)->format('d F, Y') }}
+                                </li>
+                            </ul>
+                            <h2>
+                                <a href="#">{{ getLocale($blog->title) }}</a>
+                            </h2>
+                            <p>
+                                {{ getLocale($blog->description) }}
+                            </p>
+                            {!! getLocale($blog->content) !!}
+                            @if($blog->video_link)
+                                <div class="video-thumb-wrap pt-1 pb-4">
+                                    <div class="video-responsive">
+                                        <iframe src="{{ youtubeEmbed($blog->video_link) }}" frameborder="0" allowfullscreen>
+                                        </iframe>
+                                    </div>
+                                </div>
+                            @endif
+                            <p>
+                                {{ getLocale($blog->footer_text) }}
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="sidebar-area">
@@ -90,5 +92,5 @@
             </div>
         </div>
     </div>
-    <!-- blog area end -->
+    <!-- blog-details area end -->
 @endsection

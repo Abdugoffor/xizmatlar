@@ -9,6 +9,7 @@ use App\Http\Requests\Service\UpdateServiceRequest;
 use App\Http\Resources\Service\ServiceResource;
 use App\Services\FileUploadService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
@@ -90,8 +91,14 @@ class ServiceController extends Controller
             $data['header_photo'] = FileUploadService::uploadFile($request->file('header_photo'));
         }
 
-        $data['slug'] = slug($data['title']['default']);
+        $data['slug'] = Str::slug($data['title']['default']);
 
+        $exists = Service::where('slug', $data['slug'])->exists();
+
+        if ($exists) {
+            return back()->with('notification', getTranslation('Выберите другой заголовок, этот уже существует'));
+        }
+        
         Service::create($data);
 
         return redirect()->route('services.index')

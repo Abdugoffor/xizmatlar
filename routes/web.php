@@ -37,7 +37,9 @@ Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddl
     Route::get('/', [IndexController::class, 'index'])->name('home');
     Route::get('/about', [IndexController::class, 'about'])->name('about');
     Route::get('/service', [IndexController::class, 'service'])->name('service');
+    Route::get('/service/{slug}', [IndexController::class, 'serviceShow'])->name('service.show');
     Route::get('/blog', [IndexController::class, 'blog'])->name('blog');
+    Route::get('/blog/{slug}', [IndexController::class, 'blogShow'])->name('blog.show');
     Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
 
     Route::get('/lang/change', [LanguageController::class, 'changeLanguage'])->name('change.language');

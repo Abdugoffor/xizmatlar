@@ -24,6 +24,7 @@ class UpdateContactRequest extends FormRequest
             'instagram' => 'required|string|max:255',
             'watsapp' => 'required|string|max:255',
             'linked' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
 
         ];
 

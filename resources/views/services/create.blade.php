@@ -7,7 +7,12 @@
                 {{ getTranslation('Назад') }}
             </a>
         </div>
-
+        @if (session('notification'))
+            <div class="alert bg-teal text-white alert-rounded alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                <span class="font-weight-semibold">{{ session('notification') }}</span>
+            </div>
+        @endif
         <div class="card mt-2">
             <div class="card-body">
                 <form action="{{ route('services.store') }}" method="POST" enctype="multipart/form-data">

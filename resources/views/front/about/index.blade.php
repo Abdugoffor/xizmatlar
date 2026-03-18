@@ -11,7 +11,7 @@
                         <div class="section-title mb-0">
                             <h2 class="page-title">{{ getTranslation('ABOUT US') }}</h2>
                             <ul class="page-list">
-                                <li><a href="index.html">{{ getTranslation('Home') }}</a></li>
+                                <li><a href="{{ route('home') }}">{{ getTranslation('Home') }}</a></li>
                                 <li>{{ getTranslation('About Us') }}</li>
                             </ul>
                         </div>

@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Http\Requests\Blog\StoreBlogRequest;
 use App\Http\Requests\Blog\UpdateBlogRequest;
-use App\Http\Resources\Blog\BlogResource;
 use App\Services\FileUploadService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -92,7 +92,13 @@ class BlogController extends Controller
             $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         }
 
-        $data['slug'] = slug($data['title']['default']);
+        $data['slug'] = Str::slug($data['title']['default']);
+
+        $exists = Blog::where('slug', $data['slug'])->exists();
+
+        if ($exists) {
+            return back()->with('notification', getTranslation('Выберите другой заголовок, этот уже существует'));
+        }
 
         Blog::create($data);
 

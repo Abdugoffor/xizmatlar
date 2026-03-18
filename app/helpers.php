@@ -354,3 +354,25 @@ if (!function_exists('validateTranslation')) {
         return $rules;
     }
 }
+
+if (!function_exists('youtubeEmbed')) {
+    function youtubeEmbed($url)
+    {
+        // 1. youtu.be short link
+        if (preg_match('/youtu\.be\/([^\?]+)/', $url, $match)) {
+            return "https://www.youtube.com/embed/" . $match[1];
+        }
+
+        // 2. watch?v=
+        if (preg_match('/v=([^&]+)/', $url, $match)) {
+            return "https://www.youtube.com/embed/" . $match[1];
+        }
+
+        // 3. embed link bo‘lsa o‘zini qaytaradi
+        if (str_contains($url, 'embed')) {
+            return $url;
+        }
+
+        return null;
+    }
+}

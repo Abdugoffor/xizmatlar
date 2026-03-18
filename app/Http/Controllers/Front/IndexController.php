@@ -11,8 +11,10 @@ use App\Models\Blog;
 use App\Models\Carousel;
 use App\Models\Client;
 use App\Models\Comment;
+use App\Models\Contact;
 use App\Models\Portfolio;
 use App\Models\ProcessSection;
+use App\Models\Sertificate;
 use App\Models\Service;
 use App\Models\ServiceSection;
 use App\Models\SkillsOption;
@@ -76,16 +78,33 @@ class IndexController extends Controller
 
     public function service()
     {
-        return view('front.services.index');
+        $clients = Client::where('is_active', true)->get();
+        $services = Service::where('is_active', true)->paginate(9);
+        return view('front.services.index', ['services' => $services, 'clients' => $clients]);
     }
-
+    public function serviceShow($lang, $slug)
+    {
+        $service = Service::where('slug', $slug)->firstOrFail();
+        $servicesSections = Service::where('is_active', true)->orderBy('id', 'desc')->limit(9)->get();
+        $sertificates = Sertificate::all();
+        return view('front.services.show', ['service' => $service, 'servicesSections' => $servicesSections, 'sertificates' => $sertificates]);
+    }
     public function blog()
     {
-        return view('front.blog.index');
+        $blogs = Blog::where('is_active', true)->orderBy('id', 'desc')->paginate(9);
+        $blogsSections = Blog::where('is_active', true)->orderBy('id', 'desc')->limit(10)->get()->shuffle()->take(5);
+        return view('front.blog.index', ['blogs' => $blogs, 'blogsSections' => $blogsSections]);
+    }
+    public function blogShow($lang, $slug)
+    {
+        $blog = Blog::where('slug', $slug)->firstOrFail();
+        $blogsSections = Blog::where('is_active', true)->orderBy('id', 'desc')->limit(10)->get()->shuffle()->take(5);
+        return view('front.blog.show', ['blog' => $blog, 'blogsSections' => $blogsSections]);
     }
 
     public function contact()
     {
-        return view('front.contact.index');
+        $contact = Contact::first();
+        return view('front.contact.index', ['contact' => $contact]);
     }
 }

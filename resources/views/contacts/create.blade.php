@@ -139,6 +139,16 @@
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-form-label">{{ getTranslation('location') }}</label>
+                                    <input type="text" class="form-control"
+                                           name="location"
+                                           value="{{ old('location') }}"
+                                           placeholder="{{ getTranslation('location') }}">
+                                    @error('location')
+                                        <p style="color:red">{{ $message }}</p>
+                                    @enderror
+                                </div>
 
                             </div>
                         </div>

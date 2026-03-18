@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('email_1');
             $table->string('email_2');
             $table->jsonb('address');
+            $table->string('location');
             $table->string('tlegram');
             $table->string('facebook');
             $table->string('instagram');
