@@ -381,6 +381,7 @@ class DefaultSeed extends Seeder
             'instagram' => 'https://instagram.com/company',
             'watsapp' => 'https://wa.me/998901234567',
             'linked' => 'https://linkedin.com/company/company',
+            "location" => "https://maps.app.goo.gl/1P2sKQnNtW2RtE8n6",
         ]);
     }
 }
