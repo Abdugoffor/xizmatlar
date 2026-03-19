@@ -6,7 +6,6 @@ use App\Http\Controllers\AboutPageSkills\AboutPageSkillsController;
 use App\Http\Controllers\AboutStatistic\AboutStatisticController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ProfileController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BannerPhoto\BannerPhotoController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\Carousel\CarouselController;
@@ -15,7 +14,6 @@ use App\Http\Controllers\Comment\CommentController;
 use App\Http\Controllers\Contact\ContactController;
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\HistoryController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Portfolio\PortfolioController;
 use App\Http\Controllers\ProcessSection\ProcessSectionController;
 use App\Http\Controllers\Sertificate\SertificateController;
@@ -41,45 +39,48 @@ Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2}'])->middleware([LangMiddl
     Route::get('/service/{slug}', [IndexController::class, 'serviceShow'])->name('service.show');
     Route::get('/blog', [IndexController::class, 'blog'])->name('blog');
     Route::get('/blog/{slug}', [IndexController::class, 'blogShow'])->name('blog.show');
+    Route::get('/team', [IndexController::class, 'team'])->name('team');
     Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
 
     Route::get('/lang/change', [LanguageController::class, 'changeLanguage'])->name('change.language');
-    Route::get("/login", [LoginController::class, "showLoginForm"])->name("login");
-    Route::post("/login", [LoginController::class, "login"]);
+    Route::get("/admin", [LoginController::class, "showLoginForm"])->name("login");
+    Route::post("/login", [LoginController::class, "login"])->name("login.post");
 
-    Route::get("/register", [RegisterController::class, "showRegistrationForm"])->name("register");
-    Route::post("/register", [RegisterController::class, "register"]);
+    // Route::prefix('/admin')->group(function () {
 
-    Route::middleware("role:user")->group(function () {
+        Route::middleware("role:admin")->group(function () {
 
-        Route::get("/profile", [ProfileController::class, "showProfileForm"])->name("profile");
-        Route::patch("/profile", [ProfileController::class, "update"])->name("profile.update");
-        Route::post("/logout", [LoginController::class, "logout"])->name("logout");
-        Route::get("/dashboard", [HomeController::class, "index"])->name("home");
+            Route::resource('users', UserController::class);
+        });
 
-        Route::get('/history/{model}/{id}', [HistoryController::class, 'show'])->name('history.show');
+        Route::middleware("role:admin,user")->group(function () {
 
-        Route::resource('languages', LanguageController::class);
-        Route::resource('translations', TranslationController::class);
-        Route::resource('carousels', CarouselController::class);
-        Route::resource('aboutcompanies', AboutCompanyController::class);
-        Route::resource('services', ServiceController::class);
-        Route::resource('users', UserController::class);
-        Route::resource('servicesections', ServiceSectionController::class);
-        Route::resource('processsections', ProcessSectionController::class);
-        Route::resource('portfolios', PortfolioController::class);
-        Route::resource('comments', CommentController::class);
-        Route::resource('statistics', StatisticController::class);
-        Route::resource('blogs', BlogController::class);
-        Route::resource('clients', ClientController::class);
-        Route::resource('teams', TeamController::class);
-        Route::resource('contacts', ContactController::class);
+            Route::get('/history/{model}/{id}', [HistoryController::class, 'show'])->name('history.show');
+            Route::get("/profile", [ProfileController::class, "showProfileForm"])->name("profile");
+            Route::patch("/profile", [ProfileController::class, "update"])->name("profile.update");
+            Route::post("/logout", [LoginController::class, "logout"])->name("logout");
 
-        Route::resource('aboutpageheaders', AboutPageHeaderController::class);
-        Route::resource('aboutstatistics', AboutStatisticController::class);
-        Route::resource('aboutpageskills', AboutPageSkillsController::class);
-        Route::resource('skillsoptions', SkillsOptionController::class);
-        Route::resource('sertificates', SertificateController::class);
-        Route::resource('bannerphotos', BannerPhotoController::class);
-    });
+            Route::resource('languages', LanguageController::class);
+            Route::resource('translations', TranslationController::class);
+            Route::resource('carousels', CarouselController::class);
+            Route::resource('aboutcompanies', AboutCompanyController::class);
+            Route::resource('services', ServiceController::class);
+            Route::resource('servicesections', ServiceSectionController::class);
+            Route::resource('processsections', ProcessSectionController::class);
+            Route::resource('portfolios', PortfolioController::class);
+            Route::resource('comments', CommentController::class);
+            Route::resource('statistics', StatisticController::class);
+            Route::resource('blogs', BlogController::class);
+            Route::resource('clients', ClientController::class);
+            Route::resource('teams', TeamController::class);
+            Route::resource('contacts', ContactController::class);
+
+            Route::resource('aboutpageheaders', AboutPageHeaderController::class);
+            Route::resource('aboutstatistics', AboutStatisticController::class);
+            Route::resource('aboutpageskills', AboutPageSkillsController::class);
+            Route::resource('skillsoptions', SkillsOptionController::class);
+            Route::resource('sertificates', SertificateController::class);
+            Route::resource('bannerphotos', BannerPhotoController::class);
+        });
+    // });
 });

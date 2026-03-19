@@ -3,7 +3,7 @@
 @section("content")
     <div class="container">
         <h2>Sign in to your account</h2>
-        <form action="{{ route('login') }}" method="POST">
+        <form action="{{ route('login.post') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="email">Email address</label>
@@ -22,7 +22,7 @@
             <button type="submit">Sign in</button>
         </form>
         <p style="text-align: center; margin-top: 15px;">
-            <a href="{{ route('register') }}">Don't have an account? Register</a>
+            {{-- <a href="{{ route('register') }}">Don't have an account? Register</a> --}}
         </p>
     </div>
 @endsection

@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                                 <div class="btn-wrap">
-                                    <a class="btn btn-base" href="about.html">{{ getTranslation('ABOUT MORE') }}</a>
+                                    
                                     <div class="author-wrap">
                                         <div class="thumb">
                                             <img src="{{ asset($aboutCompany->photo_4) }}" alt="img" />

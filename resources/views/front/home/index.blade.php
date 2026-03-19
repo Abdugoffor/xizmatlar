@@ -22,12 +22,12 @@
                                     <h1 class="b-animate-2 title">
                                         {{ getLocale($carousel->description) }}
                                     </h1>
-                                    <div class="btn-wrap">
+                                    {{-- <div class="btn-wrap">
                                         <a class="btn btn-base b-animate-4" href="service.html">
                                             Load more
                                             <i class="fa fa-arrow-right"></i>
                                         </a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                                     </div>
                                 </div>
                                 <div class="btn-wrap border-top-0">
-                                    <a class="btn btn-base mb-md-0 mb-4" href="about.html">Load More <i
+                                    <a class="btn btn-base mb-md-0 mb-4" href="{{ route('about') }}">{{ getTranslation("Load More") }} <i
                                             class="fa fa-arrow-right"></i></a>
                                     <div class="media ms-md-3">
                                         <div class="media-left me-3">
@@ -145,7 +145,7 @@
                 </div>
                 <div class="col-lg-6 text-lg-end align-self-center">
                     <div class="btn-wrap mb-5 mb-lg-0">
-                        <a class="btn btn-base" href="service.html">{{ getTranslation('All Services') }} <i
+                        <a class="btn btn-base" href="{{ route('service') }}">{{ getTranslation('All Services') }} <i
                                 class="fa fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -164,7 +164,7 @@
                                 <h5>{{ getLocale($service->title) }}</h5>
                                 <p>{{ getLocale($service->description) }}</p>
                                 <div class="btn-wrap">
-                                    <a class="read-more-text" href="service-details.html">{{ getTranslation('READ MORE') }}<i
+                                    <a class="read-more-text" href="{{ route('service.show', $service->slug) }}">{{ getTranslation('READ MORE') }}<i
                                             class="ms-3 fa fa-arrow-right"></i></a>
                                 </div>
                             </div>
@@ -490,12 +490,12 @@
                                     <li><i class="fas fa-calendar-alt"></i>{{ $blog->date->format('d M Y') }}</li>
                                 </ul>
                                 <h5>
-                                    <a href="blog-details.html">{{ getLocale($blog->title) }}</a>
+                                    <a href="{{ route('blog.show', $blog->slug) }}">{{ getLocale($blog->title) }}</a>
                                 </h5>
                                 <p>
                                     {{ getLocale($blog->description) }}
                                 </p>
-                                <a class="read-more-text" href="blog-details.html">{{ getTranslation('READ MORE') }} <i
+                                <a class="read-more-text" href="{{ route('blog.show', $blog->slug) }}">{{ getTranslation('READ MORE') }} <i
                                         class="fa fa-arrow-right ms-2"></i></a>
                             </div>
                         </div>

@@ -122,4 +122,10 @@ class IndexController extends Controller
         $contact = Contact::first();
         return view('front.contact.index', ['contact' => $contact,'bunner' => $bunner]);
     }
+    public function team()
+    {
+        $bunner = BannerPhoto::first();
+        $teams = Team::where('is_active', true)->get();
+        return view('front.team.index', ['teams' => $teams,'bunner' => $bunner]);
+    }
 }

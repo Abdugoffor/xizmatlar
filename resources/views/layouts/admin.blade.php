@@ -10,7 +10,9 @@
 
     <link rel="stylesheet" href="{{ asset('backend/global_assets/css/icons/icomoon/styles.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/all.min.css') }}">
+    {{--
     <link rel="stylesheet" href="{{ asset('backend/global_assets/js/plugins/editors/summernote/summernote.min.css') }}">
+    --}}
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs4.min.css" rel="stylesheet">
 
     <script src="{{ asset('backend/global_assets/js/main/jquery.min.js') }}"></script>
@@ -276,18 +278,17 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('languages.index') }}"
-                                        class="nav-link {{ request()->routeIs('languages.*') ? 'active' : '' }}">
-                                        <i class="icon-list-unordered"></i>
-                                        <span>{{ getTranslation('Language') }}</span>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
                                     <a href="{{ route('translations.index') }}"
                                         class="nav-link {{ request()->routeIs('translations.*') ? 'active' : '' }}">
                                         <i class="icon-list-unordered"></i>
                                         <span>{{ getTranslation('Translation') }}</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('languages.index') }}"
+                                        class="nav-link {{ request()->routeIs('languages.*') ? 'active' : '' }}">
+                                        <i class="icon-list-unordered"></i>
+                                        <span>{{ getTranslation('Language') }}</span>
                                     </a>
                                 </li>
                             </ul>

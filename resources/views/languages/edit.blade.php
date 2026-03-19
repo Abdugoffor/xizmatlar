@@ -31,7 +31,6 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label d-block">{{ getTranslation('is active') }}</label>
 
                                     <label class="custom-control custom-switch custom-control-right">
                                         <input type="hidden" name="is_active" value="0">
