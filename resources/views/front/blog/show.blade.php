@@ -2,7 +2,7 @@
 @section('title', getTranslation('Blog'))
 @section('content')
     <!-- breadcrumb start -->
-    <div class="breadcrumb-area bg-overlay-2" style="background-image: url({{ asset($bunner->blog_photo) }})">
+    <div class="breadcrumb-area bg-overlay-2" style="background-image: url({{ asset(optional($bunner)->blog_photo) }})">
         <div class="container">
             <div class="row">
                 <div class="col-12">

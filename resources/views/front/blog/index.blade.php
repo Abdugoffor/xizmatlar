@@ -2,13 +2,13 @@
 @section('title', getTranslation('Blog'))
 @section('content')
     <!-- breadcrumb start -->
-    <div class="breadcrumb-area bg-overlay-2" style="background-image: url({{ asset($bunner->blog_photo) }})">
+    <div class="breadcrumb-area bg-overlay-2" style="background-image: url({{ asset(optional($bunner)->blog_photo) }})">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="breadcrumb-inner">
                         <div class="section-title mb-0">
-                            <h2 class="page-title">BLOG</h2>
+                            <h2 class="page-title">{{ getTranslation("BLOG") }}</h2>
                             <ul class="page-list">
                                 <li><a href="{{ route('home') }}">{{ getTranslation("Home") }}</a></li>
                                 <li>{{ getTranslation("Blog") }}</li>

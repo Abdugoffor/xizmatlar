@@ -2,7 +2,7 @@
 @section('title', getTranslation('Contact'))
 @section('content')
     <!-- breadcrumb start -->
-    <div class="breadcrumb-area bg-overlay-2" style="background-image: url({{ asset($bunner->contact_photo) }})">
+    <div class="breadcrumb-area bg-overlay-2" style="background-image: url({{ asset(optional($bunner)->contact_photo) }})">
         <div class="container">
             <div class="row">
                 <div class="col-12">

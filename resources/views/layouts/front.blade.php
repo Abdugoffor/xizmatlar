@@ -16,10 +16,8 @@
         .video-responsive {
             position: relative;
             width: 100%;
-            /* 🔥 col-8 ni to‘liq egallaydi */
             height: 0;
             padding-bottom: 56.25%;
-            /* 16:9 ratio */
         }
 
         .video-responsive iframe {
@@ -27,7 +25,6 @@
             top: 0;
             left: 0;
             width: 100%;
-            /* 🔥 to‘liq kenglik */
             height: 100%;
             border: none;
         }
@@ -42,12 +39,10 @@
             list-style: none;
         }
 
-        /* item */
         .page-item {
             list-style: none;
         }
 
-        /* link */
         .page-link {
             display: inline-flex;
             align-items: center;
@@ -58,45 +53,137 @@
             font-size: 14px;
             font-weight: 500;
             color: inherit;
-            /* 🔥 rangni o‘zgartirmaydi */
             background: transparent;
-            /* 🔥 oldingi background qoladi */
             border-radius: 6px;
             text-decoration: none;
             transition: all 0.25s ease;
         }
 
-        /* hover */
         .page-link:hover {
             transform: translateY(-2px);
-            /* faqat animatsiya */
         }
 
-        /* active */
         .page-item.active .page-link {
             font-weight: 600;
             transform: translateY(-2px);
         }
 
-        /* disabled */
         .page-item.disabled .page-link {
             opacity: 0.5;
             cursor: not-allowed;
         }
 
-        /* prev/next */
         .page-link[aria-label] {
             font-size: 16px;
+        }
+
+        /* === Til almashtirish dropdown styles === */
+        .lang-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-dropdown .lang-toggle {
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: inherit;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .lang-dropdown .lang-toggle:hover {
+            opacity: 0.8;
+        }
+
+        .lang-dropdown .lang-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 6px);
+            background: #fff;
+            border-radius: 6px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            min-width: 100px;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .lang-dropdown.open .lang-menu {
+            display: block;
+        }
+
+        .lang-dropdown .lang-menu a {
+            display: block;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.2s;
+            text-align: left;
+        }
+
+        .lang-dropdown .lang-menu a:hover {
+            background: #f5f5f5;
+        }
+
+        .lang-dropdown .lang-menu a.active {
+            color: #1869fe;
+            font-weight: 600;
+        }
+
+        /* Mobile menu ichidagi til */
+        .mobile-lang-switcher {
+            padding: 10px 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-lang-switcher span {
+            display: block;
+            font-size: 12px;
+            opacity: 0.7;
+            margin-bottom: 6px;
+        }
+
+        .mobile-lang-switcher .lang-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .mobile-lang-switcher .lang-links a {
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.2s;
+        }
+
+        .mobile-lang-switcher .lang-links a.active {
+            background: #1869fe;
+            border-color: #1869fe;
+            color: #fff;
         }
     </style>
 </head>
 
 <body>
-    <!-- navbar start -->
+
+    <!-- ========== MOBILE NAVBAR (d-lg-none) ========== -->
     <header class="navbar-area navbar-area-3 d-lg-none d-block">
         <nav class="navbar navbar-expand-lg px-4">
             <div class="container nav-container p-0 pt-2 pb-2">
-                <a class="main-logo" href="{{ route('home') }}"><img src="/assets/img/home-3/2.png" alt="img" /></a>
+                <a class="main-logo" href="{{ route('home') }}">
+                    <img src="/assets/img/home-3/2.png" alt="img" />
+                </a>
                 <div class="responsive-mobile-menu">
                     <button class="menu toggle-btn d-block d-lg-none" data-target="#logisk_main_menu"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -121,26 +208,42 @@
                         <li>
                             <a href="{{ route('about') }}">{{ getTranslation('Team') }}</a>
                         </li>
-
                         <li>
                             <a href="{{ route('contact') }}">{{ getTranslation('Contact Us') }}</a>
                         </li>
                     </ul>
+
+                    {{-- Mobile: Til almashtirish --}}
+                    <div class="mobile-lang-switcher">
+                        <span>{{ getTranslation('Language') }}</span>
+                        <div class="lang-links">
+                            @foreach (getLanguage()->pluck('name')->toArray() as $language)
+                                <a href="{{ route('change.language', ['lang' => $language]) }}"
+                                    class="{{ app()->getLocale() == $language ? 'active' : '' }}">
+                                    {{ strtoupper($language) }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
-    <!-- navbar end -->
+    <!-- mobile navbar end -->
 
-    <!-- navbar start -->
+    <!-- ========== DESKTOP NAVBAR (d-lg-block) ========== -->
     <header class="navbar-area navbar-area-3 d-lg-block d-none">
         <div class="row g-0">
             <div class="col-xl-2 col-lg-3">
                 <div class="logo left-logo text-center align-self-center">
-                    <a class="main-logo" href="{{ route('home') }}"><img src="/assets/img/home-3/2.png" alt="img" /></a>
+                    <a class="main-logo" href="{{ route('home') }}">
+                        <img src="/assets/img/home-3/2.png" alt="img" />
+                    </a>
                 </div>
             </div>
             <div class="col-xl-10 col-lg-9">
+
+                {{-- TOPBAR --}}
                 <div class="navbar-top mb-0 px-4 d-lg-block d-none">
                     <div class="container p-lg-0">
                         <div class="row">
@@ -151,12 +254,32 @@
                                         {{ getTranslation("support@gmail.com") }}
                                     </li>
                                     <li>
-                                        <i class="far fa-clock"></i>{{ getTranslation("Mon - Fri 09: AM - 05: PM") }}
+                                        <i class="far fa-clock"></i>
+                                        {{ getTranslation("Mon - Fri 09: AM - 05: PM") }}
                                     </li>
                                 </ul>
                             </div>
                             <div class="col-lg-5 col-md-3">
                                 <ul class="topbar-right social-area text-md-end text-center">
+
+                                    {{-- === TIL ALMASHTIRISH DROPDOWN === --}}
+                                    <li class="lang-dropdown" id="langDropdown">
+                                        <a href="#" class="lang-toggle" onclick="toggleLang(event)">
+                                            <i class="fa fa-globe"></i>
+                                            <span>{{ strtoupper(app()->getLocale()) }}</span>
+                                            <i class="fa fa-angle-down" style="font-size:11px;"></i>
+                                        </a>
+                                        <div class="lang-menu">
+                                            @foreach (getLanguage()->pluck('name')->toArray() as $language)
+                                                <a href="{{ route('change.language', ['lang' => $language]) }}"
+                                                    class="{{ app()->getLocale() == $language ? 'active' : '' }}">
+                                                    {{ strtoupper($language) }}
+                                                </a>
+                                            @endforeach
+                                        </div>
+                                    </li>
+                                    {{-- === TIL ALMASHTIRISH TUGADI === --}}
+
                                     <li class="d-xl-inline-block d-none">
                                         <svg width="12" height="17" viewBox="0 0 12 17" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -184,6 +307,8 @@
                         </div>
                     </div>
                 </div>
+
+                {{-- MAIN NAV --}}
                 <nav class="navbar navbar-expand-lg px-4">
                     <div class="container nav-container p-0 pt-2 pb-2">
                         <div class="responsive-mobile-menu">
@@ -220,14 +345,12 @@
                                 <li>
                                     <a href="{{ route('team') }}">{{ getTranslation('Team') }}</a>
                                 </li>
-
                                 <li>
                                     <a href="{{ route('contact') }}">{{ getTranslation('Contact Us') }}</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="nav-right-part nav-right-part-desktop">
-
                             <div class="media d-xl-inline-flex d-none">
                                 <div class="media-left me-2">
                                     <img src="/assets/img/p-icon.png" alt="img" />
@@ -240,17 +363,17 @@
                         </div>
                     </div>
                 </nav>
+
             </div>
         </div>
     </header>
-    <!-- navbar end -->
+    <!-- desktop navbar end -->
 
     @yield('content')
+
     <!-- footer area start -->
     <footer class="footer-area style-2">
-        <div class="footer-top" style="background-image: url(assets/img/fact/bg.png)">
-
-        </div>
+        <div class="footer-top" style="background-image: url(assets/img/fact/bg.png)"></div>
         <div class="container">
             <div class="row">
                 <div class="col-xl-4 col-md-6">
@@ -265,18 +388,10 @@
                                 user-centric architectures") }}
                             </p>
                             <ul class="social-media style-bg-light">
-                                <li>
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                </li>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -285,25 +400,12 @@
                     <div class="widget widget_nav_menu">
                         <h4 class="widget-title">{{ getTranslation("Menyu") }}</h4>
                         <ul>
-                            <li>
-                                <a href="{{ route('home') }}">{{ getTranslation('Home') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('about') }}">{{ getTranslation('About') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('service') }}">{{ getTranslation('Service') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('blog') }}">{{ getTranslation('Blog') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('team') }}">{{ getTranslation('Team') }}</a>
-                            </li>
-
-                            <li>
-                                <a href="{{ route('contact') }}">{{ getTranslation('Contact Us') }}</a>
-                            </li>
+                            <li><a href="{{ route('home') }}">{{ getTranslation('Home') }}</a></li>
+                            <li><a href="{{ route('about') }}">{{ getTranslation('About') }}</a></li>
+                            <li><a href="{{ route('service') }}">{{ getTranslation('Service') }}</a></li>
+                            <li><a href="{{ route('blog') }}">{{ getTranslation('Blog') }}</a></li>
+                            <li><a href="{{ route('team') }}">{{ getTranslation('Team') }}</a></li>
+                            <li><a href="{{ route('contact') }}">{{ getTranslation('Contact Us') }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -312,7 +414,11 @@
                         <h4 class="widget-title">{{ getTranslation("Services") }}</h4>
                         <ul>
                             @foreach ($services as $service)
-                                <li><a href="{{ route('service.show', $service->slug) }}">{{ getLocale($service->title) }}</a></li>
+                                <li>
+                                    <a href="{{ route('service.show', $service->slug) }}">
+                                        {{ getLocale($service->title) }}
+                                    </a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -333,9 +439,7 @@
                 </div>
                 <div class="col-lg-6 text-lg-end text-center">
                     <ul>
-                        <li>
-                            <a href="#">{{ getTranslation("Terms & Condition") }}</a>
-                        </li>
+                        <li><a href="#">{{ getTranslation("Terms & Condition") }}</a></li>
                         <li><a href="#">{{ getTranslation("Privacy & Policy") }}</a></li>
                     </ul>
                 </div>
@@ -344,107 +448,68 @@
     </div>
     <!-- footer-bottom area end -->
 
-    <!-- back to top area start -->
+    <!-- back to top -->
     <div class="back-to-top">
         <span class="back-top"><i class="fa fa-angle-up"></i></span>
     </div>
-    <!-- back to top area end -->
 
-    <!-- all plugins here -->
+    <!-- Scripts -->
     <script src="{{ asset('assets/js/vendor.js') }}"></script>
-    <!-- main js  -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
     <script>
+        // ===== Til almashtirish dropdown =====
+        function toggleLang(e) {
+            e.preventDefault();
+            document.getElementById('langDropdown').classList.toggle('open');
+        }
+
+        // Tashqariga bosilganda yopilsin
+        document.addEventListener('click', function(e) {
+            var dropdown = document.getElementById('langDropdown');
+            if (dropdown && !dropdown.contains(e.target)) {
+                dropdown.classList.remove('open');
+            }
+        });
+
+        // ===== Sliders =====
         var leftArrow = "<img src='{{ asset('assets/img/icon/left-arrow.png') }}'>";
         var rightArrow = "<img src='{{ asset('assets/img/icon/right-arrow.png') }}'>";
 
-        // banner-slider
-        var $bannerSlider = $('.banner-slider');
-        $bannerSlider.owlCarousel({
-            animateOut: 'fadeOut',
-            animateIn: 'fadeIn',
-            loop: true,
-            autoplay: true,
-            autoplayTimeout: 10000,
-            nav: true,
-            dots: false,
-            items: 1,
-            smartSpeed: 1800,
+        $('.banner-slider').owlCarousel({
+            animateOut: 'fadeOut', animateIn: 'fadeIn',
+            loop: true, autoplay: true, autoplayTimeout: 10000,
+            nav: true, dots: false, items: 1, smartSpeed: 1800,
             navText: [leftArrow, rightArrow],
         });
 
-        // team-slider
-        var $teamSlider = $('.team-slider');
-        $teamSlider.owlCarousel({
-            margin: 30,
-            nav: true,
-            dots: false,
-            smartSpeed: 1500,
-            items: 3,
-            loop: true,
-            autoplay: true,
+        $('.team-slider').owlCarousel({
+            margin: 30, nav: true, dots: false, smartSpeed: 1500,
+            items: 3, loop: true, autoplay: true,
             navText: [leftArrow, rightArrow],
-            responsive: {
-                769: { items: 3 },
-                577: { items: 2 },
-                0: { items: 1 }
-            },
+            responsive: { 769: {items:3}, 577: {items:2}, 0: {items:1} },
         });
 
-        // testimonial-slider
-        var $testimonialSlider = $('.testimonial-slider');
-        $testimonialSlider.owlCarousel({
-            margin: 30,
-            nav: true,
-            dots: false,
-            smartSpeed: 1500,
-            items: 3,
-            loop: true,
-            autoplay: true,
+        $('.testimonial-slider').owlCarousel({
+            margin: 30, nav: true, dots: false, smartSpeed: 1500,
+            items: 3, loop: true, autoplay: true,
             navText: [leftArrow, rightArrow],
-            responsive: {
-                769: { items: 3 },
-                577: { items: 2 },
-                0: { items: 1 }
-            },
+            responsive: { 769: {items:3}, 577: {items:2}, 0: {items:1} },
         });
 
-        // feature-slider
-        var $featureSlider = $('.feature-slider');
-        $featureSlider.owlCarousel({
-            margin: 30,
-            nav: true,
-            dots: false,
-            smartSpeed: 1500,
-            items: 3,
-            loop: true,
-            autoplay: true,
+        $('.feature-slider').owlCarousel({
+            margin: 30, nav: true, dots: false, smartSpeed: 1500,
+            items: 3, loop: true, autoplay: true,
             navText: [leftArrow, rightArrow],
-            responsive: {
-                769: { items: 3 },
-                577: { items: 2 },
-                0: { items: 1 }
-            },
+            responsive: { 769: {items:3}, 577: {items:2}, 0: {items:1} },
         });
 
-        // service-slider
-        var $serviceSlider = $('.service-slider');
-        $serviceSlider.owlCarousel({
-            margin: 30,
-            nav: true,
-            dots: false,
-            smartSpeed: 1500,
-            items: 3,
-            loop: true,
-            autoplay: true,
+        $('.service-slider').owlCarousel({
+            margin: 30, nav: true, dots: false, smartSpeed: 1500,
+            items: 3, loop: true, autoplay: true,
             navText: [leftArrow, rightArrow],
-            responsive: {
-                769: { items: 3 },
-                577: { items: 2 },
-                0: { items: 1 }
-            },
+            responsive: { 769: {items:3}, 577: {items:2}, 0: {items:1} },
         });
     </script>
 </body>
-
 </html>
