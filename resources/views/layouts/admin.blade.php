@@ -88,16 +88,17 @@
                     </div>
                 </div>
                 @php
-                    $group1 = request()->routeIs('carousels.*') ||
+                    $group1 =
+                        request()->routeIs('carousels.*') ||
                         request()->routeIs('aboutcompanies.*') ||
-
                         request()->routeIs('processsections.*') ||
                         request()->routeIs('servicesections.*') ||
                         request()->routeIs('portfolios.*') ||
                         request()->routeIs('comments.*') ||
                         request()->routeIs('statistics.*');
 
-                    $group2 = request()->routeIs('aboutpageheaders.*') ||
+                    $group2 =
+                        request()->routeIs('aboutpageheaders.*') ||
                         request()->routeIs('aboutstatistics.*') ||
                         request()->routeIs('aboutpageskills.*') ||
                         request()->routeIs('skillsoptions.*') ||
@@ -105,7 +106,8 @@
                         request()->routeIs('clients.*') ||
                         request()->routeIs('aboutcompanies.*');
 
-                    $group3 = request()->routeIs('services.*') ||
+                    $group3 =
+                        request()->routeIs('services.*') ||
                         request()->routeIs('contacts.*') ||
                         request()->routeIs('sertificates.*') ||
                         request()->routeIs('languages.*') ||
@@ -293,14 +295,15 @@
                                 </li>
                             </ul>
                         </li>
-
-                        <li class="nav-item">
-                            <a href="{{ route('users.index') }}"
-                                class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
-                                <i class="icon-users"></i>
-                                <span>{{ getTranslation('Users') }}</span>
-                            </a>
-                        </li>
+                        @if (auth()->user()->role == 'admin')
+                            <li class="nav-item">
+                                <a href="{{ route('users.index') }}"
+                                    class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
+                                    <i class="icon-users"></i>
+                                    <span>{{ getTranslation('Users') }}</span>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -319,10 +322,10 @@
                     <div class="navbar-collapse collapse">
                         <ul class="navbar-nav ml-lg-auto">
                             <li class="nav-item">
-                                <a href="https://uzinfocom.uz" target="_blank"
+                                {{-- <a href="https://uzinfocom.uz" target="_blank"
                                     class="navbar-nav-link font-weight-semibold">
                                     <span class="text-pink">uzinfocom</span>
-                                </a>
+                                </a> --}}
                             </li>
                         </ul>
                     </div>

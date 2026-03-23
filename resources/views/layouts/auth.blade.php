@@ -81,10 +81,10 @@
                     <div class="navbar-collapse collapse" id="navbar-footer">
                         <ul class="navbar-nav ml-lg-auto">
                             <li class="nav-item">
-                                <a href="https://uzinfocom.uz" target="_blank"
+                                {{-- <a href="https://uzinfocom.uz" target="_blank"
                                     class="navbar-nav-link font-weight-semibold">
                                     <span class="text-pink">uzinfocom</span>
-                                </a>
+                                </a> --}}
                             </li>
                         </ul>
                     </div>
