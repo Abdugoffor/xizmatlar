@@ -17,7 +17,7 @@
                     <tbody>
 
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('title') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutstatistics_title') }}</th>
                             <td>
                                 @if(is_array($model->title))
                                     <ul class="nav nav-tabs" id="show-tabs-title">
@@ -45,7 +45,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('description') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutstatistics_description') }}</th>
                             <td>
                                 @if(is_array($model->description))
                                     <ul class="nav nav-tabs" id="show-tabs-description">
@@ -73,7 +73,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('text') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutstatistics_text') }}</th>
                             <td>
                                 @if(is_array($model->text))
                                     <ul class="nav nav-tabs" id="show-tabs-text">

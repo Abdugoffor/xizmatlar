@@ -22,7 +22,7 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('service photo') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('bannerphotos_service photo') }}</label>
                                     @if(!empty($model->service_photo))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->service_photo) }}" target="_blank">
@@ -46,7 +46,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('blog photo') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('bannerphotos_blog photo') }}</label>
                                     @if(!empty($model->blog_photo))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->blog_photo) }}" target="_blank">
@@ -70,7 +70,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('team photo') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('bannerphotos_team photo') }}</label>
                                     @if(!empty($model->team_photo))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->team_photo) }}" target="_blank">
@@ -94,7 +94,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('contact photo') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('bannerphotos_contact photo') }}</label>
                                     @if(!empty($model->contact_photo))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->contact_photo) }}" target="_blank">

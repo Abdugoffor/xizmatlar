@@ -27,8 +27,8 @@
                             <thead>
                                 <tr>
                                 <th class="text-center" width="3%">№</th>
-                                <th class="text-center">{{ getTranslation('title') }}</th>
-                                <th class="text-center">{{ getTranslation('file') }}</th>
+                                <th class="text-center">{{ getTranslation('sertificates_title') }}</th>
+                                <th class="text-center">{{ getTranslation('sertificates_file') }}</th>
 
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>
                                 </tr>
@@ -37,7 +37,7 @@
                                 <th class="text-center"></th>
                                 <th class="text-center">
                                     <input type="text" class="form-control" name="title"
-                                           placeholder="{{ getTranslation('title') }}"
+                                           placeholder="{{ getTranslation('sertificates_title') }}"
                                            value="{{ old('title', request('title')) }}">
                                 </th>
                                 <th class="text-center"></th>

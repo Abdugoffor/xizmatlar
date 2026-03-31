@@ -23,7 +23,7 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('title') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutpageheaders_title') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-title">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('description') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutpageheaders_description') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-description">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -76,7 +76,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('text') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutpageheaders_text') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-text">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -102,7 +102,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('experience text') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutpageheaders_experience text') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-experience_text">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -129,16 +129,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('experience year') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('aboutpageheaders_experience year') }}</label>
                                     <input type="date" class="form-control" name="experience_year"
                                         value="{{ old('experience_year', $model->experience_year ?? '') }}"
-                                        placeholder="{{ getTranslation('experience year') }}">
+                                        placeholder="{{ getTranslation('aboutpageheaders_experience year') }}">
                                     @error('experience_year')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('photo 1') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('aboutpageheaders_photo 1') }}</label>
                                     @if(!empty($model->photo_1))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->photo_1) }}" target="_blank">
@@ -163,7 +163,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('photo 2') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('aboutpageheaders_photo 2') }}</label>
                                     @if(!empty($model->photo_2))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->photo_2) }}" target="_blank">
@@ -188,7 +188,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('photo 3') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('aboutpageheaders_photo 3') }}</label>
                                     @if(!empty($model->photo_3))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->photo_3) }}" target="_blank">
@@ -213,7 +213,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('photo 4') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('aboutpageheaders_photo 4') }}</label>
                                     @if(!empty($model->photo_4))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->photo_4) }}" target="_blank">
@@ -238,7 +238,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('banner_photo') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('aboutpageheaders_banner_photo') }}</label>
                                     @if(!empty($model->banner_photo))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->banner_photo) }}" target="_blank">
@@ -263,10 +263,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('ceo name') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('aboutpageheaders_ceo name') }}</label>
                                     <input type="text" class="form-control" name="ceo_name"
                                         value="{{ old('ceo_name', $model->ceo_name ?? '') }}"
-                                        placeholder="{{ getTranslation('ceo name') }}">
+                                        placeholder="{{ getTranslation('aboutpageheaders_ceo name') }}">
                                     @error('ceo_name')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror

@@ -17,23 +17,23 @@
                     <tbody>
 
                         <tr>
-                            <th style="width:20%">{{ getTranslation('phone 1') }}</th>
+                            <th style="width:20%">{{ getTranslation('contacts_phone 1') }}</th>
                             <td>{{ $model->phone_1 }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('phone 2') }}</th>
+                            <th style="width:20%">{{ getTranslation('contacts_phone 2') }}</th>
                             <td>{{ $model->phone_2 }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('email 1') }}</th>
+                            <th style="width:20%">{{ getTranslation('contacts_email 1') }}</th>
                             <td>{{ $model->email_1 }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('email 2') }}</th>
+                            <th style="width:20%">{{ getTranslation('contacts_email 2') }}</th>
                             <td>{{ $model->email_2 }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('address') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('contacts_address') }}</th>
                             <td>
                                 @if(is_array($model->address))
                                     <ul class="nav nav-tabs" id="show-tabs-address">
@@ -61,23 +61,23 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('tlegram') }}</th>
+                            <th style="width:20%">{{ getTranslation('contacts_tlegram') }}</th>
                             <td>{{ $model->tlegram }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('facebook') }}</th>
+                            <th style="width:20%">{{ getTranslation('contacts_facebook') }}</th>
                             <td>{{ $model->facebook }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('instagram') }}</th>
+                            <th style="width:20%">{{ getTranslation('contacts_instagram') }}</th>
                             <td>{{ $model->instagram }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('watsapp') }}</th>
+                            <th style="width:20%">{{ getTranslation('contacts_watsapp') }}</th>
                             <td>{{ $model->watsapp }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('linked') }}</th>
+                            <th style="width:20%">{{ getTranslation('contacts_linked') }}</th>
                             <td>{{ $model->linked }}</td>
                         </tr>
 

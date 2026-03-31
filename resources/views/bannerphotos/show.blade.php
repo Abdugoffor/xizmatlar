@@ -17,7 +17,7 @@
                     <tbody>
 
                         <tr>
-                            <th style="width:20%">{{ getTranslation('service photo') }}</th>
+                            <th style="width:20%">{{ getTranslation('bannerphotos_service photo') }}</th>
                             <td>
                                 @if($model->service_photo)
                                     <a href="{{ asset($model->service_photo) }}" target="_blank">
@@ -39,7 +39,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('blog photo') }}</th>
+                            <th style="width:20%">{{ getTranslation('bannerphotos_blog photo') }}</th>
                             <td>
                                 @if($model->blog_photo)
                                     <a href="{{ asset($model->blog_photo) }}" target="_blank">
@@ -61,7 +61,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('team photo') }}</th>
+                            <th style="width:20%">{{ getTranslation('bannerphotos_team photo') }}</th>
                             <td>
                                 @if($model->team_photo)
                                     <a href="{{ asset($model->team_photo) }}" target="_blank">
@@ -83,7 +83,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('contact photo') }}</th>
+                            <th style="width:20%">{{ getTranslation('bannerphotos_contact photo') }}</th>
                             <td>
                                 @if($model->contact_photo)
                                     <a href="{{ asset($model->contact_photo) }}" target="_blank">

@@ -17,7 +17,7 @@
                     <tbody>
 
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('section label') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutcompanies_section label') }}</th>
                             <td>
                                 @if(is_array($model->section_label))
                                     <ul class="nav nav-tabs" id="show-tabs-section_label">
@@ -45,7 +45,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('title') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutcompanies_title') }}</th>
                             <td>
                                 @if(is_array($model->title))
                                     <ul class="nav nav-tabs" id="show-tabs-title">
@@ -73,7 +73,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('description') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutcompanies_description') }}</th>
                             <td>
                                 @if(is_array($model->description))
                                     <ul class="nav nav-tabs" id="show-tabs-description">
@@ -101,11 +101,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('experience year') }}</th>
+                            <th style="width:20%">{{ getTranslation('aboutcompanies_experience year') }}</th>
                             <td>{{ $model->experience_year }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('experience text') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutcompanies_experience text') }}</th>
                             <td>
                                 @if(is_array($model->experience_text))
                                     <ul class="nav nav-tabs" id="show-tabs-experience_text">
@@ -133,7 +133,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('experience photo') }}</th>
+                            <th style="width:20%">{{ getTranslation('aboutcompanies_experience photo') }}</th>
                             <td>
                                 @if($model->experience_photo)
                                     <a href="{{ asset($model->experience_photo) }}" target="_blank">
@@ -155,7 +155,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('block label1') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutcompanies_block label1') }}</th>
                             <td>
                                 @if(is_array($model->block_label1))
                                     <ul class="nav nav-tabs" id="show-tabs-block_label1">
@@ -183,7 +183,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('block title1') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutcompanies_block title1') }}</th>
                             <td>
                                 @if(is_array($model->block_title1))
                                     <ul class="nav nav-tabs" id="show-tabs-block_title1">
@@ -211,7 +211,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('block photo1') }}</th>
+                            <th style="width:20%">{{ getTranslation('aboutcompanies_block photo1') }}</th>
                             <td>
                                 @if($model->block_photo1)
                                     <a href="{{ asset($model->block_photo1) }}" target="_blank">
@@ -233,7 +233,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('block label2') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutcompanies_block label2') }}</th>
                             <td>
                                 @if(is_array($model->block_label2))
                                     <ul class="nav nav-tabs" id="show-tabs-block_label2">
@@ -261,7 +261,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('block title2') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutcompanies_block title2') }}</th>
                             <td>
                                 @if(is_array($model->block_title2))
                                     <ul class="nav nav-tabs" id="show-tabs-block_title2">
@@ -289,7 +289,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('block photo2') }}</th>
+                            <th style="width:20%">{{ getTranslation('aboutcompanies_block photo2') }}</th>
                             <td>
                                 @if($model->block_photo2)
                                     <a href="{{ asset($model->block_photo2) }}" target="_blank">
@@ -311,7 +311,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('founder name') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutcompanies_founder name') }}</th>
                             <td>
                                 @if(is_array($model->founder_name))
                                     <ul class="nav nav-tabs" id="show-tabs-founder_name">
@@ -339,7 +339,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('founder position') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutcompanies_founder position') }}</th>
                             <td>
                                 @if(is_array($model->founder_position))
                                     <ul class="nav nav-tabs" id="show-tabs-founder_position">
@@ -367,7 +367,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('founder photo') }}</th>
+                            <th style="width:20%">{{ getTranslation('aboutcompanies_founder photo') }}</th>
                             <td>
                                 @if($model->founder_photo)
                                     <a href="{{ asset($model->founder_photo) }}" target="_blank">
@@ -389,7 +389,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('main photo') }}</th>
+                            <th style="width:20%">{{ getTranslation('aboutcompanies_main photo') }}</th>
                             <td>
                                 @if($model->main_photo)
                                     <a href="{{ asset($model->main_photo) }}" target="_blank">

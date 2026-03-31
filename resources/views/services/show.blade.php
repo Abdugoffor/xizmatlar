@@ -17,7 +17,7 @@
                     <tbody>
 
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('title') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('services_title') }}</th>
                             <td>
                                 @if(is_array($model->title))
                                     <ul class="nav nav-tabs" id="show-tabs-title">
@@ -45,7 +45,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('description') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('services_description') }}</th>
                             <td>
                                 @if(is_array($model->description))
                                     <ul class="nav nav-tabs" id="show-tabs-description">
@@ -73,7 +73,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('cart photo') }}</th>
+                            <th style="width:20%">{{ getTranslation('services_cart photo') }}</th>
                             <td>
                                 @if($model->cart_photo)
                                     <a href="{{ asset($model->cart_photo) }}" target="_blank">
@@ -95,7 +95,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('header photo') }}</th>
+                            <th style="width:20%">{{ getTranslation('services_header photo') }}</th>
                             <td>
                                 @if($model->header_photo)
                                     <a href="{{ asset($model->header_photo) }}" target="_blank">
@@ -117,7 +117,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('content') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('services_content') }}</th>
                             <td>
                                 @if(is_array($model->content))
                                     <ul class="nav nav-tabs" id="show-tabs-content">
@@ -145,11 +145,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('video link') }}</th>
+                            <th style="width:20%">{{ getTranslation('services_video link') }}</th>
                             <td>{{ $model->video_link }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('footer text') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('services_footer text') }}</th>
                             <td>
                                 @if(is_array($model->footer_text))
                                     <ul class="nav nav-tabs" id="show-tabs-footer_text">

@@ -17,7 +17,7 @@
                     <tbody>
 
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('title') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutpageheaders_title') }}</th>
                             <td>
                                 @if(is_array($model->title))
                                     <ul class="nav nav-tabs" id="show-tabs-title">
@@ -45,7 +45,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('description') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutpageheaders_description') }}</th>
                             <td>
                                 @if(is_array($model->description))
                                     <ul class="nav nav-tabs" id="show-tabs-description">
@@ -73,7 +73,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('text') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutpageheaders_text') }}</th>
                             <td>
                                 @if(is_array($model->text))
                                     <ul class="nav nav-tabs" id="show-tabs-text">
@@ -101,7 +101,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('experience text') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutpageheaders_experience text') }}</th>
                             <td>
                                 @if(is_array($model->experience_text))
                                     <ul class="nav nav-tabs" id="show-tabs-experience_text">
@@ -129,11 +129,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('experience year') }}</th>
+                            <th style="width:20%">{{ getTranslation('aboutpageheaders_experience year') }}</th>
                             <td>{{ $model->experience_year }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('photo 1') }}</th>
+                            <th style="width:20%">{{ getTranslation('aboutpageheaders_photo 1') }}</th>
                             <td>
                                 @if($model->photo_1)
                                     <a href="{{ asset($model->photo_1) }}" target="_blank">
@@ -155,7 +155,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('photo 2') }}</th>
+                            <th style="width:20%">{{ getTranslation('aboutpageheaders_photo 2') }}</th>
                             <td>
                                 @if($model->photo_2)
                                     <a href="{{ asset($model->photo_2) }}" target="_blank">
@@ -177,7 +177,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('photo 3') }}</th>
+                            <th style="width:20%">{{ getTranslation('aboutpageheaders_photo 3') }}</th>
                             <td>
                                 @if($model->photo_3)
                                     <a href="{{ asset($model->photo_3) }}" target="_blank">
@@ -199,7 +199,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('photo 4') }}</th>
+                            <th style="width:20%">{{ getTranslation('aboutpageheaders_photo 4') }}</th>
                             <td>
                                 @if($model->photo_4)
                                     <a href="{{ asset($model->photo_4) }}" target="_blank">
@@ -221,7 +221,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('banner_photo') }}</th>
+                            <th style="width:20%">{{ getTranslation('aboutpageheaders_banner_photo') }}</th>
                             <td>
                                 @if($model->banner_photo)
                                     <a href="{{ asset($model->banner_photo) }}" target="_blank">
@@ -243,7 +243,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('ceo name') }}</th>
+                            <th style="width:20%">{{ getTranslation('aboutpageheaders_ceo name') }}</th>
                             <td>{{ $model->ceo_name }}</td>
                         </tr>
 

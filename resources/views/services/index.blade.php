@@ -27,10 +27,10 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
-                                    <th class="text-center">{{ getTranslation('title') }}</th>
-                                    <th class="text-center">{{ getTranslation('description') }}</th>
-                                    <th class="text-center">{{ getTranslation('cart photo') }}</th>
-                                    <th class="text-center">{{ getTranslation('header photo') }}</th>
+                                    <th class="text-center">{{ getTranslation('services_title') }}</th>
+                                    <th class="text-center">{{ getTranslation('services_description') }}</th>
+                                    <th class="text-center">{{ getTranslation('services_cart photo') }}</th>
+                                    <th class="text-center">{{ getTranslation('services_header photo') }}</th>
                                     <th class="text-center">{{ getTranslation('is main') }}</th>
                                     <th class="text-center">{{ getTranslation('is active') }}</th>
 
@@ -41,19 +41,19 @@
                                         <th class="text-center"></th>
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="title"
-                                                placeholder="{{ getTranslation('title') }}"
+                                                placeholder="{{ getTranslation('services_title') }}"
                                                 value="{{ old('title', request('title')) }}">
                                         </th>
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="description"
-                                                placeholder="{{ getTranslation('description') }}"
+                                                placeholder="{{ getTranslation('services_description') }}"
                                                 value="{{ old('description', request('description')) }}">
                                         </th>
                                         <th class="text-center"></th>
                                         <th class="text-center"></th>
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="is_main"
-                                                placeholder="{{ getTranslation('is main') }}"
+                                                placeholder="{{ getTranslation('services_is main') }}"
                                                 value="{{ old('is_main', request('is_main')) }}">
                                         </th>
                                         <th class="text-center">

@@ -17,7 +17,7 @@
                     <tbody>
 
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('title') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutpageskills_title') }}</th>
                             <td>
                                 @if(is_array($model->title))
                                     <ul class="nav nav-tabs" id="show-tabs-title">
@@ -45,7 +45,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('description') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutpageskills_description') }}</th>
                             <td>
                                 @if(is_array($model->description))
                                     <ul class="nav nav-tabs" id="show-tabs-description">
@@ -73,7 +73,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('text') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('aboutpageskills_text') }}</th>
                             <td>
                                 @if(is_array($model->text))
                                     <ul class="nav nav-tabs" id="show-tabs-text">
@@ -123,7 +123,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('photo 2') }}</th>
+                            <th style="width:20%">{{ getTranslation('aboutpageskills_photo 2') }}</th>
                             <td>
                                 @if($model->photo_2)
                                     <a href="{{ asset($model->photo_2) }}" target="_blank">

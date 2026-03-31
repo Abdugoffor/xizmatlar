@@ -22,7 +22,7 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('section label') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutcompanies_section label') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-section_label">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('title') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutcompanies_title') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-title">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('description') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutcompanies_description') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-description">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -109,17 +109,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('experience year') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('aboutcompanies_experience year') }}</label>
                                     <input type="number" class="form-control"
                                            name="experience_year"
                                            value="{{ old('experience_year', $model->experience_year ?? '') }}"
-                                           placeholder="{{ getTranslation('experience year') }}">
+                                           placeholder="{{ getTranslation('aboutcompanies_experience year') }}">
                                     @error('experience_year')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('experience text') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutcompanies_experience text') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-experience_text">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -148,7 +148,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('experience photo') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('aboutcompanies_experience photo') }}</label>
                                     @if(!empty($model->experience_photo))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->experience_photo) }}" target="_blank">
@@ -172,7 +172,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('block label1') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutcompanies_block label1') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-block_label1">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -201,7 +201,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('block title1') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutcompanies_block title1') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-block_title1">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -230,7 +230,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('block photo1') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('aboutcompanies_block photo1') }}</label>
                                     @if(!empty($model->block_photo1))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->block_photo1) }}" target="_blank">
@@ -254,7 +254,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('block label2') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutcompanies_block label2') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-block_label2">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -283,7 +283,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('block title2') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutcompanies_block title2') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-block_title2">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -312,7 +312,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('block photo2') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('aboutcompanies_block photo2') }}</label>
                                     @if(!empty($model->block_photo2))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->block_photo2) }}" target="_blank">
@@ -336,7 +336,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('founder name') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutcompanies_founder name') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-founder_name">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -365,7 +365,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('founder position') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutcompanies_founder position') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-founder_position">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -394,7 +394,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('founder photo') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('aboutcompanies_founder photo') }}</label>
                                     @if(!empty($model->founder_photo))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->founder_photo) }}" target="_blank">
@@ -418,7 +418,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('main photo') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('aboutcompanies_main photo') }}</label>
                                     @if(!empty($model->main_photo))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->main_photo) }}" target="_blank">

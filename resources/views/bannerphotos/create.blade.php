@@ -21,7 +21,7 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('service photo') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('bannerphotos_service photo') }}</label>
 
                                     <input type="file" class="form-control" name="service_photo">
                                     @error('service_photo')
@@ -29,7 +29,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('blog photo') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('bannerphotos_blog photo') }}</label>
 
                                     <input type="file" class="form-control" name="blog_photo">
                                     @error('blog_photo')
@@ -37,7 +37,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('team photo') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('bannerphotos_team photo') }}</label>
 
                                     <input type="file" class="form-control" name="team_photo">
                                     @error('team_photo')
@@ -45,7 +45,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('contact photo') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('bannerphotos_contact photo') }}</label>
 
                                     <input type="file" class="form-control" name="contact_photo">
                                     @error('contact_photo')

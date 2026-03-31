@@ -27,10 +27,10 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
-                                    <th class="text-center">{{ getTranslation('service photo') }}</th>
-                                    <th class="text-center">{{ getTranslation('blog photo') }}</th>
-                                    <th class="text-center">{{ getTranslation('team photo') }}</th>
-                                    <th class="text-center">{{ getTranslation('contact photo') }}</th>
+                                    <th class="text-center">{{ getTranslation('bannerphotos_service photo') }}</th>
+                                    <th class="text-center">{{ getTranslation('bannerphotos_blog photo') }}</th>
+                                    <th class="text-center">{{ getTranslation('bannerphotos_team photo') }}</th>
+                                    <th class="text-center">{{ getTranslation('bannerphotos_contact photo') }}</th>
 
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>
                                 </tr>

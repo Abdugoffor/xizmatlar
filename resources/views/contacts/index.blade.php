@@ -23,12 +23,11 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
-                                    <th class="text-center">{{ getTranslation('phone 1') }}</th>
-                                    <th class="text-center">{{ getTranslation('phone 2') }}</th>
-                                    <th class="text-center">{{ getTranslation('email 1') }}</th>
-                                    <th class="text-center">{{ getTranslation('email 2') }}</th>
+                                    <th class="text-center">{{ getTranslation('contacts_phone 1') }}</th>
+                                    <th class="text-center">{{ getTranslation('contacts_phone 2') }}</th>
+                                    <th class="text-center">{{ getTranslation('contacts_email 1') }}</th>
+                                    <th class="text-center">{{ getTranslation('contacts_email 2') }}</th>
                                     
-
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>
                                 </tr>
                             </thead>

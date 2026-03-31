@@ -21,7 +21,7 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('title') }}</label>
+                                    <label class="form-label">{{ getTranslation('processsections_title') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-title">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('description') }}</label>
+                                    <label class="form-label">{{ getTranslation('processsections_description') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-description">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -79,7 +79,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('photo') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('processsections_photo') }}</label>
 
                                     <input type="file" class="form-control" name="photo">
                                     @error('photo')
@@ -87,11 +87,11 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('order') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('processsections_order') }}</label>
                                     <input type="number" class="form-control"
                                            name="order"
                                            value="{{ old('order') }}"
-                                           placeholder="{{ getTranslation('order') }}">
+                                           placeholder="{{ getTranslation('processsections_order') }}">
                                     @error('order')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror

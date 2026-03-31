@@ -21,7 +21,7 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('title') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutpageskills_title') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-title">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('description') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutpageskills_description') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-description">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -79,7 +79,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('text') }}</label>
+                                    <label class="form-label">{{ getTranslation('aboutpageskills_text') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-text">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -108,7 +108,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('photo 1') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('aboutpageskills_photo 1') }}</label>
 
                                     <input type="file" class="form-control" name="photo_1">
                                     @error('photo_1')
@@ -116,7 +116,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('photo 2') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('aboutpageskills_photo 2') }}</label>
 
                                     <input type="file" class="form-control" name="photo_2">
                                     @error('photo_2')

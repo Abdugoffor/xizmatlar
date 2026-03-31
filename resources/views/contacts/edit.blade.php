@@ -22,47 +22,47 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('phone 1') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('contacts_phone 1') }}</label>
                                     <input type="text" class="form-control"
                                            name="phone_1"
                                            value="{{ old('phone_1', $model->phone_1 ?? '') }}"
-                                           placeholder="{{ getTranslation('phone 1') }}">
+                                           placeholder="{{ getTranslation('contacts_phone 1') }}">
                                     @error('phone_1')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('phone 2') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('contacts_phone 2') }}</label>
                                     <input type="text" class="form-control"
                                            name="phone_2"
                                            value="{{ old('phone_2', $model->phone_2 ?? '') }}"
-                                           placeholder="{{ getTranslation('phone 2') }}">
+                                           placeholder="{{ getTranslation('contacts_phone 2') }}">
                                     @error('phone_2')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('email 1') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('contacts_email 1') }}</label>
                                     <input type="text" class="form-control"
                                            name="email_1"
                                            value="{{ old('email_1', $model->email_1 ?? '') }}"
-                                           placeholder="{{ getTranslation('email 1') }}">
+                                           placeholder="{{ getTranslation('contacts_email 1') }}">
                                     @error('email_1')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('email 2') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('contacts_email 2') }}</label>
                                     <input type="text" class="form-control"
                                            name="email_2"
                                            value="{{ old('email_2', $model->email_2 ?? '') }}"
-                                           placeholder="{{ getTranslation('email 2') }}">
+                                           placeholder="{{ getTranslation('contacts_email 2') }}">
                                     @error('email_2')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('address') }}</label>
+                                    <label class="form-label">{{ getTranslation('contacts_address') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-address">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -91,61 +91,61 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('tlegram') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('contacts_tlegram') }}</label>
                                     <input type="text" class="form-control"
                                            name="tlegram"
                                            value="{{ old('tlegram', $model->tlegram ?? '') }}"
-                                           placeholder="{{ getTranslation('tlegram') }}">
+                                           placeholder="{{ getTranslation('contacts_tlegram') }}">
                                     @error('tlegram')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('facebook') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('contacts_facebook') }}</label>
                                     <input type="text" class="form-control"
                                            name="facebook"
                                            value="{{ old('facebook', $model->facebook ?? '') }}"
-                                           placeholder="{{ getTranslation('facebook') }}">
+                                           placeholder="{{ getTranslation('contacts_facebook') }}">
                                     @error('facebook')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('instagram') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('contacts_instagram') }}</label>
                                     <input type="text" class="form-control"
                                            name="instagram"
                                            value="{{ old('instagram', $model->instagram ?? '') }}"
-                                           placeholder="{{ getTranslation('instagram') }}">
+                                           placeholder="{{ getTranslation('contacts_instagram') }}">
                                     @error('instagram')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('watsapp') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('contacts_watsapp') }}</label>
                                     <input type="text" class="form-control"
                                            name="watsapp"
                                            value="{{ old('watsapp', $model->watsapp ?? '') }}"
-                                           placeholder="{{ getTranslation('watsapp') }}">
+                                           placeholder="{{ getTranslation('contacts_watsapp') }}">
                                     @error('watsapp')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('linked') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('contacts_linked') }}</label>
                                     <input type="text" class="form-control"
                                            name="linked"
                                            value="{{ old('linked', $model->linked ?? '') }}"
-                                           placeholder="{{ getTranslation('linked') }}">
+                                           placeholder="{{ getTranslation('contacts_linked') }}">
                                     @error('linked')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('location') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('contacts_location') }}</label>
                                     <input type="text" class="form-control"
                                            name="location"
                                            value="{{ old('location', $model->location ?? '') }}"
-                                           placeholder="{{ getTranslation('location') }}">
+                                           placeholder="{{ getTranslation('contacts_location') }}">
                                     @error('location')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror

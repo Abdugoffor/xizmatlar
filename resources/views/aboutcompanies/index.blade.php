@@ -19,9 +19,9 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
-                                    <th class="text-center">{{ getTranslation('section label') }}</th>
-                                    <th class="text-center">{{ getTranslation('title') }}</th>
-                                    <th class="text-center">{{ getTranslation('main photo') }}</th>
+                                    <th class="text-center">{{ getTranslation('aboutcompanies_section label') }}</th>
+                                    <th class="text-center">{{ getTranslation('aboutcompanies_title') }}</th>
+                                    <th class="text-center">{{ getTranslation('aboutcompanies_main photo') }}</th>
 
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>
                                 </tr>
