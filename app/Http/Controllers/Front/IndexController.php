@@ -95,37 +95,37 @@ class IndexController extends Controller
         $servicesSections = Service::where('is_active', true)->orderBy('id', 'desc')->limit(9)->get();
         $sertificates = Sertificate::all();
         return view('front.services.show', [
-            'service' => $service, 
-            'servicesSections' => $servicesSections, 
+            'service' => $service,
+            'servicesSections' => $servicesSections,
             'sertificates' => $sertificates,
             'bunner' => $bunner
-            ]);
+        ]);
     }
     public function blog()
     {
         $bunner = BannerPhoto::first();
         $blogs = Blog::where('is_active', true)->orderBy('id', 'desc')->paginate(9);
         $blogsSections = Blog::where('is_active', true)->orderBy('id', 'desc')->limit(10)->get()->shuffle()->take(5);
-        return view('front.blog.index', ['blogs' => $blogs, 'blogsSections' => $blogsSections,'bunner' => $bunner]);
+        return view('front.blog.index', ['blogs' => $blogs, 'blogsSections' => $blogsSections, 'bunner' => $bunner]);
     }
     public function blogShow($lang, $slug)
     {
         $bunner = BannerPhoto::first();
         $blog = Blog::where('slug', $slug)->firstOrFail();
         $blogsSections = Blog::where('is_active', true)->orderBy('id', 'desc')->limit(10)->get()->shuffle()->take(5);
-        return view('front.blog.show', ['blog' => $blog, 'blogsSections' => $blogsSections,'bunner' => $bunner]);
+        return view('front.blog.show', ['blog' => $blog, 'blogsSections' => $blogsSections, 'bunner' => $bunner]);
     }
 
     public function contact()
     {
         $bunner = BannerPhoto::first();
         $contact = Contact::first();
-        return view('front.contact.index', ['contact' => $contact,'bunner' => $bunner]);
+        return view('front.contact.index', ['contact' => $contact, 'bunner' => $bunner]);
     }
     public function team()
     {
         $bunner = BannerPhoto::first();
         $teams = Team::where('is_active', true)->get();
-        return view('front.team.index', ['teams' => $teams,'bunner' => $bunner]);
+        return view('front.team.index', ['teams' => $teams, 'bunner' => $bunner]);
     }
 }

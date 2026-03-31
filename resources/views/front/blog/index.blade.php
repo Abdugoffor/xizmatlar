@@ -47,14 +47,6 @@
                             </div>
                         </div>
                     @endforeach
-                    {{-- <ul class="pagination">
-                        <li><a class="page-numbers active" href="#/">1</a></li>
-                        <li><a class="page-numbers" href="#/">2</a></li>
-                        <li><a class="page-numbers" href="#/">3</a></li>
-                        <li>
-                            <a class="page-next" href="#/">NEXT <i class="fa fa-arrow-right"></i></a>
-                        </li>
-                    </ul> --}}
                     {{ $blogs->links() }}
                 </div>
                 <div class="col-lg-4">
@@ -73,7 +65,7 @@
                                             </div>
                                             <div class="details">
                                                 <h6>
-                                                    <a href="#">{{ getLocale($blogsSection->title) }}</a>
+                                                    <a href="{{ route('blog.show', $blogsSection->slug) }}">{{ getLocale($blogsSection->title) }}</a>
                                                 </h6>
                                                 <p>
                                                     <i class="fa fa-calendar-alt"></i>

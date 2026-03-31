@@ -30,7 +30,6 @@
                                     <th class="text-center">{{ getTranslation('name') }}</th>
                                     <th class="text-center">{{ getTranslation('email') }}</th>
                                     <th class="text-center">{{ getTranslation('role') }}</th>
-                                    <th class="text-center">{{ getTranslation('password') }}</th>
 
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>
                                 </tr>
@@ -52,11 +51,6 @@
                                                 placeholder="{{ getTranslation('role') }}"
                                                 value="{{ old('role', request('role')) }}">
                                         </th>
-                                        <th class="text-center">
-                                            <input type="text" class="form-control" name="password"
-                                                placeholder="{{ getTranslation('password') }}"
-                                                value="{{ old('password', request('password')) }}">
-                                        </th>
 
                                         <th class="text-center">
                                             <button class="btn btn-teal">{{ getTranslation('Поиск') }}</button>
@@ -71,8 +65,6 @@
                                         <td>{{ $model->name }}</td>
                                         <td>{{ $model->email }}</td>
                                         <td>{{ $model->role }}</td>
-                                        <td>{{ $model->password }}</td>
-
                                         <td>
                                             <div class="d-inline-flex gap-2">
                                                 <a href="{{ route('users.show', $model->id) }}" class="btn btn-outline-info">
