@@ -23,6 +23,7 @@ class UpdateAboutPageHeaderRequest extends FormRequest
             'photo_2' => 'nullable|file|max:10240',
             'photo_3' => 'nullable|file|max:10240',
             'photo_4' => 'nullable|file|max:10240',
+            'banner_photo' => 'nullable|file|max:10240',
             'ceo_name' => 'required|string|max:255',
 
         ];

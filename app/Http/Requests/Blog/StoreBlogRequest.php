@@ -17,6 +17,7 @@ class StoreBlogRequest extends FormRequest
             'title' => 'required|array',
             'description' => 'required|array',
             'photo' => 'required|file|max:10240',
+            'card_photo' => 'required|file|max:10240',
             'content' => 'required|array',
             'video_link' => 'required|string|max:255',
             'footer_text' => 'required|array',
@@ -28,9 +29,9 @@ class StoreBlogRequest extends FormRequest
         $rules = array_merge(
             $rules,
             validateTranslation('title'),
-                validateTranslation('description'),
-                validateTranslation('content'),
-                validateTranslation('footer_text')
+            validateTranslation('description'),
+            validateTranslation('content'),
+            validateTranslation('footer_text')
         );
 
         return $rules;

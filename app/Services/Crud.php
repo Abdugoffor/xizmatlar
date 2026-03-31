@@ -15,7 +15,7 @@ class Crud extends Command
     protected $enumFields = [];
     protected $translatableFields = [];
     protected $booleanFields = [];
-    protected $fileFields = [];
+    protected array $fileFields = [];
 
     public function handle()
     {

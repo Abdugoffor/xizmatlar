@@ -17,6 +17,7 @@ class UpdateBlogRequest extends FormRequest
             'title' => 'required|array',
             'description' => 'required|array',
             'photo' => 'nullable|file|max:10240',
+            'card_photo' => 'nullable|file|max:10240',
             'content' => 'required|array',
             'video_link' => 'required|string|max:255',
             'footer_text' => 'required|array',

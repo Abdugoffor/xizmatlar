@@ -22,7 +22,7 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('title') }}</label>
+                                    <label class="form-label">{{ getTranslation('blogs_title') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-title">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('description') }}</label>
+                                    <label class="form-label">{{ getTranslation('blogs_description') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-description">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('photo') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('blogs_photo') }}</label>
                                     @if(!empty($model->photo))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->photo) }}" target="_blank">
@@ -104,7 +104,31 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('content') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('blogs_card_photo') }}</label>
+                                    @if(!empty($model->card_photo))
+                                        <div class="mb-2">
+                                            <a href="{{ asset($model->card_photo) }}" target="_blank">
+                                                {{ getTranslation('Current file') }}
+                                            </a>
+                                        </div>
+
+                                        @php
+                                            $extension = strtolower(pathinfo($model->card_photo, PATHINFO_EXTENSION));
+                                        @endphp
+
+                                        @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                            <div class="mb-2">
+                                                <img src="{{ asset($model->card_photo) }}" alt="photo" style="max-height:120px; border-radius:8px;">
+                                            </div>
+                                        @endif
+                                    @endif
+                                    <input type="file" class="form-control" name="card_photo">
+                                    @error('card_photo')
+                                        <p style="color:red">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">{{ getTranslation('blogs_content') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-content">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -136,17 +160,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('video link') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('blogs_video link') }}</label>
                                     <input type="text" class="form-control"
                                            name="video_link"
                                            value="{{ old('video_link', $model->video_link ?? '') }}"
-                                           placeholder="{{ getTranslation('video link') }}">
+                                           placeholder="{{ getTranslation('blogs_video link') }}">
                                     @error('video_link')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('footer text') }}</label>
+                                    <label class="form-label">{{ getTranslation('blogs_footer text') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-footer_text">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -175,11 +199,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('date') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('blogs_date') }}</label>
                                     <input type="date" class="form-control"
                                            name="date"
-                                           value="{{ old('date', $model->date ?? '') }}"
-                                           placeholder="{{ getTranslation('date') }}">
+                                           value="{{ $model->date->format('Y-m-d') }}"
+                                           placeholder="{{ getTranslation('blogs_date') }}">
                                     @error('date')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
@@ -192,7 +216,7 @@
                                                class="custom-control-input"
                                                value="1"
                                                {{ old('is_active', $model->is_active ?? 1) ? 'checked' : '' }}>
-                                        <span class="custom-control-label">{{ getTranslation('is active') }}</span>
+                                        <span class="custom-control-label">{{ getTranslation('blogs_is active') }}</span>
                                     </label>
 
                                     @error('is_active')

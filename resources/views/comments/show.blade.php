@@ -17,7 +17,7 @@
                     <tbody>
 
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('title') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('comments_title') }}</th>
                             <td>
                                 @if(is_array($model->title))
                                     <ul class="nav nav-tabs" id="show-tabs-title">
@@ -45,7 +45,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('description') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('comments_description') }}</th>
                             <td>
                                 @if(is_array($model->description))
                                     <ul class="nav nav-tabs" id="show-tabs-description">
@@ -73,7 +73,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('photo') }}</th>
+                            <th style="width:20%">{{ getTranslation('comments_name') }}</th>
+                            <td>{{ $model->name }}</td>
+                        </tr>
+                        <tr>
+                            <th style="width:20%">{{ getTranslation('comments_photo') }}</th>
                             <td>
                                 @if($model->photo)
                                     <a href="{{ asset($model->photo) }}" target="_blank">
@@ -95,7 +99,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('is active') }}</th>
+                            <th style="width:20%">{{ getTranslation('comments_is active') }}</th>
                             <td>{{ $model->is_active ? getTranslation('Активный') : getTranslation('Неактивный') }}</td>
                         </tr>
 

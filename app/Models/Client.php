@@ -9,14 +9,13 @@ class Client extends Model
 {
     
     use HasHistory;
-    protected $fillable = ['title','description', 'photo', 'is_active'];
+    protected $fillable = ['title', 'photo', 'is_active'];
     protected $casts = [
         'title' => 'array',
-        'description' => 'array',
         'is_active' => 'boolean',
     ];
 
-    protected $fileFields = ['photo'];
+    protected array $fileFields = ['photo'];
 
     public function getFileFields(): array
     {

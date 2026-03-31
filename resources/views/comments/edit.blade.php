@@ -22,7 +22,7 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('title') }}</label>
+                                    <label class="form-label">{{ getTranslation('comments_title') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-title">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('description') }}</label>
+                                    <label class="form-label">{{ getTranslation('comments_description') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-description">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -63,6 +63,7 @@
                                             </li>
                                         @endforeach
                                     </ul>
+                                    
                                     <div class="tab-content border border-top-0 p-2 mb-1">
                                         @foreach (getLanguage() as $lang)
                                             <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
@@ -80,7 +81,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('photo') }}</label>
+                                        <label class="col-form-label">{{ getTranslation('comments_name') }}</label>
+                                        <input type="text" class="form-control" name="name"
+                                            value="{{ old('name', $model->name ?? '') }}" placeholder="{{ getTranslation('comments_name') }}">
+                                        @error('name')
+                                            <p style="color:red">{{ $message }}</p>
+                                        @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label">{{ getTranslation('comments_photo') }}</label>
                                     @if(!empty($model->photo))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->photo) }}" target="_blank">
@@ -111,7 +120,7 @@
                                                class="custom-control-input"
                                                value="1"
                                                {{ old('is_active', $model->is_active ?? 1) ? 'checked' : '' }}>
-                                        <span class="custom-control-label">{{ getTranslation('is active') }}</span>
+                                        <span class="custom-control-label">{{ getTranslation('comments_is active') }}</span>
                                     </label>
 
                                     @error('is_active')

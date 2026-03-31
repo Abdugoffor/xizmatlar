@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- breadcrumb start -->
-    <div class="breadcrumb-area bg-overlay-2" style="background-image: url({{ $aboutCompany->banner_photo }})">
+    <div class="breadcrumb-area bg-overlay-2" style="background-image: url({{ asset(optional($aboutCompany)->banner_photo) }})">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -68,18 +68,6 @@
                                     <div class="col-xl-6 align-self-center">
                                         <div class="thumb">
                                             <img src="{{ asset($aboutCompany->photo_3) }}" alt="img" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="btn-wrap">
-                                    
-                                    <div class="author-wrap">
-                                        <div class="thumb">
-                                            <img src="{{ asset($aboutCompany->photo_4) }}" alt="img" />
-                                        </div>
-                                        <div class="details">
-                                            <img src="{{ asset('assets/img/about/signature.png') }}" alt="img" />
-                                            <p>{{ $aboutCompany->ceo_name }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -197,7 +185,7 @@
                         <h2 class="title">{{ getTranslation("OUR PROFESSIONAL TEAM") }}</h2>
                         <p>
                             {{ getTranslation("Dramatically enhance interactive metrics for reliable services.
-                                                    Proactively unleash fully researched e-commerce") }}
+                                                        Proactively unleash fully researched e-commerce") }}
                         </p>
                     </div>
                 </div>

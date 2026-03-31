@@ -40,7 +40,7 @@ class AboutCompany extends Model
         'founder_position' => 'array',
     ];
 
-    protected $fileFields = [
+    protected array $fileFields = [
         'experience_photo',
         'block_photo1',
         'block_photo2',

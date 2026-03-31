@@ -27,10 +27,10 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
-                                    <th class="text-center">{{ getTranslation('title') }}</th>
-                                    <th class="text-center">{{ getTranslation('description') }}</th>
-                                    <th class="text-center">{{ getTranslation('photo') }}</th>
-                                    <th class="text-center">{{ getTranslation('is active') }}</th>
+                                    <th class="text-center">{{ getTranslation('comments_title') }}</th>
+                                    <th class="text-center">{{ getTranslation('comments_description') }}</th>
+                                    <th class="text-center">{{ getTranslation('comments_photo') }}</th>
+                                    <th class="text-center">{{ getTranslation('comments_is active') }}</th>
 
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>
                                 </tr>
@@ -39,18 +39,18 @@
                                         <th class="text-center"></th>
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="title"
-                                                placeholder="{{ getTranslation('title') }}"
+                                                placeholder="{{ getTranslation('comments_title') }}"
                                                 value="{{ old('title', request('title')) }}">
                                         </th>
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="description"
-                                                placeholder="{{ getTranslation('description') }}"
+                                                placeholder="{{ getTranslation('comments_description') }}"
                                                 value="{{ old('description', request('description')) }}">
                                         </th>
                                         <th class="text-center"></th>
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="is_active"
-                                                placeholder="{{ getTranslation('is active') }}"
+                                                placeholder="{{ getTranslation('comments_is active') }}"
                                                 value="{{ old('is_active', request('is_active')) }}">
                                         </th>
 

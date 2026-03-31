@@ -65,7 +65,7 @@ class IndexController extends Controller
         $teams = Team::where('is_active', true)->get();
         $comments = Comment::where('is_active', true)->orderBy('id', 'desc')->get();
         $clients = Client::where('is_active', true)->orderBy('id', 'desc')->get();
-
+        
         return view('front.about.index', [
             'aboutCompany' => $aboutCompany,
             'aboutStatistics' => $aboutStatistic,

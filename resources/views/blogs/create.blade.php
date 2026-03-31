@@ -26,7 +26,7 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('title') }}</label>
+                                    <label class="form-label">{{ getTranslation('blogs_title') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-title">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('description') }}</label>
+                                    <label class="form-label">{{ getTranslation('blogs_description') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-description">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -78,7 +78,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('photo') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('blogs_photo') }}</label>
 
                                     <input type="file" class="form-control" name="photo">
                                     @error('photo')
@@ -86,7 +86,15 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('content') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('blogs_card_photo') }}</label>
+
+                                    <input type="file" class="form-control" name="card_photo">
+                                    @error('card_photo')
+                                        <p style="color:red">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">{{ getTranslation('blogs_content') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-content">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -114,15 +122,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('video link') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('blogs_video link') }}</label>
                                     <input type="text" class="form-control" name="video_link"
-                                        value="{{ old('video_link') }}" placeholder="{{ getTranslation('video link') }}">
+                                        value="{{ old('video_link') }}" placeholder="{{ getTranslation('blogs_video link') }}">
                                     @error('video_link')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('footer text') }}</label>
+                                    <label class="form-label">{{ getTranslation('blogs_footer text') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-footer_text">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -149,9 +157,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('date') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('blogs_date') }}</label>
                                     <input type="date" class="form-control" name="date" value="{{ old('date') }}"
-                                        placeholder="{{ getTranslation('date') }}">
+                                        placeholder="{{ getTranslation('blogs_date') }}">
                                     @error('date')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
@@ -162,7 +170,7 @@
                                         <input type="checkbox" name="is_active" class="custom-control-input" id="is_active"
                                             value="1" {{ old('is_active', 1) ? 'checked' : '' }}>
                                         <label class="custom-control-label" for="is_active">
-                                            {{ getTranslation('is active') }}
+                                            {{ getTranslation('blogs_is active') }}
                                         </label>
                                     </div>
 

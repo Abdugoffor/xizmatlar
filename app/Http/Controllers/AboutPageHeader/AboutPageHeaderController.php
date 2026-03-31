@@ -109,6 +109,12 @@ class AboutPageHeaderController extends Controller
             unset($data['photo_4']);
         }
 
+        if ($request->hasFile('banner_photo')) {
+            $data['banner_photo'] = FileUploadService::uploadFile($request->file('banner_photo'));
+        } else {
+            unset($data['banner_photo']);
+        }
+
         $model->update($data);
 
         return redirect()->route('aboutpageheaders.index')

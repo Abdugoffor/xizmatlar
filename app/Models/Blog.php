@@ -13,6 +13,7 @@ class Blog extends Model
         'title',
         'description',
         'photo',
+        'card_photo',
         'content',
         'video_link',
         'footer_text',
@@ -28,7 +29,7 @@ class Blog extends Model
         'is_active' => 'boolean',
     ];
 
-    protected $fileFields = ['photo'];
+    protected array $fileFields = ['photo', 'card_photo'];
 
     public function getFileFields(): array
     {

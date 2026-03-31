@@ -16,6 +16,7 @@ class StoreCommentRequest extends FormRequest
         $rules = [
             'title' => 'required|array',
             'description' => 'required|array',
+            'name' => 'required|string|max:255',
             'photo' => 'nullable|file|max:10240',
             'is_active' => 'required|boolean',
 

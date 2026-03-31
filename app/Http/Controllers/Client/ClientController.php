@@ -20,7 +20,7 @@ class ClientController extends Controller
             $search = '%' . $request->input('title') . '%';
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(title->>'{$locale}') LIKE lower(?)", [$search])
-                  ->orWhereRaw("lower(title->>'default') LIKE lower(?)", [$search]);
+                    ->orWhereRaw("lower(title->>'default') LIKE lower(?)", [$search]);
             });
         }
         if ($request->filled('is_active')) {
@@ -39,9 +39,9 @@ class ClientController extends Controller
     public function store(StoreClientRequest $request)
     {
         $data = $request->validated();
-        if (isset($data['title']) && is_array($data['title'])) {
-            $data['title']['default'] = reset($data['title']);
-        }
+        // if (isset($data['title']) && is_array($data['title'])) {
+        //     $data['title']['default'] = reset($data['title']);
+        // }
 
         if ($request->hasFile('photo')) {
             $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
@@ -69,9 +69,6 @@ class ClientController extends Controller
     {
         $model = Client::findOrFail($id);
         $data  = $request->validated();
-        if (isset($data['title']) && is_array($data['title'])) {
-            $data['title']['default'] = reset($data['title']);
-        }
 
         if ($request->hasFile('photo')) {
             $data['photo'] = FileUploadService::uploadFile($request->file('photo'));

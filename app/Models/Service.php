@@ -30,7 +30,7 @@ class Service extends Model
         'is_active' => 'boolean',
     ];
 
-    protected $fileFields = [
+    protected array $fileFields = [
         'cart_photo',
         'header_photo',
     ];

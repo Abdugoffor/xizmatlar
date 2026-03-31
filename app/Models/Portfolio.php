@@ -16,7 +16,7 @@ class Portfolio extends Model
         'is_active' => 'boolean',
     ];
 
-    protected $fileFields = ['photo'];
+    protected array $fileFields = ['photo'];
 
     public function getFileFields(): array
     {

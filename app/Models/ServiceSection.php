@@ -34,7 +34,7 @@ class ServiceSection extends Model
         'text_3' => 'array',
     ];
 
-    protected $fileFields = [
+    protected array $fileFields = [
         'photo_1',
         'photo_2',
         'photo_3',

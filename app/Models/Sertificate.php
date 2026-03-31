@@ -13,7 +13,7 @@ class Sertificate extends Model
         'title' => 'array',
     ];
 
-    protected $fileFields = ['file'];
+    protected array $fileFields = ['file'];
 
     public function getFileFields(): array
     {

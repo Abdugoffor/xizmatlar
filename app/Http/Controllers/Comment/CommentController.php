@@ -21,7 +21,7 @@ class CommentController extends Controller
             $search = '%' . $request->input('title') . '%';
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(title->>'{$locale}') LIKE lower(?)", [$search])
-                  ->orWhereRaw("lower(title->>'default') LIKE lower(?)", [$search]);
+                    ->orWhereRaw("lower(title->>'default') LIKE lower(?)", [$search]);
             });
         }
         if ($request->filled('description')) {
@@ -29,7 +29,7 @@ class CommentController extends Controller
             $search = '%' . $request->input('description') . '%';
             $query->where(function ($q) use ($search, $locale) {
                 $q->whereRaw("lower(description->>'{$locale}') LIKE lower(?)", [$search])
-                  ->orWhereRaw("lower(description->>'default') LIKE lower(?)", [$search]);
+                    ->orWhereRaw("lower(description->>'default') LIKE lower(?)", [$search]);
             });
         }
         if ($request->filled('is_active')) {
@@ -93,6 +93,7 @@ class CommentController extends Controller
         } else {
             unset($data['photo']);
         }
+
 
         $model->update($data);
 

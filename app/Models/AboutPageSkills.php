@@ -22,7 +22,7 @@ class AboutPageSkills extends Model
         'text' => 'array',
     ];
 
-    protected $fileFields = [
+    protected array $fileFields = [
         'photo_1',
         'photo_2',
     ];

@@ -17,7 +17,7 @@
                     <tbody>
 
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('title') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('blogs_title') }}</th>
                             <td>
                                 @if(is_array($model->title))
                                     <ul class="nav nav-tabs" id="show-tabs-title">
@@ -45,7 +45,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('description') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('blogs_description') }}</th>
                             <td>
                                 @if(is_array($model->description))
                                     <ul class="nav nav-tabs" id="show-tabs-description">
@@ -73,7 +73,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('photo') }}</th>
+                            <th style="width:20%">{{ getTranslation('blogs_photo') }}</th>
                             <td>
                                 @if($model->photo)
                                     <a href="{{ asset($model->photo) }}" target="_blank">
@@ -95,7 +95,29 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('content') }}</th>
+                            <th style="width:20%">{{ getTranslation('blogs_card_photo') }}</th>
+                            <td>
+                                @if($model->card_photo)
+                                    <a href="{{ asset($model->card_photo) }}" target="_blank">
+                                        {{ getTranslation('Open file') }}
+                                    </a>
+
+                                    @php
+                                        $extension = strtolower(pathinfo($model->card_photo, PATHINFO_EXTENSION));
+                                    @endphp
+
+                                    @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                        <div class="mt-2">
+                                            <img src="{{ asset($model->card_photo) }}" alt="card_photo" style="max-height:150px; border-radius:8px;">
+                                        </div>
+                                    @endif
+                                @else
+                                    -
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('blogs_content') }}</th>
                             <td>
                                 @if(is_array($model->content))
                                     <ul class="nav nav-tabs" id="show-tabs-content">
@@ -123,11 +145,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('video link') }}</th>
+                            <th style="width:20%">{{ getTranslation('blogs_video link') }}</th>
                             <td>{{ $model->video_link }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('footer text') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('blogs_footer text') }}</th>
                             <td>
                                 @if(is_array($model->footer_text))
                                     <ul class="nav nav-tabs" id="show-tabs-footer_text">
@@ -155,11 +177,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('date') }}</th>
+                            <th style="width:20%">{{ getTranslation('blogs_date') }}</th>
                             <td>{{ $model->date }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('is active') }}</th>
+                            <th style="width:20%">{{ getTranslation('blogs_is active') }}</th>
                             <td>{{ $model->is_active ? getTranslation('Активный') : getTranslation('Неактивный') }}</td>
                         </tr>
 

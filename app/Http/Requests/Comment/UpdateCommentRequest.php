@@ -16,6 +16,7 @@ class UpdateCommentRequest extends FormRequest
         $rules = [
             'title' => 'required|array',
             'description' => 'required|array',
+            'name' => 'required|string|max:255',
             'photo' => 'nullable|file|max:10240',
             'is_active' => 'required|boolean',
 
@@ -24,7 +25,7 @@ class UpdateCommentRequest extends FormRequest
         $rules = array_merge(
             $rules,
             validateTranslation('title'),
-                validateTranslation('description')
+            validateTranslation('description')
         );
 
         return $rules;

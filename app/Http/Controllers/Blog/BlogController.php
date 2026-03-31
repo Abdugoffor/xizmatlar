@@ -91,6 +91,9 @@ class BlogController extends Controller
         if ($request->hasFile('photo')) {
             $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         }
+        if ($request->hasFile('card_photo')) {
+            $data['card_photo'] = FileUploadService::uploadFile($request->file('card_photo'));
+        }
 
         $data['slug'] = Str::slug($data['title']['default']);
 
@@ -139,6 +142,12 @@ class BlogController extends Controller
             $data['photo'] = FileUploadService::uploadFile($request->file('photo'));
         } else {
             unset($data['photo']);
+        }
+
+        if ($request->hasFile('card_photo')) {
+            $data['card_photo'] = FileUploadService::uploadFile($request->file('card_photo'));
+        } else {
+            unset($data['card_photo']);
         }
 
         $model->update($data);

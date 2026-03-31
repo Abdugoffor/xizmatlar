@@ -22,12 +22,7 @@
                                     <h1 class="b-animate-2 title">
                                         {{ getLocale($carousel->description) }}
                                     </h1>
-                                    {{-- <div class="btn-wrap">
-                                        <a class="btn btn-base b-animate-4" href="service.html">
-                                            Load more
-                                            <i class="fa fa-arrow-right"></i>
-                                        </a>
-                                    </div> --}}
+
                                 </div>
                             </div>
                         </div>
@@ -76,9 +71,6 @@
                                     {{ getLocale($aboutCompany->description) }}
                                 </p>
                                 <div class="row">
-                                    <div class="col-md-4 mb-md-0 mb-4">
-                                        <img src="{{ $aboutCompany->experience_photo }}" alt="img" />
-                                    </div>
                                     <div class="col-md-8">
                                         <div class="media border-bottom-1 pb-3 mb-3">
                                             <div class="media-left me-3">
@@ -105,17 +97,9 @@
                                     </div>
                                 </div>
                                 <div class="btn-wrap border-top-0">
-                                    <a class="btn btn-base mb-md-0 mb-4" href="{{ route('about') }}">{{ getTranslation("Load More") }} <i
+                                    <a class="btn btn-base mb-md-0 mb-4"
+                                        href="{{ route('about') }}">{{ getTranslation("Load More") }} <i
                                             class="fa fa-arrow-right"></i></a>
-                                    <div class="media ms-md-3">
-                                        <div class="media-left me-3">
-                                            <img src="{{ $aboutCompany->founder_photo }}" alt="img" />
-                                        </div>
-                                        <div class="media-body">
-                                            <h6>{{ getLocale($aboutCompany->founder_name) }}</h6>
-                                            <p class="mb-0">{{ getLocale($aboutCompany->founder_position) }}</p>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -164,7 +148,8 @@
                                 <h5>{{ getLocale($service->title) }}</h5>
                                 <p>{{ getLocale($service->description) }}</p>
                                 <div class="btn-wrap">
-                                    <a class="read-more-text" href="{{ route('service.show', $service->slug) }}">{{ getTranslation('READ MORE') }}<i
+                                    <a class="read-more-text"
+                                        href="{{ route('service.show', $service->slug) }}">{{ getTranslation('READ MORE') }}<i
                                             class="ms-3 fa fa-arrow-right"></i></a>
                                 </div>
                             </div>
@@ -307,11 +292,6 @@
                         <h2 class="title">{{ getTranslation('Explore Our Recent Work') }}</h2>
                     </div>
                 </div>
-                {{-- <div class="col-lg-6 text-lg-end align-self-center">
-                    <div class="btn-wrap mb-5 mb-lg-0">
-                        <a class="btn btn-base" href="project.html">All Project <i class="fa fa-arrow-right"></i></a>
-                    </div>
-                </div> --}}
             </div>
         </div>
         <div class="project-slider owl-carousel">
@@ -407,8 +387,8 @@
                             <h2 class="title mb-4">{{ getTranslation('Book online skip the line Save time!') }}</h2>
                             <p>
                                 {{ getTranslation('Proin aliquam velit sed elit luctus, a luctus augue
-                                            pellentesque. Mauris gravida dui ut tincidunt blandit. Nulla
-                                            pretium') }}
+                                                pellentesque. Mauris gravida dui ut tincidunt blandit. Nulla
+                                                pretium') }}
                             </p>
                         </div>
                     </div>
@@ -495,7 +475,8 @@
                                 <p>
                                     {{ getLocale($blog->description) }}
                                 </p>
-                                <a class="read-more-text" href="{{ route('blog.show', $blog->slug) }}">{{ getTranslation('READ MORE') }} <i
+                                <a class="read-more-text"
+                                    href="{{ route('blog.show', $blog->slug) }}">{{ getTranslation('READ MORE') }} <i
                                         class="fa fa-arrow-right ms-2"></i></a>
                             </div>
                         </div>

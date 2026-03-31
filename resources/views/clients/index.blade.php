@@ -26,27 +26,27 @@
                         <table class="table text-nowrap table-bordered">
                             <thead>
                                 <tr>
-                                <th class="text-center" width="3%">№</th>
-                                <th class="text-center">{{ getTranslation('title') }}</th>
-                                <th class="text-center">{{ getTranslation('photo') }}</th>
-                                <th class="text-center">{{ getTranslation('is active') }}</th>
+                                    <th class="text-center" width="3%">№</th>
+                                    <th class="text-center">{{ getTranslation('clients_title') }}</th>
+                                    <th class="text-center">{{ getTranslation('clients_photo') }}</th>
+                                    <th class="text-center">{{ getTranslation('clients_is active') }}</th>
 
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>
                                 </tr>
                                 <form action="{{ route('clients.index') }}" method="get">
                                     <tr>
-                                <th class="text-center"></th>
-                                <th class="text-center">
-                                    <input type="text" class="form-control" name="title"
-                                           placeholder="{{ getTranslation('title') }}"
-                                           value="{{ old('title', request('title')) }}">
-                                </th>
-                                <th class="text-center"></th>
-                                <th class="text-center">
-                                    <input type="text" class="form-control" name="is_active"
-                                           placeholder="{{ getTranslation('is active') }}"
-                                           value="{{ old('is_active', request('is_active')) }}">
-                                </th>
+                                        <th class="text-center"></th>
+                                        <th class="text-center">
+                                            <input type="text" class="form-control" name="title"
+                                                placeholder="{{ getTranslation('clients_title') }}"
+                                                value="{{ old('title', request('title')) }}">
+                                        </th>
+                                        <th class="text-center"></th>
+                                        <th class="text-center">
+                                            <input type="text" class="form-control" name="is_active"
+                                                placeholder="{{ getTranslation('clients_is active') }}"
+                                                value="{{ old('is_active', request('is_active')) }}">
+                                        </th>
 
                                         <th class="text-center">
                                             <button class="btn btn-teal">{{ getTranslation('Поиск') }}</button>
@@ -58,9 +58,16 @@
                                 @foreach ($models as $model)
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
-                            <td>{{ getLocale($model->title) }}</td>
-                            <td>@if($model->photo) <a href="{{ asset($model->photo) }}" target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
-                            <td>
+                                        <td>
+                                            @if(is_array($model->title))
+                                                {{ getLocale($model->title) }}
+                                            @else
+                                                {{ $model->title }}
+                                            @endif
+                                        </td>
+                                        <td>@if($model->photo) <a href="{{ asset($model->photo) }}"
+                                        target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
+                                        <td>
                                             @if($model->is_active)
                                                 <span class="badge badge-success badge-pill">Active</span>
                                             @else
@@ -73,13 +80,17 @@
                                                 <a href="{{ route('clients.show', $model->id) }}" class="btn btn-outline-info">
                                                     <i class="icon-eye8"></i>
                                                 </a>
-                                                <a href="{{ route('clients.edit', $model->id) }}" class="btn btn-outline-success ml-2">
+                                                <a href="{{ route('clients.edit', $model->id) }}"
+                                                    class="btn btn-outline-success ml-2">
                                                     <i class="icon-pencil3"></i>
                                                 </a>
-                                                <button type="button" class="btn btn-outline-danger ml-2" data-toggle="modal" data-target="#delete_modal_{{ $model->id }}">
+                                                <button type="button" class="btn btn-outline-danger ml-2" data-toggle="modal"
+                                                    data-target="#delete_modal_{{ $model->id }}">
                                                     <i class="icon-trash"></i>
                                                 </button>
-                                                <a target="_blank" href="{{ route('history.show', ['model' => 'Client', 'id' => $model->id]) }}" class="btn btn-outline-warning ml-2">
+                                                <a target="_blank"
+                                                    href="{{ route('history.show', ['model' => 'Client', 'id' => $model->id]) }}"
+                                                    class="btn btn-outline-warning ml-2">
                                                     <i class="icon-history"></i>
                                                 </a>
                                             </div>
@@ -88,17 +99,21 @@
                                                 <div class="modal-dialog modal-dialog-centered modal-sm">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
                                                         </div>
                                                         <form action="{{ route('clients.destroy', $model->id) }}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <div class="modal-body">
-                                                                <h3 class="text-center">{{ getTranslation('Вы уверены, что хотите удалить?') }}</h3>
+                                                                <h3 class="text-center">
+                                                                    {{ getTranslation('Вы уверены, что хотите удалить?') }}</h3>
                                                             </div>
                                                             <div class="modal-footer d-flex justify-content-center pb-4">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ getTranslation('Закрыть') }}</button>
-                                                                <button type="submit" class="btn btn-danger">{{ getTranslation('Подтвердить') }}</button>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">{{ getTranslation('Закрыть') }}</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-danger">{{ getTranslation('Подтвердить') }}</button>
                                                             </div>
                                                         </form>
                                                     </div>

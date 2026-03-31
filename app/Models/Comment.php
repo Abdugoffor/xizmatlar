@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasHistory;
-    protected $fillable = ['title', 'description', 'photo', 'is_active'];
+    protected $fillable = ['title', 'description','name', 'photo', 'is_active'];
 
     protected $casts = [
         'title' => 'array',
@@ -16,7 +16,7 @@ class Comment extends Model
         'is_active' => 'boolean',
     ];
 
-    protected $fileFields = ['photo'];
+    protected array $fileFields = ['photo'];
 
     public function getFileFields(): array
     {
