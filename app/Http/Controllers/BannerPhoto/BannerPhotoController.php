@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\BannerPhoto;
 use App\Http\Requests\BannerPhoto\StoreBannerPhotoRequest;
 use App\Http\Requests\BannerPhoto\UpdateBannerPhotoRequest;
-use App\Http\Resources\BannerPhoto\BannerPhotoResource;
 use App\Services\FileUploadService;
 use Illuminate\Http\Request;
 

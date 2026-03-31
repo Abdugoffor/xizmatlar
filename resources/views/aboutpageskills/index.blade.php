@@ -23,8 +23,6 @@
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
                                     <th class="text-center">{{ getTranslation('title') }}</th>
-                                    <th class="text-center">{{ getTranslation('description') }}</th>
-                                    <th class="text-center">{{ getTranslation('text') }}</th>
                                     <th class="text-center">{{ getTranslation('photo 1') }}</th>
                                     <th class="text-center">{{ getTranslation('photo 2') }}</th>
 
@@ -36,8 +34,6 @@
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{{ getLocale($model->title) }}</td>
-                                        <td>{{ getLocale($model->description) }}</td>
-                                        <td>{{ getLocale($model->text) }}</td>
                                         <td>@if($model->photo_1) <a href="{{ asset($model->photo_1) }}"
                                         target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
                                         <td>@if($model->photo_2) <a href="{{ asset($model->photo_2) }}"

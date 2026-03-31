@@ -21,14 +21,6 @@
                                     <th class="text-center" width="3%">№</th>
                                     <th class="text-center">{{ getTranslation('title') }}</th>
                                     <th class="text-center">{{ getTranslation('description') }}</th>
-                                    <th class="text-center">{{ getTranslation('text') }}</th>
-                                    <th class="text-center">{{ getTranslation('experience text') }}</th>
-                                    <th class="text-center">{{ getTranslation('experience year') }}</th>
-                                    <th class="text-center">{{ getTranslation('photo 1') }}</th>
-                                    <th class="text-center">{{ getTranslation('photo 2') }}</th>
-                                    <th class="text-center">{{ getTranslation('photo 3') }}</th>
-                                    <th class="text-center">{{ getTranslation('photo 4') }}</th>
-                                    <th class="text-center">{{ getTranslation('ceo name') }}</th>
 
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>
                                 </tr>
@@ -39,18 +31,6 @@
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{{ getLocale($model->title) }}</td>
                                         <td>{{ getLocale($model->description) }}</td>
-                                        <td>{{ getLocale($model->text) }}</td>
-                                        <td>{{ getLocale($model->experience_text) }}</td>
-                                        <td>{{ $model->experience_year }}</td>
-                                        <td>@if($model->photo_1) <a href="{{ asset($model->photo_1) }}"
-                                        target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
-                                        <td>@if($model->photo_2) <a href="{{ asset($model->photo_2) }}"
-                                        target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
-                                        <td>@if($model->photo_3) <a href="{{ asset($model->photo_3) }}"
-                                        target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
-                                        <td>@if($model->photo_4) <a href="{{ asset($model->photo_4) }}"
-                                        target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
-                                        <td>{{ $model->ceo_name }}</td>
 
                                         <td>
                                             <div class="d-inline-flex gap-2">

@@ -295,6 +295,7 @@
                                 </li>
                             </ul>
                         </li>
+                        
                         @if (auth()->user()->role == 'admin')
                             <li class="nav-item">
                                 <a href="{{ route('users.index') }}"

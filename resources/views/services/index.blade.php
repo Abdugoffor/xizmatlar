@@ -31,9 +31,6 @@
                                     <th class="text-center">{{ getTranslation('description') }}</th>
                                     <th class="text-center">{{ getTranslation('cart photo') }}</th>
                                     <th class="text-center">{{ getTranslation('header photo') }}</th>
-                                    <th class="text-center">{{ getTranslation('content') }}</th>
-                                    <th class="text-center">{{ getTranslation('video link') }}</th>
-                                    <th class="text-center">{{ getTranslation('footer text') }}</th>
                                     <th class="text-center">{{ getTranslation('is main') }}</th>
                                     <th class="text-center">{{ getTranslation('is active') }}</th>
 
@@ -54,21 +51,6 @@
                                         </th>
                                         <th class="text-center"></th>
                                         <th class="text-center"></th>
-                                        <th class="text-center">
-                                            <input type="text" class="form-control" name="content"
-                                                placeholder="{{ getTranslation('content') }}"
-                                                value="{{ old('content', request('content')) }}">
-                                        </th>
-                                        <th class="text-center">
-                                            <input type="text" class="form-control" name="video_link"
-                                                placeholder="{{ getTranslation('video link') }}"
-                                                value="{{ old('video_link', request('video_link')) }}">
-                                        </th>
-                                        <th class="text-center">
-                                            <input type="text" class="form-control" name="footer_text"
-                                                placeholder="{{ getTranslation('footer text') }}"
-                                                value="{{ old('footer_text', request('footer_text')) }}">
-                                        </th>
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="is_main"
                                                 placeholder="{{ getTranslation('is main') }}"
@@ -96,11 +78,20 @@
                                         target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
                                         <td>@if($model->header_photo) <a href="{{ asset($model->header_photo) }}"
                                         target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
-                                        <td>{{ getLocale($model->content) }}</td>
-                                        <td>{{ $model->video_link }}</td>
-                                        <td>{{ getLocale($model->footer_text) }}</td>
-                                        <td>{{ $model->is_main ? '1' : '0' }}</td>
-                                        <td>{{ $model->is_active ? '1' : '0' }}</td>
+                                        <td>
+                                            @if($model->is_main)
+                                                <span class="badge badge-success badge-pill">Main</span>
+                                            @else
+                                                <span class="badge badge-danger badge-pill">Not main</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($model->is_active)
+                                                <span class="badge badge-success badge-pill">Active</span>
+                                            @else
+                                                <span class="badge badge-danger badge-pill">Inactive</span>
+                                            @endif
+                                        </td>
 
                                         <td>
                                             <div class="d-inline-flex gap-2">

@@ -11,7 +11,7 @@
                             <h2 class="page-title">{{ getTranslation("BLOG DETAILS") }}</h2>
                             <ul class="page-list">
                                 <li><a href="{{ route('home') }}">{{ getTranslation("Home") }}</a></li>
-                                <li><a href="{{ route('about') }}">{{ getTranslation("Blog") }}</a></li>
+                                <li><a href="{{ route('blog') }}">{{ getTranslation("Blog") }}</a></li>
                                 <li>{{ getTranslation("Blog Details") }}</li>
                             </ul>
                         </div>

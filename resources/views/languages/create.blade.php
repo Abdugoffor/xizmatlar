@@ -22,7 +22,7 @@
 
                                 <div class="form-group">
                                     <label class="col-form-label">{{ getTranslation('name') }}</label>
-                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}"
+                                    <input type="text" minlength="2" maxlength="5" class="form-control" name="name" value="{{ old('name') }}"
                                         placeholder="{{ getTranslation('name') }}">
                                     @error('name')
                                         <p style="color:red">{{ $message }}</p>

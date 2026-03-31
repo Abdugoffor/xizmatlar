@@ -60,7 +60,13 @@
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                             <td>{{ getLocale($model->title) }}</td>
                             <td>@if($model->photo) <a href="{{ asset($model->photo) }}" target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
-                            <td>{{ $model->is_active ? '1' : '0' }}</td>
+                            <td>
+                                            @if($model->is_active)
+                                                <span class="badge badge-success badge-pill">Active</span>
+                                            @else
+                                                <span class="badge badge-danger badge-pill">Inactive</span>
+                                            @endif
+                                        </td>
 
                                         <td>
                                             <div class="d-inline-flex gap-2">

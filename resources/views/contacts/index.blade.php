@@ -27,12 +27,7 @@
                                     <th class="text-center">{{ getTranslation('phone 2') }}</th>
                                     <th class="text-center">{{ getTranslation('email 1') }}</th>
                                     <th class="text-center">{{ getTranslation('email 2') }}</th>
-                                    <th class="text-center">{{ getTranslation('address') }}</th>
-                                    <th class="text-center">{{ getTranslation('tlegram') }}</th>
-                                    <th class="text-center">{{ getTranslation('facebook') }}</th>
-                                    <th class="text-center">{{ getTranslation('instagram') }}</th>
-                                    <th class="text-center">{{ getTranslation('watsapp') }}</th>
-                                    <th class="text-center">{{ getTranslation('linked') }}</th>
+                                    
 
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>
                                 </tr>
@@ -45,13 +40,7 @@
                                         <td>{{ $model->phone_2 }}</td>
                                         <td>{{ $model->email_1 }}</td>
                                         <td>{{ $model->email_2 }}</td>
-                                        <td>{{ getLocale($model->address) }}</td>
-                                        <td>{{ $model->tlegram }}</td>
-                                        <td>{{ $model->facebook }}</td>
-                                        <td>{{ $model->instagram }}</td>
-                                        <td>{{ $model->watsapp }}</td>
-                                        <td>{{ $model->linked }}</td>
-
+                                        
                                         <td>
                                             <div class="d-inline-flex gap-2">
                                                 <a href="{{ route('contacts.show', $model->id) }}" class="btn btn-outline-info">

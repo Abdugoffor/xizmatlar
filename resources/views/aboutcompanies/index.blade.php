@@ -21,19 +21,6 @@
                                     <th class="text-center" width="3%">№</th>
                                     <th class="text-center">{{ getTranslation('section label') }}</th>
                                     <th class="text-center">{{ getTranslation('title') }}</th>
-                                    <th class="text-center">{{ getTranslation('description') }}</th>
-                                    <th class="text-center">{{ getTranslation('experience year') }}</th>
-                                    <th class="text-center">{{ getTranslation('experience text') }}</th>
-                                    <th class="text-center">{{ getTranslation('experience photo') }}</th>
-                                    <th class="text-center">{{ getTranslation('block label1') }}</th>
-                                    <th class="text-center">{{ getTranslation('block title1') }}</th>
-                                    <th class="text-center">{{ getTranslation('block photo1') }}</th>
-                                    <th class="text-center">{{ getTranslation('block label2') }}</th>
-                                    <th class="text-center">{{ getTranslation('block title2') }}</th>
-                                    <th class="text-center">{{ getTranslation('block photo2') }}</th>
-                                    <th class="text-center">{{ getTranslation('founder name') }}</th>
-                                    <th class="text-center">{{ getTranslation('founder position') }}</th>
-                                    <th class="text-center">{{ getTranslation('founder photo') }}</th>
                                     <th class="text-center">{{ getTranslation('main photo') }}</th>
 
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>
@@ -45,23 +32,7 @@
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{{ getLocale($model->section_label) }}</td>
                                         <td>{{ getLocale($model->title) }}</td>
-                                        <td>{{ getLocale($model->description) }}</td>
-                                        <td>{{ $model->experience_year }}</td>
-                                        <td>{{ getLocale($model->experience_text) }}</td>
-                                        <td>@if($model->experience_photo) <a href="{{ asset($model->experience_photo) }}"
-                                        target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
-                                        <td>{{ getLocale($model->block_label1) }}</td>
-                                        <td>{{ getLocale($model->block_title1) }}</td>
-                                        <td>@if($model->block_photo1) <a href="{{ asset($model->block_photo1) }}"
-                                        target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
-                                        <td>{{ getLocale($model->block_label2) }}</td>
-                                        <td>{{ getLocale($model->block_title2) }}</td>
-                                        <td>@if($model->block_photo2) <a href="{{ asset($model->block_photo2) }}"
-                                        target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
-                                        <td>{{ getLocale($model->founder_name) }}</td>
-                                        <td>{{ getLocale($model->founder_position) }}</td>
-                                        <td>@if($model->founder_photo) <a href="{{ asset($model->founder_photo) }}"
-                                        target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
+                                        
                                         <td>@if($model->main_photo) <a href="{{ asset($model->main_photo) }}"
                                         target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
 

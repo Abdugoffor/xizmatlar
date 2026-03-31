@@ -25,15 +25,7 @@
                                     <th class="text-center" width="3%">№</th>
                                     <th class="text-center">{{ getTranslation('title') }}</th>
                                     <th class="text-center">{{ getTranslation('description') }}</th>
-                                    <th class="text-center">{{ getTranslation('label 1') }}</th>
-                                    <th class="text-center">{{ getTranslation('text 1') }}</th>
-                                    <th class="text-center">{{ getTranslation('photo 1') }}</th>
-                                    <th class="text-center">{{ getTranslation('label 2') }}</th>
-                                    <th class="text-center">{{ getTranslation('text 2') }}</th>
-                                    <th class="text-center">{{ getTranslation('photo 2') }}</th>
-                                    <th class="text-center">{{ getTranslation('label 3') }}</th>
-                                    <th class="text-center">{{ getTranslation('text 3') }}</th>
-                                    <th class="text-center">{{ getTranslation('photo 3') }}</th>
+                                    
                                     <th class="text-center">{{ getTranslation('main photo') }}</th>
 
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>
@@ -45,18 +37,7 @@
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
                                         <td>{{ getLocale($model->title) }}</td>
                                         <td>{{ getLocale($model->description) }}</td>
-                                        <td>{{ getLocale($model->label_1) }}</td>
-                                        <td>{{ getLocale($model->text_1) }}</td>
-                                        <td>@if($model->photo_1) <a href="{{ asset($model->photo_1) }}"
-                                        target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
-                                        <td>{{ getLocale($model->label_2) }}</td>
-                                        <td>{{ getLocale($model->text_2) }}</td>
-                                        <td>@if($model->photo_2) <a href="{{ asset($model->photo_2) }}"
-                                        target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
-                                        <td>{{ getLocale($model->label_3) }}</td>
-                                        <td>{{ getLocale($model->text_3) }}</td>
-                                        <td>@if($model->photo_3) <a href="{{ asset($model->photo_3) }}"
-                                        target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
+                                        
                                         <td>@if($model->main_photo) <a href="{{ asset($model->main_photo) }}"
                                         target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
 
