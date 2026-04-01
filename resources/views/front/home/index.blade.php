@@ -338,7 +338,7 @@
                                 </div>
                                 <div class="details">
                                     <h5>{{ getLocale($comment->title) }}</h5>
-                                    <p>Co-Founder</p>
+                                    <p>{{ $comment->name }}</p>
                                 </div>
                             </div>
                             <p>

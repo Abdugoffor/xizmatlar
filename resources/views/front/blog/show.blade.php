@@ -71,7 +71,7 @@
                                     <li>
                                         <div class="single-recent-post">
                                             <div class="thumb">
-                                                <img src="{{ asset($blogsSection->photo) }}" alt="img" />
+                                                <img src="{{ asset($blogsSection->card_photo) }}" alt="img" />
                                             </div>
                                             <div class="details">
                                                 <h6>
