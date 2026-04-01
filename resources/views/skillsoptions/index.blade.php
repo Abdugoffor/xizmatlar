@@ -30,8 +30,8 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
-                                    <th class="text-center">{{ getTranslation('title') }}</th>
-                                    <th class="text-center">{{ getTranslation('progress') }}</th>
+                                    <th class="text-center">{{ getTranslation('skillsoptions_title') }}</th>
+                                    <th class="text-center">{{ getTranslation('skillsoptions_progress') }}</th>
 
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>
                                 </tr>

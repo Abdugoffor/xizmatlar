@@ -22,7 +22,7 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('name') }}</label>
+                                    <label class="form-label">{{ getTranslation('teams_name') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-name">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('position') }}</label>
+                                    <label class="form-label">{{ getTranslation('teams_position') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-position">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('photo') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('teams_photo') }}</label>
                                     @if(!empty($model->photo))
                                         <div class="mb-2">
                                             <a href="{{ asset($model->photo) }}" target="_blank">
@@ -104,51 +104,51 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('linked') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('teams_linked') }}</label>
                                     <input type="text" class="form-control"
                                            name="linked"
                                            value="{{ old('linked', $model->linked ?? '') }}"
-                                           placeholder="{{ getTranslation('linked') }}">
+                                           placeholder="{{ getTranslation('teams_linked') }}">
                                     @error('linked')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('telegram') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('teams_telegram') }}</label>
                                     <input type="text" class="form-control"
                                            name="telegram"
                                            value="{{ old('telegram', $model->telegram ?? '') }}"
-                                           placeholder="{{ getTranslation('telegram') }}">
+                                           placeholder="{{ getTranslation('teams_telegram') }}">
                                     @error('telegram')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('watsapp') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('teams_watsapp') }}</label>
                                     <input type="text" class="form-control"
                                            name="watsapp"
                                            value="{{ old('watsapp', $model->watsapp ?? '') }}"
-                                           placeholder="{{ getTranslation('watsapp') }}">
+                                           placeholder="{{ getTranslation('teams_watsapp') }}">
                                     @error('watsapp')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('facebook') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('teams_facebook') }}</label>
                                     <input type="text" class="form-control"
                                            name="facebook"
                                            value="{{ old('facebook', $model->facebook ?? '') }}"
-                                           placeholder="{{ getTranslation('facebook') }}">
+                                           placeholder="{{ getTranslation('teams_facebook') }}">
                                     @error('facebook')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('email') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('teams_email') }}</label>
                                     <input type="email" class="form-control"
                                            name="email"
                                            value="{{ old('email', $model->email ?? '') }}"
-                                           placeholder="{{ getTranslation('email') }}">
+                                           placeholder="{{ getTranslation('teams_email') }}">
                                     @error('email')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror

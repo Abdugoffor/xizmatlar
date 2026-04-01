@@ -27,14 +27,14 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
-                                    <th class="text-center">{{ getTranslation('name') }}</th>
-                                    <th class="text-center">{{ getTranslation('position') }}</th>
-                                    <th class="text-center">{{ getTranslation('photo') }}</th>
-                                    <th class="text-center">{{ getTranslation('linked') }}</th>
-                                    <th class="text-center">{{ getTranslation('telegram') }}</th>
-                                    <th class="text-center">{{ getTranslation('watsapp') }}</th>
-                                    <th class="text-center">{{ getTranslation('facebook') }}</th>
-                                    <th class="text-center">{{ getTranslation('email') }}</th>
+                                    <th class="text-center">{{ getTranslation('teams_name') }}</th>
+                                    <th class="text-center">{{ getTranslation('teams_position') }}</th>
+                                    <th class="text-center">{{ getTranslation('teams_photo') }}</th>
+                                    <th class="text-center">{{ getTranslation('teams_linked') }}</th>
+                                    <th class="text-center">{{ getTranslation('teams_telegram') }}</th>
+                                    <th class="text-center">{{ getTranslation('teams_watsapp') }}</th>
+                                    <th class="text-center">{{ getTranslation('teams_facebook') }}</th>
+                                    <th class="text-center">{{ getTranslation('teams_email') }}</th>
                                     <th class="text-center">{{ getTranslation('is active') }}</th>
 
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>

@@ -27,9 +27,9 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
-                                    <th class="text-center">{{ getTranslation('title') }}</th>
-                                    <th class="text-center">{{ getTranslation('description') }}</th>
-                                    <th class="text-center">{{ getTranslation('photo') }}</th>
+                                    <th class="text-center">{{ getTranslation('portfolios_title') }}</th>
+                                    <th class="text-center">{{ getTranslation('portfolios_description') }}</th>
+                                    <th class="text-center">{{ getTranslation('portfolios_photo') }}</th>
                                     <th class="text-center">{{ getTranslation('is active') }}</th>
 
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>
@@ -39,12 +39,12 @@
                                         <th class="text-center"></th>
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="title"
-                                                placeholder="{{ getTranslation('title') }}"
+                                                placeholder="{{ getTranslation('portfolios_title') }}"
                                                 value="{{ old('title', request('title')) }}">
                                         </th>
                                         <th class="text-center">
                                             <input type="text" class="form-control" name="description"
-                                                placeholder="{{ getTranslation('description') }}"
+                                                placeholder="{{ getTranslation('portfolios_description') }}"
                                                 value="{{ old('description', request('description')) }}">
                                         </th>
                                         <th class="text-center"></th>

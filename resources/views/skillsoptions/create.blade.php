@@ -21,7 +21,7 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label class="form-label">{{ getTranslation('title') }}</label>
+                                    <label class="form-label">{{ getTranslation('skillsoptions_title') }}</label>
                                     <ul class="nav nav-tabs mt-1" id="tabs-title">
                                         @foreach (getLanguage() as $lang)
                                             <li class="nav-item">
@@ -46,9 +46,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('progress') }}</label>
+                                    <label class="col-form-label">{{ getTranslation('skillsoptions_progress') }}</label>
                                     <input type="number" min="1" max="100" class="form-control" name="progress"
-                                        value="{{ old('progress') }}" placeholder="{{ getTranslation('progress') }}">
+                                        value="{{ old('progress') }}" placeholder="{{ getTranslation('skillsoptions_progress') }}">
                                     @error('progress')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror

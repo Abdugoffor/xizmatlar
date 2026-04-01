@@ -22,9 +22,9 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
-                                    <th class="text-center">{{ getTranslation('title') }}</th>
-                                    <th class="text-center">{{ getTranslation('description') }}</th>
-                                    <th class="text-center">{{ getTranslation('photo') }}</th>
+                                    <th class="text-center">{{ getTranslation('statistics_title') }}</th>
+                                    <th class="text-center">{{ getTranslation('statistics_description') }}</th>
+                                    <th class="text-center">{{ getTranslation('statistics_photo') }}</th>
                                     <th class="text-center">{{ getTranslation('is active') }}</th>
 
                                     <th class="text-center">{{ getTranslation('Действия') }}</th>

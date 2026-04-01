@@ -17,7 +17,7 @@
                     <tbody>
 
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('name') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('teams_name') }}</th>
                             <td>
                                 @if(is_array($model->name))
                                     <ul class="nav nav-tabs" id="show-tabs-name">
@@ -45,7 +45,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('position') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('teams_position') }}</th>
                             <td>
                                 @if(is_array($model->position))
                                     <ul class="nav nav-tabs" id="show-tabs-position">
@@ -73,7 +73,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('photo') }}</th>
+                            <th style="width:20%">{{ getTranslation('teams_photo') }}</th>
                             <td>
                                 @if($model->photo)
                                     <a href="{{ asset($model->photo) }}" target="_blank">
@@ -95,23 +95,23 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('linked') }}</th>
+                            <th style="width:20%">{{ getTranslation('teams_linked') }}</th>
                             <td>{{ $model->linked }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('telegram') }}</th>
+                            <th style="width:20%">{{ getTranslation('teams_telegram') }}</th>
                             <td>{{ $model->telegram }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('watsapp') }}</th>
+                            <th style="width:20%">{{ getTranslation('teams_watsapp') }}</th>
                             <td>{{ $model->watsapp }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('facebook') }}</th>
+                            <th style="width:20%">{{ getTranslation('teams_facebook') }}</th>
                             <td>{{ $model->facebook }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('email') }}</th>
+                            <th style="width:20%">{{ getTranslation('teams_email') }}</th>
                             <td>{{ $model->email }}</td>
                         </tr>
                         <tr>

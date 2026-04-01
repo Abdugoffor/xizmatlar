@@ -17,7 +17,7 @@
                     <tbody>
 
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('title') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('servicesections_title') }}</th>
                             <td>
                                 @if(is_array($model->title))
                                     <ul class="nav nav-tabs" id="show-tabs-title">
@@ -45,7 +45,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('description') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('servicesections_description') }}</th>
                             <td>
                                 @if(is_array($model->description))
                                     <ul class="nav nav-tabs" id="show-tabs-description">
@@ -73,7 +73,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('label 1') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('servicesections_label 1') }}</th>
                             <td>
                                 @if(is_array($model->label_1))
                                     <ul class="nav nav-tabs" id="show-tabs-label_1">
@@ -101,7 +101,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('text 1') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('servicesections_text 1') }}</th>
                             <td>
                                 @if(is_array($model->text_1))
                                     <ul class="nav nav-tabs" id="show-tabs-text_1">
@@ -129,7 +129,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('photo 1') }}</th>
+                            <th style="width:20%">{{ getTranslation('servicesections_photo 1') }}</th>
                             <td>
                                 @if($model->photo_1)
                                     <a href="{{ asset($model->photo_1) }}" target="_blank">
@@ -151,7 +151,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('label 2') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('servicesections_label 2') }}</th>
                             <td>
                                 @if(is_array($model->label_2))
                                     <ul class="nav nav-tabs" id="show-tabs-label_2">
@@ -179,7 +179,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('text 2') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('servicesections_text 2') }}</th>
                             <td>
                                 @if(is_array($model->text_2))
                                     <ul class="nav nav-tabs" id="show-tabs-text_2">
@@ -207,7 +207,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('photo 2') }}</th>
+                            <th style="width:20%">{{ getTranslation('servicesections_photo 2') }}</th>
                             <td>
                                 @if($model->photo_2)
                                     <a href="{{ asset($model->photo_2) }}" target="_blank">
@@ -229,7 +229,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('label 3') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('servicesections_label 3') }}</th>
                             <td>
                                 @if(is_array($model->label_3))
                                     <ul class="nav nav-tabs" id="show-tabs-label_3">
@@ -257,7 +257,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('text 3') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('servicesections_text 3') }}</th>
                             <td>
                                 @if(is_array($model->text_3))
                                     <ul class="nav nav-tabs" id="show-tabs-text_3">
@@ -285,7 +285,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('photo 3') }}</th>
+                            <th style="width:20%">{{ getTranslation('servicesections_photo 3') }}</th>
                             <td>
                                 @if($model->photo_3)
                                     <a href="{{ asset($model->photo_3) }}" target="_blank">
@@ -307,7 +307,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('main photo') }}</th>
+                            <th style="width:20%">{{ getTranslation('servicesections_main photo') }}</th>
                             <td>
                                 @if($model->main_photo)
                                     <a href="{{ asset($model->main_photo) }}" target="_blank">

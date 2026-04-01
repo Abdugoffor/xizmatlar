@@ -17,7 +17,7 @@
                     <tbody>
 
                         <tr>
-                            <th style="width:20%;vertical-align:top">{{ getTranslation('title') }}</th>
+                            <th style="width:20%;vertical-align:top">{{ getTranslation('skillsoptions_title') }}</th>
                             <td>
                                 @if(is_array($model->title))
                                     <ul class="nav nav-tabs" id="show-tabs-title">
@@ -45,7 +45,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('progress') }}</th>
+                            <th style="width:20%">{{ getTranslation('skillsoptions_progress') }}</th>
                             <td>{{ $model->progress }}</td>
                         </tr>
 
