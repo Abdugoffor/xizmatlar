@@ -1,5 +1,5 @@
 @extends('layouts.front')
-@section('title', getTranslation('Home page title'))
+@section('title', getTranslation('Home title'))
 @section('content')
 
     <!-- banner start -->
@@ -299,7 +299,7 @@
                 <div class="single-project-inner" style="background-image: url({{ $portfolio->photo }})">
                     <div class="details">
                         <span class="cat">{{ getLocale($portfolio->title) }}</span>
-                        <h5>{{ getLocale($prportfolioogres->description) }}</h5>
+                        <h5>{{ getLocale($portfolio->description) }}</h5>
                     </div>
                 </div>
             @endforeach

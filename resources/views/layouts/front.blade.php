@@ -249,7 +249,7 @@
                 <div class="navbar-top mb-0 px-4 d-lg-block d-none">
                     <div class="container p-lg-0">
                         <div class="row">
-                            <div class="col-lg-7 col-md-9 text-md-start text-center">
+                            <div class="col-lg-5 col-md-5 text-md-start text-center">
                                 <ul class="topbar-left m-0">
                                     <li>
                                         <i class="fa fa-envelope"></i>
@@ -261,8 +261,8 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-lg-5 col-md-3">
-                                <ul class="topbar-right social-area text-md-end text-center">
+                            <div class="col-lg-7 col-md-7">
+                                <ul class="topbar-right social-area text-md-end text-center" style="flex-wrap: nowrap; align-items: center;">
 
                                     {{-- === TIL ALMASHTIRISH DROPDOWN === --}}
                                     <li class="lang-dropdown" id="langDropdown">
