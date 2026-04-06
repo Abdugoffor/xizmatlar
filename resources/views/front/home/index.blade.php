@@ -1,11 +1,11 @@
 @extends('layouts.front')
-@section('title', getTranslation('Logisk - Transport & Logistics Service HTML Template'))
+@section('title', getTranslation('Home page title'))
 @section('content')
 
     <!-- banner start -->
     <div class="position-relative">
         <div class="slider slider-for banner-slider-main">
-            @foreach($carousels as $carousel)
+            @foreach ($carousels as $carousel)
                 <div class="item" style="background: url({{ asset($carousel->photo) }})">
                     <div class="container">
                         <div class="row">
@@ -33,7 +33,7 @@
 
         <div class="container position-relative">
             <div class="slider slider-nav banner-slider-main-nav">
-                @foreach($carousels as $carousel)
+                @foreach ($carousels as $carousel)
                     <div class="item">
                         <img src="{{ asset($carousel->photo) }}" alt="{{ getLocale($carousel->title) }}" />
                     </div>
@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="btn-wrap border-top-0">
                                     <a class="btn btn-base mb-md-0 mb-4"
-                                        href="{{ route('about') }}">{{ getTranslation("Load More") }} <i
+                                        href="{{ route('about') }}">{{ getTranslation('Load More') }} <i
                                             class="fa fa-arrow-right"></i></a>
                                 </div>
                             </div>
@@ -136,7 +136,6 @@
             </div>
             <div class="row">
                 @foreach ($services as $service)
-
                     <div class="col-lg-3">
                         <div class="single-service-wrap-2 style-2" style="background-image: url(assets/img/home-3/18.png)">
                             <div class="thumb">
@@ -168,15 +167,16 @@
                 <div class="row">
                     <div class="col-lg-5 order-lg-2">
                         <div class="about-thumb-wrap mb-lg-0 mb-5">
-                            <img class="hover-bg margin-bottom--150" src="{{ $serviceSections->main_photo }}" alt="img" />
+                            <img class="hover-bg margin-bottom--150" src="{{ $serviceSections->main_photo }}"
+                                alt="img" />
                         </div>
                     </div>
                     <div class="col-lg-7 order-lg-1 align-self-center">
                         <div class="about-inner-wrap ms-0 ps-lg-4 pb-5 mb-4">
                             <div class="section-title style-white mb-0">
                                 <h6 class="sub-title text-base mb-3">
-                                    <svg class="me-2" width="40" height="12" viewBox="0 0 40 12" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="me-2" width="40" height="12" viewBox="0 0 40 12"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect x="20" width="20" height="2" fill="#1869FE" />
                                         <rect y="10" width="40" height="2" fill="#1869FE" />
                                     </svg>
@@ -296,7 +296,6 @@
         </div>
         <div class="project-slider owl-carousel">
             @foreach ($portfolios as $portfolio)
-
                 <div class="single-project-inner" style="background-image: url({{ $portfolio->photo }})">
                     <div class="details">
                         <span class="cat">{{ getLocale($portfolio->title) }}</span>
@@ -386,48 +385,39 @@
                             </h6>
                             <h2 class="title mb-4">{{ getTranslation('Book online skip the line Save time!') }}</h2>
                             <p>
-                                {{ getTranslation('Proin aliquam velit sed elit luctus, a luctus augue
-                                                pellentesque. Mauris gravida dui ut tincidunt blandit. Nulla
-                                                pretium') }}
+                                {{ getTranslation('Proin aliquam velit sed elit luctus, a luctus augue pellentesque. Mauris gravida dui ut tincidunt blandit. Nulla pretium') }}
                             </p>
                         </div>
                     </div>
                     <div class="col-lg-6 ps-xl-5">
-                        <div class="quote-wrap ms-xl-5" style="background: var(--main-color)">
-                            <h4 class="mb-4">Request a Quote</h4>
-                            <div class="single-input-inner style-bg border-radius-5">
-                                <input type="text" placeholder="Your Name" />
-                            </div>
-                            <div class="single-input-inner style-bg border-radius-5">
-                                <input type="text" placeholder="Your Name" />
-                            </div>
-                            <p class="text-white mb-2">DIST (Miles):</p>
-                            <div class="single-input-progress progress mb-4">
-                                <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="single-select-inner style-bg border-radius-5">
-                                        <select class="single-select">
-                                            <option>Select</option>
-                                            <option value="1">Some option</option>
-                                            <option value="2">Another option</option>
-                                        </select>
-                                    </div>
+                        <form action="" method="post">
+
+                            <div class="quote-wrap ms-xl-5" style="background: var(--main-color)">
+                                <h4 class="mb-4">{{ getTranslation('Request a Quote') }}</h4>
+                                <div class="single-input-inner style-bg border-radius-5">
+                                    <label><i class="fa fa-user"></i></label>
+                                    <input type="text" name="name"
+                                        placeholder="{{ getTranslation('Your name') }}" />
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="single-select-inner style-bg border-radius-5">
-                                        <select class="single-select">
-                                            <option>Select</option>
-                                            <option value="1">Some option</option>
-                                            <option value="2">Another option</option>
-                                        </select>
-                                    </div>
+                                <div class="single-input-inner style-bg border-radius-5">
+                                    <label><i class="fa fa-envelope"></i></label>
+                                    <input type="text" name="email"
+                                        placeholder="{{ getTranslation('Your email') }}" />
                                 </div>
+                                <div class="single-input-inner style-bg border-radius-5">
+                                    <label><i class="fas fa-calculator"></i></label>
+                                    <input type="text" name="phone"
+                                        placeholder="{{ getTranslation('Phone number') }}" />
+                                </div>
+                                <div class="single-input-inner style-bg border-radius-5">
+                                    <label><i class="fas fa-pencil-alt"></i></label>
+                                    <textarea name="text" placeholder="Write massage"></textarea>
+                                </div>
+                                <button class="btn btn-dark" type="submit">{{ getTranslation('Request a Quote') }} <i
+                                        class="fa fa-arrow-right"></i></button>
                             </div>
-                            <a class="btn btn-dark" href="#">Request a Quote <i class="fa fa-arrow-right"></i></a>
-                        </div>
+
+                        </form>
                     </div>
                 </div>
             </div>

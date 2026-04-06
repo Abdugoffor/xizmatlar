@@ -108,7 +108,7 @@
             top: calc(100% + 6px);
             background: #fff;
             border-radius: 6px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
             min-width: 100px;
             z-index: 9999;
             overflow: hidden;
@@ -141,7 +141,7 @@
         /* Mobile menu ichidagi til */
         .mobile-lang-switcher {
             padding: 10px 15px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .mobile-lang-switcher span {
@@ -163,7 +163,7 @@
             font-size: 13px;
             font-weight: 500;
             text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             transition: all 0.2s;
         }
 
@@ -176,9 +176,9 @@
 </head>
 
 <body>
-@php
-    $logo = $logo?->logo ?? 'assets/img/home-3/2.png';
-@endphp
+    @php
+        $logo = $logo?->logo ?? 'assets/img/home-3/2.png';
+    @endphp
     <!-- ========== MOBILE NAVBAR (d-lg-none) ========== -->
     <header class="navbar-area navbar-area-3 d-lg-none d-block">
         <nav class="navbar navbar-expand-lg px-4">
@@ -253,11 +253,11 @@
                                 <ul class="topbar-left m-0">
                                     <li>
                                         <i class="fa fa-envelope"></i>
-                                        {{ getTranslation("support@gmail.com") }}
+                                        {{ getTranslation('support@gmail.com') }}
                                     </li>
                                     <li>
                                         <i class="far fa-clock"></i>
-                                        {{ getTranslation("Mon - Fri 09: AM - 05: PM") }}
+                                        {{ getTranslation('Mon - Fri 09: AM - 05: PM') }}
                                     </li>
                                 </ul>
                             </div>
@@ -289,21 +289,36 @@
                                                 d="M6 0C7.0625 0 8.0625 0.28125 9 0.8125C9.90625 1.375 10.625 2.09375 11.1875 3C11.7188 3.9375 12 4.9375 12 6C12 6.625 11.9062 7.15625 11.7812 7.625C11.625 8.125 11.3438 8.71875 10.9375 9.4375C10.625 9.9375 10.0312 10.9375 9.125 12.375L7.28125 15.2812C7.09375 15.5938 6.8125 15.8125 6.5 15.9375C6.15625 16.0625 5.8125 16.0625 5.5 15.9375C5.15625 15.8125 4.90625 15.5938 4.71875 15.2812L2.875 12.375C1.9375 10.9375 1.34375 9.96875 1.0625 9.46875C0.625 8.71875 0.34375 8.125 0.21875 7.625C0.0625 7.15625 0 6.625 0 6C0 4.9375 0.25 3.9375 0.8125 3C1.34375 2.09375 2.0625 1.375 3 0.8125C3.90625 0.28125 4.90625 0 6 0ZM6 14.5L7.96875 11.375C8.78125 10.0625 9.34375 9.15625 9.625 8.71875C9.96875 8.09375 10.1875 7.625 10.3125 7.25C10.4375 6.90625 10.5 6.5 10.5 6C10.5 5.1875 10.2812 4.4375 9.875 3.75C9.46875 3.0625 8.9375 2.53125 8.25 2.125C7.5625 1.71875 6.8125 1.5 6 1.5C5.1875 1.5 4.4375 1.71875 3.75 2.125C3.0625 2.53125 2.5 3.0625 2.09375 3.75C1.6875 4.4375 1.5 5.1875 1.5 6C1.5 6.5 1.53125 6.90625 1.65625 7.28125C1.78125 7.65625 2.03125 8.125 2.40625 8.75C2.65625 9.1875 3.1875 10.0938 4.03125 11.4062C4.8125 12.6562 5.46875 13.6875 6 14.5ZM3.5 6C3.5 6.6875 3.71875 7.28125 4.21875 7.78125C4.71875 8.28125 5.3125 8.5 6 8.5C6.6875 8.5 7.25 8.28125 7.75 7.78125C8.25 7.28125 8.5 6.6875 8.5 6C8.5 5.3125 8.25 4.75 7.75 4.25C7.25 3.75 6.6875 3.5 6 3.5C5.3125 3.5 4.71875 3.75 4.21875 4.25C3.71875 4.75 3.5 5.3125 3.5 6Z"
                                                 fill="#1869fe" />
                                         </svg>
-                                        <span class="ms-1">{{ getTranslation("Richardson, California 62639") }}</span>
+                                        <span
+                                            class="ms-1">{{ getTranslation('Richardson, California 62639') }}</span>
                                         <span class="ps-3">|</span>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                                        <a href="{{ $contact->facebook }}" target="_blank">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                                        <a href="{{ $contact->instagram }}" target="_blank">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                                        <a href="{{ $contact->linked }}" target="_blank">
+                                            <i class="fab fa-linkedin-in"></i>
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                                        <a href="{{ $contact->tlegram }}" target="_blank">
+                                            <i class="fab fa-telegram"></i>
+                                        </a>
                                     </li>
+                                    <li>
+                                        <a href="{{ $contact->watsapp }}" target="_blank">
+                                            <i class="fab fa-whatsapp"></i>
+                                        </a>
+                                    </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -358,8 +373,9 @@
                                     <img src="/assets/img/p-icon.png" alt="img" />
                                 </div>
                                 <div class="media-body">
-                                    <span class="title">{{ getTranslation("Emergency") }}</span> <br />
-                                    <span class="phone-number text-white">{{ getTranslation("+56 (201) 555-0124") }}</span>
+                                    <span class="title">{{ getTranslation('Emergency') }}</span> <br />
+                                    <span
+                                        class="phone-number text-white">{{ getTranslation('+56 (201) 555-0124') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -385,20 +401,26 @@
                         </h4>
                         <div class="details">
                             <p>
-                                {{ getTranslation("Quickly supply alternative strategic theme areas vis-a-vis B2C mindshare. Objectively repurpose stand-alone synergy via user-centric architectures") }}
+                                {{ getTranslation('Quickly supply alternative strategic theme areas vis-a-vis B2C mindshare. Objectively repurpose stand-alone synergy via user-centric architectures') }}
                             </p>
                             <ul class="social-media style-bg-light">
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="{{ $contact->facebook }}" target="_blank"><i
+                                            class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="{{ $contact->instagram }}" target="_blank"><i
+                                            class="fab fa-instagram"></i></a></li>
+                                <li><a href="{{ $contact->linked }}" target="_blank"><i
+                                            class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="{{ $contact->tlegram }}" target="_blank"><i
+                                            class="fab fa-telegram"></i></a></li>
+                                <li><a href="{{ $contact->watsapp }}" target="_blank"><i
+                                            class="fab fa-whatsapp"></i></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-2 col-md-6">
                     <div class="widget widget_nav_menu">
-                        <h4 class="widget-title">{{ getTranslation("Menyu") }}</h4>
+                        <h4 class="widget-title">{{ getTranslation('Menyu') }}</h4>
                         <ul>
                             <li><a href="{{ route('home') }}">{{ getTranslation('Home') }}</a></li>
                             <li><a href="{{ route('about') }}">{{ getTranslation('About') }}</a></li>
@@ -411,7 +433,7 @@
                 </div>
                 <div class="col-xl-2 col-md-6">
                     <div class="widget widget_nav_menu">
-                        <h4 class="widget-title">{{ getTranslation("Services") }}</h4>
+                        <h4 class="widget-title">{{ getTranslation('Services') }}</h4>
                         <ul>
                             @foreach ($services as $service)
                                 <li>
@@ -434,13 +456,13 @@
             <div class="row">
                 <div class="col-lg-6 text-lg-start text-center">
                     <div class="copyright-area">
-                        <p>{{ getTranslation("© Copyright 2023 All right reserved") }}</p>
+                        <p>{{ getTranslation('© Copyright 2023 All right reserved') }}</p>
                     </div>
                 </div>
                 <div class="col-lg-6 text-lg-end text-center">
                     <ul>
-                        <li><a href="#">{{ getTranslation("Terms & Condition") }}</a></li>
-                        <li><a href="#">{{ getTranslation("Privacy & Policy") }}</a></li>
+                        <li><a href="#">{{ getTranslation('Terms & Condition') }}</a></li>
+                        <li><a href="#">{{ getTranslation('Privacy & Policy') }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -477,39 +499,106 @@
         var rightArrow = "<img src='{{ asset('assets/img/icon/right-arrow.png') }}'>";
 
         $('.banner-slider').owlCarousel({
-            animateOut: 'fadeOut', animateIn: 'fadeIn',
-            loop: true, autoplay: true, autoplayTimeout: 10000,
-            nav: true, dots: false, items: 1, smartSpeed: 1800,
+            animateOut: 'fadeOut',
+            animateIn: 'fadeIn',
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 10000,
+            nav: true,
+            dots: false,
+            items: 1,
+            smartSpeed: 1800,
             navText: [leftArrow, rightArrow],
         });
 
         $('.team-slider').owlCarousel({
-            margin: 30, nav: true, dots: false, smartSpeed: 1500,
-            items: 3, loop: true, autoplay: true,
+            margin: 30,
+            nav: true,
+            dots: false,
+            smartSpeed: 1500,
+            items: 3,
+            loop: true,
+            autoplay: true,
             navText: [leftArrow, rightArrow],
-            responsive: { 769: {items:3}, 577: {items:2}, 0: {items:1} },
+            responsive: {
+                769: {
+                    items: 3
+                },
+                577: {
+                    items: 2
+                },
+                0: {
+                    items: 1
+                }
+            },
         });
 
         $('.testimonial-slider').owlCarousel({
-            margin: 30, nav: true, dots: false, smartSpeed: 1500,
-            items: 3, loop: true, autoplay: true,
+            margin: 30,
+            nav: true,
+            dots: false,
+            smartSpeed: 1500,
+            items: 3,
+            loop: true,
+            autoplay: true,
             navText: [leftArrow, rightArrow],
-            responsive: { 769: {items:3}, 577: {items:2}, 0: {items:1} },
+            responsive: {
+                769: {
+                    items: 3
+                },
+                577: {
+                    items: 2
+                },
+                0: {
+                    items: 1
+                }
+            },
         });
 
         $('.feature-slider').owlCarousel({
-            margin: 30, nav: true, dots: false, smartSpeed: 1500,
-            items: 3, loop: true, autoplay: true,
+            margin: 30,
+            nav: true,
+            dots: false,
+            smartSpeed: 1500,
+            items: 3,
+            loop: true,
+            autoplay: true,
             navText: [leftArrow, rightArrow],
-            responsive: { 769: {items:3}, 577: {items:2}, 0: {items:1} },
+            responsive: {
+                769: {
+                    items: 3
+                },
+                577: {
+                    items: 2
+                },
+                0: {
+                    items: 1
+                }
+            },
         });
 
         $('.service-slider').owlCarousel({
-            margin: 30, nav: true, dots: false, smartSpeed: 1500,
-            items: 3, loop: true, autoplay: true,
+            margin: 30,
+            nav: true,
+            dots: false,
+            smartSpeed: 1500,
+            items: 3,
+            loop: true,
+            autoplay: true,
             navText: [leftArrow, rightArrow],
-            responsive: { 769: {items:3}, 577: {items:2}, 0: {items:1} },
+            responsive: {
+                769: {
+                    items: 3
+                },
+                577: {
+                    items: 2
+                },
+                0: {
+                    items: 1
+                }
+            },
         });
     </script>
 </body>
+
 </html>
