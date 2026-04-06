@@ -299,8 +299,8 @@
 
                 <div class="single-project-inner" style="background-image: url({{ $portfolio->photo }})">
                     <div class="details">
-                        <span class="cat">{{ getLocale($progres->title) }}</span>
-                        <h5>{{ getLocale($progres->description) }}</h5>
+                        <span class="cat">{{ getLocale($portfolio->title) }}</span>
+                        <h5>{{ getLocale($prportfolioogres->description) }}</h5>
                     </div>
                 </div>
             @endforeach
