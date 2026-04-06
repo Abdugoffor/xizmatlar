@@ -13,9 +13,10 @@ class BannerPhoto extends Model
         'blog_photo',
         'team_photo',
         'contact_photo',
+        'logo',
     ];
 
-    protected array $fileFields = ['service_photo','blog_photo','team_photo','contact_photo'];
+    protected array $fileFields = ['service_photo','blog_photo','team_photo','contact_photo','logo'];
 
     public function getFileFields(): array
     {

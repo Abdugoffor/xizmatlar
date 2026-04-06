@@ -19,7 +19,7 @@ class UpdateServiceRequest extends FormRequest
             'cart_photo' => 'nullable|file|max:10240',
             'header_photo' => 'nullable|file|max:10240',
             'content' => 'required|array',
-            'video_link' => 'required|string|max:255',
+            'video_link' => 'nullable|string|max:255',
             'footer_text' => 'required|array',
             'is_main' => 'required|boolean',
             'is_active' => 'required|boolean',

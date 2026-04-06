@@ -20,40 +20,48 @@
                         <div class="form-group row">
                             <div class="card-body">
 
-                                <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('bannerphotos_service photo') }}</label>
+                            <div class="form-group">
+                                <label class="col-form-label">{{ getTranslation('bannerphotos_logo') }}</label>
 
-                                    <input type="file" class="form-control" name="service_photo">
-                                    @error('service_photo')
-                                        <p style="color:red">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('bannerphotos_blog photo') }}</label>
-
-                                    <input type="file" class="form-control" name="blog_photo">
-                                    @error('blog_photo')
-                                        <p style="color:red">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('bannerphotos_team photo') }}</label>
-
-                                    <input type="file" class="form-control" name="team_photo">
-                                    @error('team_photo')
-                                        <p style="color:red">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-form-label">{{ getTranslation('bannerphotos_contact photo') }}</label>
-
-                                    <input type="file" class="form-control" name="contact_photo">
-                                    @error('contact_photo')
-                                        <p style="color:red">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
+                                <input type="file" class="form-control" name="logo">
+                                @error('logo')
+                                    <p style="color:red">{{ $message }}</p>
+                                @enderror
                             </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label">{{ getTranslation('bannerphotos_service photo') }}</label>
+
+                                <input type="file" class="form-control" name="service_photo">
+                                @error('service_photo')
+                                    <p style="color:red">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">{{ getTranslation('bannerphotos_blog photo') }}</label>
+
+                                <input type="file" class="form-control" name="blog_photo">
+                                @error('blog_photo')
+                                    <p style="color:red">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">{{ getTranslation('bannerphotos_team photo') }}</label>
+
+                                <input type="file" class="form-control" name="team_photo">
+                                @error('team_photo')
+                                    <p style="color:red">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">{{ getTranslation('bannerphotos_contact photo') }}</label>
+
+                                <input type="file" class="form-control" name="contact_photo">
+                                @error('contact_photo')
+                                    <p style="color:red">{{ $message }}</p>
+                                @enderror
+                            </div>
+
                         </div>
                     </fieldset>
 

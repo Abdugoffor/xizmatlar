@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\BannerPhoto;
 use App\Models\Service;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
@@ -27,7 +28,9 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('layouts.front', function ($view) {
             $services = Service::where('is_main', true)->where('is_active', true)->get();
+            $logo = BannerPhoto::orderByDesc('id')->first();
             $view->with('services', $services);
+            $view->with('logo', $logo);
         });
     }
 }

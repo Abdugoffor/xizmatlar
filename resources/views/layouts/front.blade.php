@@ -176,13 +176,15 @@
 </head>
 
 <body>
-
+@php
+    $logo = $logo?->logo ?? 'assets/img/home-3/2.png';
+@endphp
     <!-- ========== MOBILE NAVBAR (d-lg-none) ========== -->
     <header class="navbar-area navbar-area-3 d-lg-none d-block">
         <nav class="navbar navbar-expand-lg px-4">
             <div class="container nav-container p-0 pt-2 pb-2">
                 <a class="main-logo" href="{{ route('home') }}">
-                    <img src="/assets/img/home-3/2.png" alt="img" />
+                    <img src="{{ asset($logo) }}" alt="img" />
                 </a>
                 <div class="responsive-mobile-menu">
                     <button class="menu toggle-btn d-block d-lg-none" data-target="#logisk_main_menu"
@@ -237,7 +239,7 @@
             <div class="col-xl-2 col-lg-3">
                 <div class="logo left-logo text-center align-self-center">
                     <a class="main-logo" href="{{ route('home') }}">
-                        <img src="/assets/img/home-3/2.png" alt="img" />
+                        <img src="{{ asset($logo) }}" alt="img" />
                     </a>
                 </div>
             </div>
@@ -379,13 +381,11 @@
                 <div class="col-xl-4 col-md-6">
                     <div class="widget widget_about pe-xl-5">
                         <h4 class="widget-title">
-                            <img src="/assets/img/home-3/2.png" alt="img" />
+                            <img src="{{ asset($logo) }}" alt="img" />
                         </h4>
                         <div class="details">
                             <p>
-                                {{ getTranslation("Quickly supply alternative strategic theme areas vis-a-vis B2C
-                                mindshare. Objectively repurpose stand-alone synergy via
-                                user-centric architectures") }}
+                                {{ getTranslation("Quickly supply alternative strategic theme areas vis-a-vis B2C mindshare. Objectively repurpose stand-alone synergy via user-centric architectures") }}
                             </p>
                             <ul class="social-media style-bg-light">
                                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>

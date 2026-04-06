@@ -18,6 +18,7 @@ class StoreBannerPhotoRequest extends FormRequest
             'blog_photo' => 'required|file|max:10240',
             'team_photo' => 'required|file|max:10240',
             'contact_photo' => 'required|file|max:10240',
+            'logo' => 'nullable|file|max:10240',
 
         ];
 
@@ -36,6 +37,8 @@ class StoreBannerPhotoRequest extends FormRequest
             'team_photo.max'         => getTranslation('team photo must not exceed 10 MB'),
             'contact_photo.file'        => getTranslation('contact photo must be a file'),
             'contact_photo.max'         => getTranslation('contact photo must not exceed 10 MB'),
+            'logo.file'        => getTranslation('logo must be a file'),
+            'logo.max'         => getTranslation('logo must not exceed 10 MB'),
 
         ];
     }

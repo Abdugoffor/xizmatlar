@@ -19,7 +19,7 @@ class StoreServiceRequest extends FormRequest
             'cart_photo' => 'required|file|max:10240',
             'header_photo' => 'required|file|max:10240',
             'content' => 'required|array',
-            'video_link' => 'required|string|max:255',
+            'video_link' => 'nullable|string|max:255',
             'footer_text' => 'required|array',
             'is_main' => 'required|boolean',
             'is_active' => 'required|boolean',
@@ -29,9 +29,9 @@ class StoreServiceRequest extends FormRequest
         $rules = array_merge(
             $rules,
             validateTranslation('title'),
-                validateTranslation('description'),
-                validateTranslation('content'),
-                validateTranslation('footer_text')
+            validateTranslation('description'),
+            validateTranslation('content'),
+            validateTranslation('footer_text')
         );
 
         return $rules;
@@ -56,7 +56,6 @@ class StoreServiceRequest extends FormRequest
             'content.array'          => getTranslation('content must be an array'),
             'content.*.required'     => getTranslation('content translation is required'),
             'content.*.string'       => getTranslation('content translation must be a string'),
-            'video_link.required'   => getTranslation('video link is required'),
             'video_link.string'    => getTranslation('video link must be a string'),
             'video_link.max'       => getTranslation('video link must not exceed 255 characters'),
             'footer_text.required'       => getTranslation('footer text is required'),

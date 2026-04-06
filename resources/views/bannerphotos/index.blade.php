@@ -27,6 +27,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" width="3%">№</th>
+                                    <th class="text-center">{{ getTranslation('bannerphotos_logo') }}</th>
                                     <th class="text-center">{{ getTranslation('bannerphotos_service photo') }}</th>
                                     <th class="text-center">{{ getTranslation('bannerphotos_blog photo') }}</th>
                                     <th class="text-center">{{ getTranslation('bannerphotos_team photo') }}</th>
@@ -39,6 +40,8 @@
                                 @foreach ($models as $model)
                                     <tr>
                                         <td>{{ ($models->currentPage() - 1) * $models->perPage() + $loop->iteration }}</td>
+                                        <td>@if($model->logo) <a href="{{ asset($model->logo) }}"
+                                        target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
                                         <td>@if($model->service_photo) <a href="{{ asset($model->service_photo) }}"
                                         target="_blank">{{ getTranslation('Open file') }}</a> @else - @endif</td>
                                         <td>@if($model->blog_photo) <a href="{{ asset($model->blog_photo) }}"
@@ -77,7 +80,8 @@
                                                             @method('DELETE')
                                                             <div class="modal-body">
                                                                 <h3 class="text-center">
-                                                                    {{ getTranslation('Вы уверены, что хотите удалить?') }}</h3>
+                                                                    {{ getTranslation('Вы уверены, что хотите удалить?') }}
+                                                                </h3>
                                                             </div>
                                                             <div class="modal-footer d-flex justify-content-center pb-4">
                                                                 <button type="button" class="btn btn-secondary"

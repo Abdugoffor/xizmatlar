@@ -22,6 +22,32 @@
                             <div class="card-body">
 
                                 <div class="form-group">
+                                    <label class="col-form-label">{{ getTranslation('bannerphotos_logo') }}</label>
+                                    @if(!empty($model->logo))
+                                        <div class="mb-2">
+                                            <a href="{{ asset($model->logo) }}" target="_blank">
+                                                {{ getTranslation('Current file') }}
+                                            </a>
+                                        </div>
+
+                                        @php
+                                            $extension = strtolower(pathinfo($model->logo, PATHINFO_EXTENSION));
+                                        @endphp
+
+                                        @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                            <div class="mb-2">
+                                                <img src="{{ asset($model->logo) }}" alt="logo"
+                                                    style="max-height:120px; border-radius:8px;">
+                                            </div>
+                                        @endif
+                                    @endif
+                                    <input type="file" class="form-control" name="logo">
+                                    @error('logo')
+                                        <p style="color:red">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
                                     <label class="col-form-label">{{ getTranslation('bannerphotos_service photo') }}</label>
                                     @if(!empty($model->service_photo))
                                         <div class="mb-2">
@@ -36,7 +62,8 @@
 
                                         @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
                                             <div class="mb-2">
-                                                <img src="{{ asset($model->service_photo) }}" alt="service_photo" style="max-height:120px; border-radius:8px;">
+                                                <img src="{{ asset($model->service_photo) }}" alt="service_photo"
+                                                    style="max-height:120px; border-radius:8px;">
                                             </div>
                                         @endif
                                     @endif
@@ -60,7 +87,8 @@
 
                                         @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
                                             <div class="mb-2">
-                                                <img src="{{ asset($model->blog_photo) }}" alt="blog_photo" style="max-height:120px; border-radius:8px;">
+                                                <img src="{{ asset($model->blog_photo) }}" alt="blog_photo"
+                                                    style="max-height:120px; border-radius:8px;">
                                             </div>
                                         @endif
                                     @endif
@@ -84,7 +112,8 @@
 
                                         @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
                                             <div class="mb-2">
-                                                <img src="{{ asset($model->team_photo) }}" alt="team_photo" style="max-height:120px; border-radius:8px;">
+                                                <img src="{{ asset($model->team_photo) }}" alt="team_photo"
+                                                    style="max-height:120px; border-radius:8px;">
                                             </div>
                                         @endif
                                     @endif
@@ -108,7 +137,8 @@
 
                                         @if(in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
                                             <div class="mb-2">
-                                                <img src="{{ asset($model->contact_photo) }}" alt="contact_photo" style="max-height:120px; border-radius:8px;">
+                                                <img src="{{ asset($model->contact_photo) }}" alt="contact_photo"
+                                                    style="max-height:120px; border-radius:8px;">
                                             </div>
                                         @endif
                                     @endif
@@ -117,6 +147,7 @@
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
+
 
                             </div>
                         </div>

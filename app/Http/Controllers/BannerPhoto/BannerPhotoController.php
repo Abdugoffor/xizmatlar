@@ -39,6 +39,9 @@ class BannerPhotoController extends Controller
         if ($request->hasFile('contact_photo')) {
             $data['contact_photo'] = FileUploadService::uploadFile($request->file('contact_photo'));
         }
+        if ($request->hasFile('logo')) {
+            $data['logo'] = FileUploadService::uploadFile($request->file('logo'));
+        }
 
         BannerPhoto::create($data);
 
@@ -82,6 +85,11 @@ class BannerPhotoController extends Controller
             $data['contact_photo'] = FileUploadService::uploadFile($request->file('contact_photo'));
         } else {
             unset($data['contact_photo']);
+        }
+        if ($request->hasFile('logo')) {
+            $data['logo'] = FileUploadService::uploadFile($request->file('logo'));
+        } else {
+            unset($data['logo']);
         }
 
         $model->update($data);
