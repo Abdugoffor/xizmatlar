@@ -477,7 +477,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('assets/js/vendor.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}?v={{ filemtime(public_path('assets/js/main.js')) }}"></script>
 
     <script>
         // ===== Til almashtirish dropdown =====
