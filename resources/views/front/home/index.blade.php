@@ -253,11 +253,10 @@
 
             {{-- <div class="bg work-process-bg bg-cover" style="background-image: url(assets/img/home-3/26.png)"> --}}
             <div class="bg work-process-bg bg-cover">
-                <div class="row">
+                <div class="row justify-content-center">
                     @foreach ($progresSections as $progres)
-                        <center>
                             <div class="col-lg-3 col-md-6">
-                                <div class="single-work-process-inner text-center">
+                                <div class="single-work-process-inner text-center mx-auto">
                                     <div class="thumb">
                                         <div class="icon">
                                             <img src="{{ $progres->photo }}" alt="img" />
@@ -270,7 +269,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </center>
                     @endforeach
                 </div>
             </div>
