@@ -251,23 +251,26 @@
                 </div>
             </div>
 
-            <div class="bg work-process-bg bg-cover" style="background-image: url(assets/img/home-3/26.png)">
+            {{-- <div class="bg work-process-bg bg-cover" style="background-image: url(assets/img/home-3/26.png)"> --}}
+            <div class="bg work-process-bg bg-cover">
                 <div class="row">
                     @foreach ($progresSections as $progres)
-                        <div class="col-lg-3 col-md-6">
-                            <div class="single-work-process-inner text-center">
-                                <div class="thumb">
-                                    <div class="icon">
-                                        <img src="{{ $progres->photo }}" alt="img" />
+                        <center>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="single-work-process-inner text-center">
+                                    <div class="thumb">
+                                        <div class="icon">
+                                            <img src="{{ $progres->photo }}" alt="img" />
+                                        </div>
+                                    </div>
+                                    <div class="details">
+                                        <h6>{{ getLocale($progres->title) }}</h6>
+                                        <p>{{ getLocale($progres->description) }}</p>
+                                        <div class="count">{{ $progres->order }}</div>
                                     </div>
                                 </div>
-                                <div class="details">
-                                    <h6>{{ getLocale($progres->title) }}</h6>
-                                    <p>{{ getLocale($progres->description) }}</p>
-                                    <div class="count">{{ $progres->order }}</div>
-                                </div>
                             </div>
-                        </div>
+                        </center>
                     @endforeach
                 </div>
             </div>

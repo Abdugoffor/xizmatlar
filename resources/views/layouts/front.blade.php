@@ -208,7 +208,7 @@
                             <a href="{{ route('blog') }}">{{ getTranslation('Blog') }}</a>
                         </li>
                         <li>
-                            <a href="{{ route('about') }}">{{ getTranslation('Team') }}</a>
+                            <a href="{{ route('team') }}">{{ getTranslation('Team') }}</a>
                         </li>
                         <li>
                             <a href="{{ route('contact') }}">{{ getTranslation('Contact Us') }}</a>
