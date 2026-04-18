@@ -23,6 +23,7 @@ use App\Http\Controllers\SkillsOption\SkillsOptionController;
 use App\Http\Controllers\Statistic\StatisticController;
 use App\Http\Controllers\Team\TeamController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Video\VideoController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\LangMiddleware;
@@ -80,5 +81,6 @@ Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2,5}'])->middleware([LangMid
         Route::resource('skillsoptions', SkillsOptionController::class);
         Route::resource('sertificates', SertificateController::class);
         Route::resource('bannerphotos', BannerPhotoController::class);
+        Route::resource('videos', VideoController::class);
     });
 });

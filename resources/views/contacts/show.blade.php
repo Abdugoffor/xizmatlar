@@ -25,12 +25,20 @@
                             <td>{{ $model->phone_2 }}</td>
                         </tr>
                         <tr>
+                            <th style="width:20%">{{ getTranslation('contacts_phone 3') }}</th>
+                            <td>{{ $model->phone_3 }}</td>
+                        </tr>
+                        <tr>
                             <th style="width:20%">{{ getTranslation('contacts_email 1') }}</th>
                             <td>{{ $model->email_1 }}</td>
                         </tr>
                         <tr>
                             <th style="width:20%">{{ getTranslation('contacts_email 2') }}</th>
                             <td>{{ $model->email_2 }}</td>
+                        </tr>
+                        <tr>
+                            <th style="width:20%">{{ getTranslation('contacts_email 3') }}</th>
+                            <td>{{ $model->email_3 }}</td>
                         </tr>
                         <tr>
                             <th style="width:20%;vertical-align:top">{{ getTranslation('contacts_address') }}</th>

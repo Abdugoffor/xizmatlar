@@ -16,8 +16,10 @@ class UpdateContactRequest extends FormRequest
         $rules = [
             'phone_1' => 'required|string|max:255',
             'phone_2' => 'required|string|max:255',
+            'phone_3' => 'nullable|string|max:255',
             'email_1' => 'required|string|max:255',
             'email_2' => 'required|string|max:255',
+            'email_3' => 'nullable|string|max:255',
             'address' => 'required|array',
             'tlegram' => 'required|string|max:255',
             'facebook' => 'required|string|max:255',

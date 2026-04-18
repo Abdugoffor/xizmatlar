@@ -71,6 +71,7 @@
                                 <div class="media-body">
                                     <p>{{ $contact->phone_1 }}</p>
                                     <p>{{ $contact->phone_2 }}</p>
+                                    <p>{{ $contact->phone_3 }}</p>
                                 </div>
                             </div>
                         </div>
@@ -83,6 +84,7 @@
                                 <div class="media-body">
                                     <p>{{ $contact->email_1 }}</p>
                                     <p>{{ $contact->email_2 }}</p>
+                                    <p>{{ $contact->email_3 }}</p>
                                 </div>
                             </div>
                         </div>

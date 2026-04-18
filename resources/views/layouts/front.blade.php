@@ -368,14 +368,33 @@
                             </ul>
                         </div>
                         <div class="nav-right-part nav-right-part-desktop">
-                            <div class="media d-xl-inline-flex d-none">
-                                <div class="media-left me-2">
-                                    <img src="/assets/img/p-icon.png" alt="img" />
+                            <div class="d-xl-flex d-none align-items-center gap-3">
+                                <div class="media d-flex align-items-center">
+                                    <div class="media-left me-2">
+                                        <img src="/assets/img/p-icon.png" alt="img" />
+                                    </div>
+                                    <div class="media-body">
+                                        <span class="title d-block" style="font-size:11px;">{{ getTranslation('Emergency') }}</span>
+                                        <span class="phone-number text-white" style="font-size:13px;font-weight:600;">{{ $contact->phone_1 }}</span>
+                                    </div>
                                 </div>
-                                <div class="media-body">
-                                    <span class="title">{{ getTranslation('Emergency') }}</span> <br />
-                                    <span
-                                        class="phone-number text-white">{{ getTranslation('+56 (201) 555-0124') }}</span>
+                                <div class="media d-flex align-items-center">
+                                    <div class="media-left me-2">
+                                        <img src="/assets/img/p-icon.png" alt="img" />
+                                    </div>
+                                    <div class="media-body">
+                                        <span class="title d-block" style="font-size:11px;">{{ getTranslation('Support') }}</span>
+                                        <span class="phone-number text-white" style="font-size:13px;font-weight:600;">{{ $contact->phone_2 }}</span>
+                                    </div>
+                                </div>
+                                <div class="media d-flex align-items-center">
+                                    <div class="media-left me-2">
+                                        <img src="/assets/img/p-icon.png" alt="img" />
+                                    </div>
+                                    <div class="media-body">
+                                        <span class="title d-block" style="font-size:11px;">{{ getTranslation('Office') }}</span>
+                                        <span class="phone-number text-white" style="font-size:13px;font-weight:600;">{{ $contact->phone_3 }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

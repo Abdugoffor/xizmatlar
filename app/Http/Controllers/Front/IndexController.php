@@ -21,14 +21,17 @@ use App\Models\ServiceSection;
 use App\Models\SkillsOption;
 use App\Models\Statistic;
 use App\Models\Team;
+use App\Models\Video;
 
 class IndexController extends Controller
 {
     public function index()
     {
-        $carousels = Carousel::where('is_active', true)->orderBy('id', 'desc')->limit(10)->get();
+        // $carousels = Carousel::where('is_active', true)->orderBy('id', 'desc')->limit(10)->get();
 
         $aboutCompany = AboutCompany::first();
+
+        $video = Video::first();
 
         $services = Service::where('is_main', true)->limit(4)->get();
 
@@ -44,7 +47,8 @@ class IndexController extends Controller
         $blogs = Blog::where('is_active', true)->orderBy('id', 'desc')->limit(3)->get();
 
         return view('front.home.index', [
-            'carousels' => $carousels,
+            'video' => $video,
+            // 'carousels' => $carousels,
             'aboutCompany' => $aboutCompany,
             'services' => $services,
             'serviceSections' => $serviceSections,

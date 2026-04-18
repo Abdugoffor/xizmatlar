@@ -90,6 +90,7 @@
                 @php
                     $group1 =
                         request()->routeIs('carousels.*') ||
+                        request()->routeIs('videos.*') ||
                         request()->routeIs('aboutcompanies.*') ||
                         request()->routeIs('processsections.*') ||
                         request()->routeIs('servicesections.*') ||
@@ -128,11 +129,19 @@
 
                             <ul class="nav nav-group-sub {{ $group1 ? 'd-block' : '' }}">
 
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a href="{{ route('carousels.index') }}"
                                         class="nav-link {{ request()->routeIs('carousels.*') ? 'active' : '' }}">
                                         <i class="icon-list-unordered"></i>
                                         <span>{{ getTranslation('Carousel') }}</span>
+                                    </a>
+                                </li> --}}
+
+                                <li class="nav-item">
+                                    <a href="{{ route('videos.index') }}"
+                                        class="nav-link {{ request()->routeIs('videos.*') ? 'active' : '' }}">
+                                        <i class="icon-list-unordered"></i>
+                                        <span>{{ getTranslation('Main Video') }}</span>
                                     </a>
                                 </li>
 

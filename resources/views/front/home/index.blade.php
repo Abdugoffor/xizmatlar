@@ -2,44 +2,26 @@
 @section('title', getTranslation('Home title'))
 @section('content')
 
+    @php
+        $extension = pathinfo($video->home_video, PATHINFO_EXTENSION);
+
+        $mimeTypes = [
+            'mp4' => 'video/mp4',
+            'webm' => 'video/webm',
+            'mov' => 'video/quicktime',
+            'avi' => 'video/x-msvideo',
+            'wmv' => 'video/x-ms-wmv',
+            'mkv' => 'video/x-matroska',
+        ];
+
+        $mimeType = $mimeTypes[strtolower($extension)] ?? 'video/mp4';
+    @endphp
+
     <!-- banner start -->
-    <div class="position-relative">
-        <div class="slider slider-for banner-slider-main">
-            @foreach ($carousels as $carousel)
-                <div class="item" style="background: url({{ asset($carousel->photo) }})">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="banner-inner style-white">
-                                    <h6 class="sub-title text-base mb-3">
-                                        <svg class="me-2" width="40" height="12" viewBox="0 0 40 12" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="20" width="20" height="2" fill="#1869FE" />
-                                            <rect y="10" width="40" height="2" fill="#1869FE" />
-                                        </svg>
-                                        {{ getLocale($carousel->title) }}
-                                    </h6>
-                                    <h1 class="b-animate-2 title">
-                                        {{ getLocale($carousel->description) }}
-                                    </h1>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-
-        <div class="container position-relative">
-            <div class="slider slider-nav banner-slider-main-nav">
-                @foreach ($carousels as $carousel)
-                    <div class="item">
-                        <img src="{{ asset($carousel->photo) }}" alt="{{ getLocale($carousel->title) }}" />
-                    </div>
-                @endforeach
-            </div>
-        </div>
+    <div class="position-relative" style="overflow: hidden; line-height: 0;">
+        <video autoplay muted loop playsinline style="width: 100%; height: 100vh; object-fit: cover; display: block;">
+            <source src="{{ asset($video->home_video) }}" type="{{ $mimeType }}">
+        </video>
     </div>
     <!-- banner end -->
 
@@ -255,20 +237,20 @@
             <div class="bg work-process-bg bg-cover">
                 <div class="row justify-content-center">
                     @foreach ($progresSections as $progres)
-                            <div class="col-lg-3 col-md-6">
-                                <div class="single-work-process-inner text-center mx-auto">
-                                    <div class="thumb">
-                                        <div class="icon">
-                                            <img src="{{ $progres->photo }}" alt="img" />
-                                        </div>
-                                    </div>
-                                    <div class="details">
-                                        <h6>{{ getLocale($progres->title) }}</h6>
-                                        <p>{{ getLocale($progres->description) }}</p>
-                                        <div class="count">{{ $progres->order }}</div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single-work-process-inner text-center mx-auto">
+                                <div class="thumb">
+                                    <div class="icon">
+                                        <img src="{{ $progres->photo }}" alt="img" />
                                     </div>
                                 </div>
+                                <div class="details">
+                                    <h6>{{ getLocale($progres->title) }}</h6>
+                                    <p>{{ getLocale($progres->description) }}</p>
+                                    <div class="count">{{ $progres->order }}</div>
+                                </div>
                             </div>
+                        </div>
                     @endforeach
                 </div>
             </div>

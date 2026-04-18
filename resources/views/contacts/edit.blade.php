@@ -42,6 +42,16 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-form-label">{{ getTranslation('contacts_phone 3') }}</label>
+                                    <input type="text" class="form-control"
+                                           name="phone_3"
+                                           value="{{ old('phone_3', $model->phone_3 ?? '') }}"
+                                           placeholder="{{ getTranslation('contacts_phone 3') }}">
+                                    @error('phone_3')
+                                        <p style="color:red">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label class="col-form-label">{{ getTranslation('contacts_email 1') }}</label>
                                     <input type="text" class="form-control"
                                            name="email_1"
@@ -58,6 +68,16 @@
                                            value="{{ old('email_2', $model->email_2 ?? '') }}"
                                            placeholder="{{ getTranslation('contacts_email 2') }}">
                                     @error('email_2')
+                                        <p style="color:red">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label">{{ getTranslation('contacts_email 3') }}</label>
+                                    <input type="text" class="form-control"
+                                           name="email_3"
+                                           value="{{ old('email_3', $model->email_3 ?? '') }}"
+                                           placeholder="{{ getTranslation('contacts_email 3') }}">
+                                    @error('email_3')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror
                                 </div>
