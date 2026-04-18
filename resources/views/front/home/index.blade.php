@@ -3,26 +3,31 @@
 @section('content')
 
     @php
-        $extension = pathinfo($video->home_video, PATHINFO_EXTENSION);
+        $extension = null;
+        $mimeType = 'video/mp4';
 
-        $mimeTypes = [
-            'mp4' => 'video/mp4',
-            'webm' => 'video/webm',
-            'mov' => 'video/quicktime',
-            'avi' => 'video/x-msvideo',
-            'wmv' => 'video/x-ms-wmv',
-            'mkv' => 'video/x-matroska',
-        ];
+        if ($video && $video->home_video) {
+            $extension = pathinfo($video->home_video, PATHINFO_EXTENSION);
 
-        $mimeType = $mimeTypes[strtolower($extension)] ?? 'video/mp4';
+            $mimeTypes = [
+                'mp4' => 'video/mp4',
+                'webm' => 'video/webm',
+                'mov' => 'video/quicktime',
+                'avi' => 'video/x-msvideo',
+                'wmv' => 'video/x-ms-wmv',
+                'mkv' => 'video/x-matroska',
+            ];
+
+            $mimeType = $mimeTypes[strtolower($extension)] ?? 'video/mp4';
+        }
     @endphp
 
     <!-- banner start -->
-    <div class="position-relative" style="overflow: hidden; line-height: 0;">
+    @if ($video && $video->home_video)
         <video autoplay muted loop playsinline style="width: 100%; height: 100vh; object-fit: cover; display: block;">
             <source src="{{ asset($video->home_video) }}" type="{{ $mimeType }}">
         </video>
-    </div>
+    @endif
     <!-- banner end -->
 
     <!-- about area start -->
@@ -157,8 +162,8 @@
                         <div class="about-inner-wrap ms-0 ps-lg-4 pb-5 mb-4">
                             <div class="section-title style-white mb-0">
                                 <h6 class="sub-title text-base mb-3">
-                                    <svg class="me-2" width="40" height="12" viewBox="0 0 40 12"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="me-2" width="40" height="12" viewBox="0 0 40 12" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
                                         <rect x="20" width="20" height="2" fill="#1869FE" />
                                         <rect y="10" width="40" height="2" fill="#1869FE" />
                                     </svg>
