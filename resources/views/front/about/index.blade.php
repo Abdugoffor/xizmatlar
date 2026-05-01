@@ -185,8 +185,7 @@
                         <h4 class="subtitle">{{ getTranslation("TEAM MEMBERS") }}</h4>
                         <h2 class="title">{{ getTranslation("OUR PROFESSIONAL TEAM") }}</h2>
                         <p>
-                            {{ getTranslation("Dramatically enhance interactive metrics for reliable services.
-                                                                Proactively unleash fully researched e-commerce") }}
+                            {{ getTranslation("Dramatically enhance interactive metrics for reliable services. Proactively unleash fully researched e-commerce") }}
                         </p>
                     </div>
                 </div>
