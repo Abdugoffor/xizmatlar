@@ -185,7 +185,7 @@
                         <h4 class="subtitle">{{ getTranslation("TEAM MEMBERS") }}</h4>
                         <h2 class="title">{{ getTranslation("OUR PROFESSIONAL TEAM") }}</h2>
                         <p>
-                            {{ getTranslation("Dramatically enhance interactive metrics for reliable services. Proactively unleash fully researched e-commerce") }}
+                            {{ getTranslation("about_page_text_our_professional_team") }}
                         </p>
                     </div>
                 </div>
@@ -231,7 +231,7 @@
                         <h4 class="subtitle style-2">{{ getTranslation("TESTIMONIALS") }}</h4>
                         <h2 class="title">{{ getTranslation("OUR CLIENT'S FEEDBACK") }}</h2>
                         <p class="content">
-                            {{ getTranslation("Dramatically enhance interactive metrics for reliable services.Proactively unleash fully researched e-commerce") }}
+                            {{ getTranslation("about_page_text_our_clientas_feedback") }}
                         </p>
                     </div>
                 </div>
@@ -273,7 +273,7 @@
                         <h4 class="subtitle">{{ getTranslation("HAPPY CLIENTS") }}</h4>
                         <h2 class="title">{{ getTranslation("TRUSTED BY OUR 365,000 CLIENTS") }}</h2>
                         <p class="content">
-                            {{ getTranslation("Dramatically enhance interactive metrics for reliable services.Proactively unleash fully researched e-commerce") }}
+                            {{ getTranslation("about_page_text_team") }}
                         </p>
                     </div>
                 </div>

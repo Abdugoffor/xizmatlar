@@ -30,7 +30,7 @@
                         <h4 class="subtitle">{{ getTranslation("SERVICES") }}</h4>
                         <h2 class="title">{{ getTranslation("OUR SERVICE FOR YOU") }}</h2>
                         <p>
-                            {{ getTranslation("Quickly optimize cooperative models for long-term high-impact rtROI. Dynamically drive innovative e-commerce and distributed paradigms") }}
+                            {{ getTranslation("service_page_text_for_you") }}
                         </p>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                         <h4 class="subtitle">{{ getTranslation("HAPPY CLIENTS") }}</h4>
                         <h2 class="title">{{ getTranslation("TRUSTED BY OUR 365,000 CLIENTS") }}</h2>
                         <p class="content">
-                            {{ getTranslation("Dramatically enhance interactive metrics for reliable services. Proactively unleash fully researched e-commerce") }}
+                            {{ getTranslation("service_page_text_happy_clients") }}
                         </p>
                     </div>
                 </div>

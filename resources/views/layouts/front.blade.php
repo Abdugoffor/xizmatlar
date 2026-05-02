@@ -172,6 +172,39 @@
             border-color: #1869fe;
             color: #fff;
         }
+
+        /* === Sarlavhalarni "sentence case" qilish: faqat birinchi harf katta === */
+        body h1,
+        body h2,
+        body h3,
+        body h4,
+        body h5,
+        body h6,
+        .last-para,
+        .media-body .title,
+        .section-title .title,
+        .section-title .subtitle,
+        .widget-title,
+        .sub-title,
+        .page-title {
+            text-transform: lowercase;
+        }
+
+        body h1::first-letter,
+        body h2::first-letter,
+        body h3::first-letter,
+        body h4::first-letter,
+        body h5::first-letter,
+        body h6::first-letter,
+        .last-para::first-letter,
+        .media-body .title::first-letter,
+        .section-title .title::first-letter,
+        .section-title .subtitle::first-letter,
+        .widget-title::first-letter,
+        .sub-title::first-letter,
+        .page-title::first-letter {
+            text-transform: uppercase;
+        }
     </style>
 </head>
 
@@ -420,7 +453,7 @@
                         </h4>
                         <div class="details">
                             <p>
-                                {{ getTranslation('Quickly supply alternative strategic theme areas vis-a-vis B2C mindshare. Objectively repurpose stand-alone synergy via user-centric architectures') }}
+                                {{ getTranslation('footer_text') }}
                             </p>
                             <ul class="social-media style-bg-light">
                                 <li><a href="{{ $contact->facebook }}" target="_blank"><i
