@@ -464,10 +464,10 @@
                                     <li><i class="fas fa-calendar-alt"></i>{{ $blog->date->format('d M Y') }}</li>
                                 </ul>
                                 <h5>
-                                    <a href="{{ route('blog.show', $blog->slug) }}">{{ getLocale($blog->title) }}</a>
+                                    <a href="{{ route('blog.show', $blog->slug) }}" title="{{ getLocale($blog->title) }}">{{ \Illuminate\Support\Str::limit(getLocale($blog->title), 30, '...') }}</a>
                                 </h5>
                                 <p>
-                                    {{ getLocale($blog->description) }}
+                                    {{ \Illuminate\Support\Str::limit(getLocale($blog->description), 100, '...') }}
                                 </p>
                                 <a class="read-more-text"
                                     href="{{ route('blog.show', $blog->slug) }}">{{ getTranslation('READ MORE') }} <i
