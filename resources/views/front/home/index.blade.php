@@ -378,31 +378,47 @@
                         </div>
                     </div>
                     <div class="col-lg-6 ps-xl-5">
-                        <form action="" method="post">
+                        <form id="contact-form" action="{{ route('send-message') }}" method="post" novalidate>
+                            @csrf
 
                             <div class="quote-wrap ms-xl-5" style="background: var(--main-color)">
                                 <h4 class="mb-4">{{ getTranslation('Request a Quote') }}</h4>
                                 <div class="single-input-inner style-bg border-radius-5">
                                     <label><i class="fa fa-user"></i></label>
-                                    <input type="text" name="name"
+                                    <input type="text" name="name" value="{{ old('name') }}" required
                                         placeholder="{{ getTranslation('Your name') }}" />
+                                    @error('name', 'contact')
+                                        <small class="d-block text-danger text-start mt-1">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="single-input-inner style-bg border-radius-5">
                                     <label><i class="fa fa-envelope"></i></label>
-                                    <input type="text" name="email"
+                                    <input type="text" name="email" value="{{ old('email') }}" required
                                         placeholder="{{ getTranslation('Your email') }}" />
+                                    @error('email', 'contact')
+                                        <small class="d-block text-danger text-start mt-1">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="single-input-inner style-bg border-radius-5">
                                     <label><i class="fas fa-calculator"></i></label>
-                                    <input type="text" name="phone"
+                                    <input type="text" name="phone" value="{{ old('phone') }}"
                                         placeholder="{{ getTranslation('Phone number') }}" />
+                                    @error('phone', 'contact')
+                                        <small class="d-block text-danger text-start mt-1">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="single-input-inner style-bg border-radius-5">
                                     <label><i class="fas fa-pencil-alt"></i></label>
-                                    <textarea name="text" placeholder="Write massage"></textarea>
+                                    <textarea name="text" placeholder="Write massage">{{ old('text') }}</textarea>
+                                    @error('text', 'contact')
+                                        <small class="d-block text-danger text-start mt-1">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <button class="btn btn-dark" type="submit">{{ getTranslation('Request a Quote') }} <i
                                         class="fa fa-arrow-right"></i></button>
+                                @if (session('contact_status'))
+                                    <small class="d-block text-white mt-2" role="status">{{ session('contact_status') }}</small>
+                                @endif
                             </div>
 
                         </form>

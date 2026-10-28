@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendContactEmail;
 use App\Models\AboutCompany;
 use App\Models\AboutPageHeader;
 use App\Models\AboutPageSkills;
@@ -22,9 +23,40 @@ use App\Models\SkillsOption;
 use App\Models\Statistic;
 use App\Models\Team;
 use App\Models\Video;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class IndexController extends Controller
 {
+    public function sendMessage(Request $request)
+    {
+        $input = $request->only(['name', 'email', 'phone', 'text']);
+        $validator = Validator::make($input, [
+            'name' => 'required|string|max:100',
+            'email' => 'required|email|max:254',
+            'phone' => 'nullable|string|max:40',
+            'text' => 'nullable|string|max:5000',
+        ], [
+            'name.required' => getTranslation('Please enter your name.'),
+            'email.required' => getTranslation('Please enter your email.'),
+            'email.email' => getTranslation('Please enter a valid email address.'),
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withFragment('contact-form')
+                ->withErrors($validator, 'contact')
+                ->withInput(array_map(fn ($value) => is_string($value) ? $value : '', $input));
+        }
+
+        $data = $validator->validated();
+        $data['submitted_at'] = now('Asia/Tashkent')->format('d.m.Y H:i:s');
+
+        SendContactEmail::dispatchAfterResponse($data);
+
+        return back()->withFragment('contact-form')
+            ->with('contact_status', getTranslation('Your request has been accepted.'));
+    }
+
     public function index()
     {
         // $carousels = Carousel::where('is_active', true)->orderBy('id', 'desc')->limit(10)->get();

@@ -26,35 +26,51 @@
         <div class="contact-area mg-top-120 mb-120">
             <div class="row g-0 justify-content-center">
                 <div class="col-lg-7">
-                    <form class="contact-form text-center">
+                    <form id="contact-form" class="contact-form text-center" action="{{ route('send-message') }}" method="post" novalidate>
+                        @csrf
                         <h3>{{ getTranslation("GET A QUOTE") }}</h3>
                         <div class="row">
                             <div class="col-12">
                                 <div class="single-input-inner">
                                     <label><i class="fa fa-user"></i></label>
-                                    <input type="text" name="name" placeholder="{{ getTranslation("Your name") }}" />
+                                    <input type="text" name="name" value="{{ old('name') }}" required placeholder="{{ getTranslation("Your name") }}" />
+                                    @error('name', 'contact')
+                                        <small class="d-block text-danger text-start mt-1">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="single-input-inner">
                                     <label><i class="fa fa-envelope"></i></label>
-                                    <input type="text" name="email" placeholder="{{ getTranslation("Your email") }}" />
+                                    <input type="text" name="email" value="{{ old('email') }}" required placeholder="{{ getTranslation("Your email") }}" />
+                                    @error('email', 'contact')
+                                        <small class="d-block text-danger text-start mt-1">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="single-input-inner">
                                     <label><i class="fas fa-calculator"></i></label>
-                                    <input type="text" name="phone" placeholder="{{ getTranslation("Phone number") }}" />
+                                    <input type="text" name="phone" value="{{ old('phone') }}" placeholder="{{ getTranslation("Phone number") }}" />
+                                    @error('phone', 'contact')
+                                        <small class="d-block text-danger text-start mt-1">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="single-input-inner">
                                     <label><i class="fas fa-pencil-alt"></i></label>
-                                    <textarea name="text" placeholder="Write massage"></textarea>
+                                    <textarea name="text" placeholder="Write massage">{{ old('text') }}</textarea>
+                                    @error('text', 'contact')
+                                        <small class="d-block text-danger text-start mt-1">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-12">
-                                <a class="btn btn-base" href="#"> {{ getTranslation("SEND MESSAGE") }} </a>
+                                <button class="btn btn-base" type="submit"> {{ getTranslation("SEND MESSAGE") }} </button>
+                                @if (session('contact_status'))
+                                    <small class="d-block text-success mt-2" role="status">{{ session('contact_status') }}</small>
+                                @endif
                             </div>
                         </div>
                     </form>

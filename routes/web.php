@@ -42,6 +42,7 @@ Route::prefix('{lang}')->where(['lang' => '[a-zA-Z]{2,5}'])->middleware([LangMid
     Route::get('/blog/{slug}', [IndexController::class, 'blogShow'])->name('blog.show');
     Route::get('/team', [IndexController::class, 'team'])->name('team');
     Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
+    Route::post('/send-message', [IndexController::class, 'sendMessage'])->name('send-message');
 
     Route::get('/lang/change', [LanguageController::class, 'changeLanguage'])->name('change.language');
     Route::get("/admin", [LoginController::class, "showLoginForm"])->name("login");
