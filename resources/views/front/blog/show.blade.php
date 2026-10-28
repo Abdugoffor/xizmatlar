@@ -39,7 +39,7 @@
                                 </li>
                             </ul>
                             <h2>
-                                <a href="{{ route('blog.show', $blog->slug) }}">{{ getLocale($blog->title) }}</a>
+                                <a href="#">{{ getLocale($blog->title) }}</a>
                             </h2>
                             <p>
                                 {{ getLocale($blog->description) }}
@@ -75,7 +75,7 @@
                                             </div>
                                             <div class="details">
                                                 <h6>
-                                                    <a href="{{ route('blog.show', $blogsSection->slug) }}">{{ getLocale($blogsSection->title) }}</a>
+                                                    <a href="{{ route('blog.show', $blogsSection->slug) }}" title="{{ getLocale($blogsSection->title) }}">{{ \Illuminate\Support\Str::limit(getLocale($blogsSection->title), 30, '...') }}</a>
                                                 </h6>
                                                 <p>
                                                     <i class="fa fa-calendar-alt"></i>

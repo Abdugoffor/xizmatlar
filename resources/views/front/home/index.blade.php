@@ -131,7 +131,7 @@
                                 </div>
                             </div>
                             <div class="details">
-                                <h5>{{ getLocale($service->title) }}</h5>
+                                <h5 title="{{ getLocale($service->title) }}">{{ \Illuminate\Support\Str::limit(getLocale($service->title), 80, '...') }}</h5>
                                 <p>{{ getLocale($service->description) }}</p>
                                 <div class="btn-wrap">
                                     <a class="read-more-text"
