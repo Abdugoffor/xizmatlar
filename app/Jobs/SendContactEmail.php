@@ -20,8 +20,20 @@ class SendContactEmail implements ShouldQueue
         try {
             Mail::to(config('mail.to_address'))->send(new ContactMessage($this->data));
         } catch (Throwable $exception) {
+            $message = $exception->getMessage();
+
+            foreach (['username', 'password'] as $key) {
+                $value = config("mail.mailers.smtp.{$key}");
+
+                if (is_string($value) && $value !== '') {
+                    $message = str_replace([$value, rawurlencode($value), base64_encode($value)], '[redacted]', $message);
+                }
+            }
+
             Log::warning('Contact email could not be sent.', [
                 'exception_type' => $exception::class,
+                'exception_code' => $exception->getCode(),
+                'exception_message' => $message,
             ]);
         }
     }
