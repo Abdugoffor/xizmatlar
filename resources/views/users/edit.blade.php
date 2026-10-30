@@ -55,10 +55,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-form-label">{{ getTranslation('password') }}</label>
-                                    <input type="text" class="form-control"
+                                    <input type="password" class="form-control"
                                            name="password"
-                                           value="{{ old('password', $model->password ?? '') }}"
+                                           autocomplete="new-password"
                                            placeholder="{{ getTranslation('password') }}">
+                                    <small class="form-text text-muted">Parolni o‘zgartirmaslik uchun bo‘sh qoldiring.</small>
                                     @error('password')
                                         <p style="color:red">{{ $message }}</p>
                                     @enderror

@@ -49,23 +49,26 @@ class UserController extends Controller
             ->with('notification', getTranslation('User создан успешно'));
     }
 
-    public function show($id)
+    public function show($lang, $id)
     {
         $model = User::findOrFail($id);
         return view('users.show', ['model' => $model]);
     }
 
-    public function edit($id)
+    public function edit($lang, $id)
     {
         $model = User::findOrFail($id);
         return view('users.edit', ['model' => $model]);
     }
 
-    public function update(UpdateUserRequest $request, $id)
+    public function update(UpdateUserRequest $request, $lang, $id)
     {
         $model = User::findOrFail($id);
         $data  = $request->validated();
 
+        if (!$request->filled('password')) {
+            unset($data['password']);
+        }
 
         $model->update($data);
 
@@ -73,7 +76,7 @@ class UserController extends Controller
             ->with('notification', getTranslation('User обновлён успешно'));
     }
 
-    public function destroy($id)
+    public function destroy($lang, $id)
     {
         $model = User::findOrFail($id);
         $model->delete();

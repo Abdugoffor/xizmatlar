@@ -29,11 +29,6 @@
                             <td>{{ $model->role }}</td>
                         </tr>
                         <tr>
-                            <th style="width:20%">{{ getTranslation('password') }}</th>
-                            <td>{{ $model->password }}</td>
-                        </tr>
-
-                        <tr>
                             <th style="width:20%">{{ getTranslation('Создан') }}</th>
                             <td>{{ $model->created_at->format('d-m-Y, H:i') }}</td>
                         </tr>
